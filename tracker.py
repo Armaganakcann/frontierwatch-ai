@@ -69,7 +69,7 @@ SDK_REPOS = {
 
 def classify_release(body):
     import re
-    return bool(re.search(r"\\b(model|models|identifier|gemini|claude|gpt|aurora)\\b", body, re.I))
+    return bool(re.search(r"\b(model|models|identifier|gemini|claude|gpt|aurora)\b", body, re.I))
 
 def collect_sdk_releases():
     releases = {}
