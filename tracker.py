@@ -5,7 +5,7 @@ import sys
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-from intelligence import extract_model_ids, merge_evidence
+from intelligence import extract_model_ids, merge_evidence, model_summary
 
 STATE = Path("data/models.json")
 
@@ -104,6 +104,9 @@ def release_signals(previous, current):
 
 def commit_signals(label, previous_sha, commits):
     if not previous_sha:
+        return []
+    if not any(item.get("sha") == previous_sha for item in commits):
+        print(f"commits {label}: previous SHA outside window; skipping")
         return []
     messages = []
     for item in commits:
@@ -249,6 +252,7 @@ def main():
     print(f"evidence: {len(evidence)} records ({len(fresh_evidence)} new)")
     snapshot = {**previous, **current}
     snapshot["_evidence"] = evidence
+    snapshot["_model_summary"] = model_summary(evidence)
     snapshot['_sdk_commits'] = {**previous.get('_sdk_commits', {}), **{k: v[0]['sha'] for k, v in commits.items()}}
     snapshot['_sdk_releases'] = {**previous.get('_sdk_releases', {}), **{k: v['tag'] for k, v in sdk.items()}}
     if not previous.get("_telegram_test_sent"):
