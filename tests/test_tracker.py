@@ -367,6 +367,23 @@ class TrackerTests(unittest.TestCase):
                 self.assertNotIn("aurora-blue-alpha", sent[0])
                 self.assertEqual(len(json.loads(state.read_text())["_evidence"]), 2)
 
+
+    def test_official_openapi_spec_is_monitored_for_commits(self):
+        self.assertEqual(tracker.SOURCE_REPOS["openai-openapi"], "openai/openai-openapi")
+        self.assertNotIn("openai-openapi", tracker.SDK_REPOS)
+
+    def test_patch_signals_detect_added_openapi_yaml_model(self):
+        files = [{"filename": "openapi.yaml", "patch": "@@ -3 +3 @@\\n- type: old\\n+ enum: [gpt-6-preview]"}]
+        signals = patch_signals("openai-openapi", "abc", 
+            "https://github.com/openai/openai-openapi/commit/abc", files)
+        self.assertEqual(len(signals), 1)
+        self.assertIn("gpt-6-preview", signals[0])
+
+    def test_patch_signals_ignore_yaml_removed_ids(self):
+        files = [{"filename": "openapi.yaml", "patch": "@@ -3 +3 @@\\n- enum: [aurora-blue-alpha]\\n+ type: string"}]
+        self.assertEqual(patch_signals("openai-openapi", "abc",
+            "https://github.com/openai/openai-openapi/commit/abc", files), [])
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
