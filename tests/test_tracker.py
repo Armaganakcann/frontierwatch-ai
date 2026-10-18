@@ -1,5 +1,6 @@
 import unittest
 import json
+import io
 import tempfile
 from pathlib import Path
 import tracker
@@ -308,6 +309,20 @@ class TrackerTests(unittest.TestCase):
             data = json.loads(state.read_text())
             self.assertEqual(data["_health"]["catalogs"]["openai"]["error"], "HTTP_403")
             self.assertEqual(data["_health"]["telegram_pending"], 0)
+
+
+    def test_github_authentication_applies_only_to_github_api(self):
+        seen = []
+        def fake_open(request, timeout):
+            seen.append((request.full_url, request.get_header("Authorization")))
+            return io.BytesIO(b"{}")
+        with patch.dict("os.environ", {"GH_API_TOKEN": "test-private-token"}, clear=True), \
+             patch("urllib.request.urlopen", side_effect=fake_open):
+            tracker.fetch("https://api.github.com/repos/openai/openai-python/releases/latest", {"Accept": "application/json"})
+            tracker.fetch("https://api.openai.com/v1/models", {"Authorization": "Bearer provider-key"})
+        self.assertEqual(seen[0][1], "Bearer test-private-token")
+        self.assertEqual(seen[1][1], "Bearer provider-key")
+        self.assertNotEqual(seen[1][1], "Bearer test-private-token")
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
