@@ -97,7 +97,7 @@ def release_signals(previous, current):
             matches = [line.strip() for line in body.splitlines()
                        if classify_release(line) and len(line.strip()) > 8]
             excerpt = " | ".join(matches[:3])[:450]
-            messages.append(f"OFFICIAL SDK RELEASE SIGNAL (not a model release)\\n{label}: {release['tag']}\\n{excerpt}\\n{release['url']}")
+            messages.append(f"OFFICIAL SDK RELEASE SIGNAL (not a model release)\n{label}: {release['tag']}\n{excerpt}\n{release['url']}")
     return messages
 
 
@@ -111,7 +111,7 @@ def commit_signals(label, previous_sha, commits):
         message = item.get("commit", {}).get("message", "")
         url = item.get("html_url", "")
         if classify_release(message) and url.startswith("https://github.com/"):
-            messages.append(f"OFFICIAL COMMIT SIGNAL (not a model release)\\n{label}: {message[:280]}\\n{url}")
+            messages.append(f"OFFICIAL COMMIT SIGNAL (not a model release)\n{label}: {message[:280]}\n{url}")
     return messages[:5]
 
 def collect_sdk_commits():
@@ -145,7 +145,7 @@ def patch_signals(label, sha, url, files):
             added = line[1:].strip()
             if len(added) > 250:
                 continue
-            if re.search(r"(?i)(model[_-]?(id|name)?|aurora|gemini|claude|gpt)[^\\n]{0,100}", added):
+            if re.search(r"(?i)(model[_-]?(id|name)?|aurora|gemini|claude|gpt)[^\n]{0,100}", added):
                 findings.append(f"{name}: {added[:180]}")
             if len(findings) >= 3:
                 break
@@ -153,8 +153,8 @@ def patch_signals(label, sha, url, files):
             break
     if not findings:
         return []
-    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\\n{label} {sha[:12]}\\n" +
-            "\\n".join(findings) + f"\\n{url}"]
+    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\n{label} {sha[:12]}\n" +
+            "\n".join(findings) + f"\n{url}"]
 
 def collect_patch_signals(previous, commits):
     signals = []
