@@ -1,4 +1,4 @@
-name: FrontierWatch source-verified monitor
+name: FrontierWatch independent release monitor
 on:
   push:
     branches: [main]
