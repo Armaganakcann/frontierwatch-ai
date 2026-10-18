@@ -1,4 +1,4 @@
-name: Monitor catalogs and public early signals
+name: FrontierWatch catalogs and early signals
 on:
   push:
     branches: [main]
