@@ -43,6 +43,10 @@ def diff_models(previous, current, initial=False):
             if provider in previous and set(ids) - set(previous.get(provider, []))}
 
 def fetch(url, headers):
+    if url.startswith("https://api.github.com/"):
+        token = os.environ.get("GH_API_TOKEN")
+        if token:
+            headers = {**headers, "Authorization": "Bearer " + token}
     request = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(request, timeout=20) as response:
         return json.load(response)
