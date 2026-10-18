@@ -8,6 +8,7 @@ from urllib.parse import quote
 from datetime import datetime, timezone
 from pathlib import Path
 from intelligence import extract_model_ids, merge_evidence, model_summary
+from community import collect_community, community_alerts
 
 STATE = Path("data/models.json")
 
@@ -140,8 +141,11 @@ def collect(previous=None, diagnostics=None):
 
 SDK_REPOS = {
     "openai-python": "openai/openai-python",
+    "openai-node": "openai/openai-node",
     "anthropic-sdk-python": "anthropics/anthropic-sdk-python",
+    "anthropic-sdk-typescript": "anthropics/anthropic-sdk-typescript",
     "python-genai": "googleapis/python-genai",
+    "js-genai": "googleapis/js-genai",
 }
 
 def classify_release(body):
@@ -340,6 +344,9 @@ def main():
         print("No successful catalogs; preserving previous model lists")
     sdk = collect_sdk_releases()
     commits = collect_sdk_commits()
+    community_entries, community_health = collect_community(fetch)
+    print(f"community: {community_health.get('status', 'unknown')}, "
+          f"{len(community_entries)} model-name references")
 
     alerts = []
     evidence_incoming = []
@@ -390,12 +397,18 @@ def main():
                     evidence_incoming.append({"model": model, "source": "sdk_commit",
                                               "provider": label, "reference": ref})
 
+    evidence_incoming.extend(community_entries)
     evidence, fresh_evidence = merge_evidence(previous.get("_evidence", []), evidence_incoming,
                                               datetime.now(timezone.utc).isoformat())
     print(f"evidence: {len(evidence)} records ({len(fresh_evidence)} new)")
     snapshot = {**previous, **current}
     snapshot["_evidence"] = evidence
     snapshot["_model_summary"] = model_summary(evidence)
+    if previous.get("_community_initialized"):
+        alerts.extend(community_alerts(fresh_evidence))
+    elif community_health.get("initialized"):
+        print("community: initial baseline saved without retrospective alerts")
+    snapshot["_community_initialized"] = bool(previous.get("_community_initialized")) or bool(community_health.get("initialized"))
     snapshot["_sdk_patch_commits"] = {**prior_patch_cursors, **patch_cursors}
     snapshot["_sdk_commits"] = {**previous.get("_sdk_commits", {}),
                                 **{label: items[0]["sha"] for label, items in commits.items()}}
@@ -408,7 +421,8 @@ def main():
     snapshot["_health"] = {"catalogs": catalog_health,
                            "sdk_releases": {k: ("ok" if k in sdk else "unavailable") for k in SDK_REPOS},
                            "sdk_commits": {k: ("ok" if k in commits else "unavailable") for k in SDK_REPOS},
-                           "telegram_pending": len(pending)}
+                           "telegram_pending": len(pending),
+                           "community": community_health}
     if pending:
         print(f"Telegram: {len(pending)} alert(s) queued for retry")
 
