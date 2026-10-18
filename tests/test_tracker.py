@@ -53,13 +53,13 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(commit_signals("x", "old", commits), [])
 
     def test_patch_signals_detect_added_model_identifier(self):
-        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\\n-old = True\\n+MODEL_AURORA_BLUE = 'aurora-blue'"}]
+        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\n-old = True\n+MODEL_AURORA_BLUE = 'aurora-blue'"}]
         signals = patch_signals("openai-python", "abc123", "https://github.com/openai/openai-python/commit/abc123", files)
         self.assertEqual(len(signals), 1)
         self.assertIn("aurora-blue", signals[0])
 
     def test_patch_signals_ignore_removed_lines_and_docs(self):
-        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\\n-aurora-blue\\n+timeout = 3"}, {"filename": "tests/test_models.py", "patch": "@@ -0,0 +1 @@\\n+aurora-blue"}]
+        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\n-aurora-blue\n+timeout = 3"}, {"filename": "tests/test_models.py", "patch": "@@ -0,0 +1 @@\n+aurora-blue"}]
         self.assertEqual(patch_signals("x", "abc", "https://github.com/x/commit/abc", files), [])
 
     def test_normalize(self):
