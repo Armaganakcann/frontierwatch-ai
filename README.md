@@ -51,3 +51,9 @@ Catalog alerts: `catalog_observation`; source-code signals: `official_code_signa
 **Security:** Repository snapshot files and source evidence are public. Do not include credentials, Telegram chat IDs, private conversations, or private endpoints. The monitor's GitHub token is attached only to `api.github.com` requests.
 
 See [AUDIT.md](AUDIT.md) for verified fixes, residual risks, and the next development priorities.
+
+## Independent listing signals
+
+`external_signals.py` reads public ClaudeMon model-listing observations, keeps explicit links to the reported documentation URL, and labels every result **`unverified`**. It does not access another user's API key or prove model availability. Only recent events (14 days) are eligible for new discovery; old feed history is not replayed as fresh alerts. Official-looking URLs are validated by HTTPS hostname, not a string prefix. The fetch and parser are bounded, and source failures are recorded under `_health.external_listings`.
+
+**Aurora case:** Three records (`aurora-blue-alpha`, `aurora-green-alpha`, `aurora-red-alpha`) were first observed by this tracker via ClaudeMon on 2026-10-18; their upstream timestamps are 2026-10-17. These are external observations, not independent authenticated OpenAI model-list verification. The OpenAI account used by this monitor still did not list Aurora at that time.
