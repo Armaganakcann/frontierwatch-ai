@@ -1,4 +1,5 @@
 {
+  "_telegram_test_sent": true,
   "anthropic": [
     "claude-fable-5",
     "claude-fable-5-1",
