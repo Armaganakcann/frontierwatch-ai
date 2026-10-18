@@ -9,6 +9,11 @@ from unittest.mock import patch
 from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence, model_summary
 
 class TrackerTests(unittest.TestCase):
+    def setUp(self):
+        community_stub = patch("tracker.collect_community", return_value=([], {"status": "ok", "initialized": True}))
+        community_stub.start()
+        self.addCleanup(community_stub.stop)
+
     def test_new_models(self):
         self.assertEqual(diff_models({"openai": ["a"]}, {"openai": ["a", "b"]}), {"openai": ["b"]})
 
@@ -323,6 +328,44 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(seen[0][1], "Bearer test-private-token")
         self.assertEqual(seen[1][1], "Bearer provider-key")
         self.assertNotEqual(seen[1][1], "Bearer test-private-token")
+
+
+    def test_official_typescript_and_js_sdks_are_included(self):
+        self.assertEqual(tracker.SDK_REPOS["openai-node"], "openai/openai-node")
+        self.assertEqual(tracker.SDK_REPOS["anthropic-sdk-typescript"], "anthropics/anthropic-sdk-typescript")
+        self.assertEqual(tracker.SDK_REPOS["js-genai"], "googleapis/js-genai")
+
+    def test_main_baselines_unverified_public_mentions_then_only_alerts_new(self):
+        from datetime import datetime, timezone
+        observation_a = {"source": "community", "provider": "hackernews",
+            "model": "aurora-blue-alpha", "reference": "https://news.ycombinator.com/item?id=1",
+            "title": "Aurora blue model reported", "published_at": "2026-10-18T10:00:00+00:00"}
+        observation_b = {**observation_a, "model": "aurora-red-alpha",
+                         "reference": "https://news.ycombinator.com/item?id=2"}
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory) / "models.json"
+            state.write_text(json.dumps({"openai": ["old"], "_telegram_test_sent": True}))
+            sent = []
+            def notify_record(message):
+                sent.append(message)
+                return True
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", return_value={"openai": ["old"]}), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", side_effect=notify_record):
+                with patch("tracker.collect_community", return_value=([observation_a], {"status": "ok", "initialized": True})):
+                    tracker.main()
+                self.assertFalse(sent)
+                self.assertTrue(json.loads(state.read_text())["_community_initialized"])
+                self.assertEqual(len(json.loads(state.read_text())["_evidence"]), 1)
+                with patch("tracker.collect_community", return_value=([observation_a, observation_b], {"status": "ok", "initialized": True})):
+                    tracker.main()
+                self.assertEqual(len(sent), 1)
+                self.assertIn("UNVERIFIED", sent[0])
+                self.assertIn("aurora-red-alpha", sent[0])
+                self.assertNotIn("aurora-blue-alpha", sent[0])
+                self.assertEqual(len(json.loads(state.read_text())["_evidence"]), 2)
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
