@@ -2580,8 +2580,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-18T19:39:38.459222+00:00",
-    "run_id": "39159760590",
+    "completed_at": "2026-10-18T21:57:07.011446+00:00",
+    "run_id": "39170054468",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2991,7 +2991,7 @@
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
-    "openai-node": "3a3b8521a9278d68120c9256a0de4075acb82d80",
+    "openai-node": "64872e51eb0624c7cdee8378fba8a6b848fcd8e7",
     "openai-openapi": "f88d2f78b75f46b53b0baef3f5f47dc991add4a2",
     "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
     "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
@@ -3000,7 +3000,7 @@
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
-    "openai-node": "3a3b8521a9278d68120c9256a0de4075acb82d80",
+    "openai-node": "64872e51eb0624c7cdee8378fba8a6b848fcd8e7",
     "openai-openapi": "f88d2f78b75f46b53b0baef3f5f47dc991add4a2",
     "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
     "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
