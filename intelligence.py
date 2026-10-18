@@ -46,3 +46,22 @@ def merge_evidence(existing, incoming, timestamp):
         fresh.append(record)
         seen.add(key)
     return merged, fresh
+
+def model_summary(entries):
+    """Aggregate observations without inferring release status."""
+    grouped = {}
+    for entry in entries:
+        model = entry.get("model")
+        if not isinstance(model, str) or not model:
+            continue
+        item = grouped.setdefault(model, {"first_seen": entry.get("first_seen", ""),
+                                          "sources": set(), "release_confirmed": False})
+        first = entry.get("first_seen", "")
+        if first and (not item["first_seen"] or first < item["first_seen"]):
+            item["first_seen"] = first
+        item["sources"].add((entry.get("source", ""), entry.get("provider", "")))
+    return {model: {"first_seen": data["first_seen"],
+                    "source_count": len(data["sources"]),
+                    "sources": sorted(f"{kind}:{provider}" for kind, provider in data["sources"]),
+                    "release_confirmed": False}
+            for model, data in sorted(grouped.items())}
