@@ -128,6 +128,63 @@ def collect_sdk_commits():
             print(f"commits {label}: collection failed: {type(exc).__name__}", file=sys.stderr)
     return results
 
+
+def patch_signals(label, sha, url, files):
+    """Only newly added model-related source lines; not docs or tests."""
+    import re
+    findings = []
+    for item in files:
+        name = item.get("filename", "")
+        if (not name.endswith((".py", ".ts", ".js", ".json")) or
+                any(part in name.lower().split("/") for part in
+                    ("tests", "test", "docs", "examples", "fixtures", "samples"))):
+            continue
+        for line in (item.get("patch") or "").splitlines():
+            if not line.startswith("+") or line.startswith("+++"):
+                continue
+            added = line[1:].strip()
+            if len(added) > 250:
+                continue
+            if re.search(r"(?i)(model[_-]?(id|name)?|aurora|gemini|claude|gpt)[^\\n]{0,100}", added):
+                findings.append(f"{name}: {added[:180]}")
+            if len(findings) >= 3:
+                break
+        if len(findings) >= 3:
+            break
+    if not findings:
+        return []
+    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\\n{label} {sha[:12]}\\n" +
+            "\\n".join(findings) + f"\\n{url}"]
+
+def collect_patch_signals(previous, commits):
+    signals = []
+    for label, entries in commits.items():
+        old = previous.get(label)
+        if not old:
+            continue
+        selected = []
+        for entry in entries:
+            if entry.get("sha") == old:
+                break
+            selected.append(entry)
+        else:
+            # Avoid treating an incomplete 30-commit window as exhaustive.
+            print(f"patches {label}: prior commit outside window; skipping")
+            continue
+        for entry in reversed(selected[:5]):
+            sha = entry.get("sha")
+            if not isinstance(sha, str):
+                continue
+            try:
+                detail = fetch(f"https://api.github.com/repos/{SDK_REPOS[label]}/commits/{sha}",
+                               {"Accept": "application/vnd.github+json",
+                                "User-Agent": "FrontierWatchAI/0.5"})
+                signals.extend(patch_signals(label, sha, entry.get("html_url", ""),
+                                             detail.get("files", [])))
+            except Exception as exc:
+                print(f"patches {label}: {type(exc).__name__}", file=sys.stderr)
+    return signals[:10]
+
 def notify(message):
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
@@ -159,6 +216,8 @@ def main():
         lines.append("Catalog observation only; not evidence of public release.")
         notify("\n".join(lines))
     for signal in release_signals(previous.get('_sdk_releases', {}), sdk):
+        notify(signal)
+    for signal in collect_patch_signals(previous.get("_sdk_commits", {}), commits):
         notify(signal)
     for label, entries in commits.items():
         for signal in commit_signals(label, previous.get("_sdk_commits", {}).get(label), entries):
