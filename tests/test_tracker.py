@@ -3,7 +3,7 @@ import json
 import tempfile
 from pathlib import Path
 import tracker
-from tracker import diff_models, normalize_models, validate_catalog, notify, collect, release_signals, classify_release, commit_signals, patch_signals, collect_patch_signals, deliver_alerts, queue_alerts
+from tracker import diff_models, normalize_models, validate_catalog, fetch_catalog_pages, notify, collect, release_signals, classify_release, commit_signals, patch_signals, collect_patch_signals, deliver_alerts, queue_alerts
 from unittest.mock import patch
 from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence, model_summary
 
@@ -234,6 +234,45 @@ class TrackerTests(unittest.TestCase):
         messages = patch_signals("openai-python", "sha", "https://github.com/openai/openai-python/commit/sha",
                                 [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\n+MODEL = 'aurora-blue-alpha'"}])
         self.assertEqual(messages[0].splitlines()[-1], "https://github.com/openai/openai-python/commit/sha")
+
+
+    def test_anthropic_pagination_collects_all_pages(self):
+        requested = []
+        def fake_fetch(url, headers):
+            requested.append(url)
+            if "after_id=" in url:
+                return {"data": [{"id": "claude-two"}], "has_more": False, "last_id": "claude-two"}
+            return {"data": [{"id": "claude-one"}], "has_more": True, "last_id": "claude-one"}
+        with patch("tracker.fetch", side_effect=fake_fetch):
+            data = fetch_catalog_pages("anthropic", "https://api.anthropic.com/v1/models?limit=100", {})
+        self.assertEqual(normalize_models(data), ["claude-one", "claude-two"])
+        self.assertIn("after_id=claude-one", requested[1])
+
+    def test_gemini_pagination_collects_all_pages(self):
+        def fake_fetch(url, headers):
+            if "pageToken=" in url:
+                return {"models": [{"name": "models/gemini-two"}]}
+            return {"models": [{"name": "models/gemini-one"}], "nextPageToken": "next+token"}
+        with patch("tracker.fetch", side_effect=fake_fetch):
+            data = fetch_catalog_pages("google", "https://generativelanguage.googleapis.com/v1beta/models?pageSize=1000", {})
+        self.assertEqual(normalize_models(data), ["models/gemini-one", "models/gemini-two"])
+
+    def test_pagination_rejects_missing_or_repeated_cursor(self):
+        with patch("tracker.fetch", return_value={"data": [{"id": "one"}], "has_more": True}):
+            with self.assertRaises(ValueError):
+                fetch_catalog_pages("anthropic", "https://api.anthropic.com/v1/models?limit=100", {})
+        with patch("tracker.fetch", return_value={"models": [{"name": "models/one"}], "nextPageToken": "same"}):
+            with self.assertRaises(ValueError):
+                fetch_catalog_pages("google", "https://example.com/models?pageSize=1000", {}, max_pages=3)
+
+    def test_pagination_aborts_on_second_page_failure(self):
+        def fake_fetch(url, headers):
+            if "pageToken=" in url:
+                raise OSError("page failed")
+            return {"models": [{"name": "models/one"}], "nextPageToken": "two"}
+        with patch("tracker.fetch", side_effect=fake_fetch):
+            with self.assertRaises(OSError):
+                fetch_catalog_pages("google", "https://example.com/models?pageSize=1000", {})
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
