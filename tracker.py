@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from intelligence import extract_model_ids, merge_evidence, model_summary
 from community import collect_community, community_alerts
+from metadata import catalog_metadata
 
 STATE = Path("data/models.json")
 
@@ -95,9 +96,10 @@ def fetch_catalog_pages(provider, url, headers, max_pages=20):
         cursor = next_cursor
     raise ValueError(f"{provider}: pagination exceeded {max_pages} pages")
 
-def collect(previous=None, diagnostics=None):
+def collect(previous=None, diagnostics=None, metadata=None):
     previous = previous or {}
     diagnostics = diagnostics if diagnostics is not None else {}
+    metadata = metadata if metadata is not None else {}
     sources = {
         "openai": ("OPENAI_API_KEY", "https://api.openai.com/v1/models", "Authorization", "Bearer "),
         "anthropic": ("ANTHROPIC_API_KEY", "https://api.anthropic.com/v1/models?limit=100", "x-api-key", ""),
@@ -116,6 +118,7 @@ def collect(previous=None, diagnostics=None):
         try:
             items = fetch_catalog_pages(provider, url, headers)
             result[provider] = validate_catalog(items, provider, previous.get(provider))
+            metadata[provider] = catalog_metadata(provider, items)
             diagnostics[provider] = {"status": "ok", "count": len(result[provider])}
         except Exception as exc:
             error = f"HTTP_{exc.code}" if isinstance(exc, urllib.error.HTTPError) else type(exc).__name__
@@ -127,6 +130,7 @@ def collect(previous=None, diagnostics=None):
         if not isinstance(items, list):
             raise ValueError("Missing OpenRouter data array")
         result["openrouter"] = validate_catalog(items, "openrouter", previous.get("openrouter"))
+        metadata["openrouter"] = catalog_metadata("openrouter", items)
         diagnostics["openrouter"] = {"status": "ok", "count": len(result["openrouter"])}
         print(f"openrouter: {len(result['openrouter'])} catalog IDs collected")
     except Exception as exc:
@@ -342,7 +346,8 @@ def main():
     if not isinstance(previous, dict):
         raise ValueError("Invalid previous snapshot: expected JSON object")
     catalog_health = {}
-    current = collect(previous, diagnostics=catalog_health)
+    observed_metadata = {}
+    current = collect(previous, diagnostics=catalog_health, metadata=observed_metadata)
     if not current:
         print("No successful catalogs; preserving previous model lists")
     sdk = collect_sdk_releases()
@@ -407,6 +412,8 @@ def main():
     snapshot = {**previous, **current}
     snapshot["_evidence"] = evidence
     snapshot["_model_summary"] = model_summary(evidence)
+    snapshot["_catalog_metadata"] = {**previous.get("_catalog_metadata", {}),
+                                    **observed_metadata}
     if previous.get("_community_initialized"):
         alerts.extend(community_alerts(fresh_evidence))
     elif community_health.get("initialized"):
