@@ -193,18 +193,25 @@ def collect_patch_signals(previous, commits):
                 print(f"patches {label}: {type(exc).__name__}", file=sys.stderr)
     return signals[:10]
 
+def chunk_message(message, limit=4000):
+    """Keep every character while respecting Telegram message size limits."""
+    if limit < 1:
+        raise ValueError("limit must be positive")
+    return [message[i:i + limit] for i in range(0, len(message), limit)] or [""]
+
 def notify(message):
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         print("Telegram credentials missing; no alert sent")
         return False
-    payload = json.dumps({"chat_id": chat, "text": message}).encode()
-    req = urllib.request.Request(
-        f"https://api.telegram.org/bot{token}/sendMessage",
-        data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as response:
-        response.read()
+    for piece in chunk_message(message):
+        payload = json.dumps({"chat_id": chat, "text": piece}).encode()
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{token}/sendMessage",
+            data=payload, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=20) as response:
+            response.read()
     return True
 
 def main():
