@@ -39,5 +39,6 @@ jobs:
           git add data/models.json
           if ! git diff --cached --quiet; then
             git commit -m 'chore: update public model catalog snapshot'
-            git push
+            git pull --rebase origin main
+            git push origin HEAD:main
           fi
