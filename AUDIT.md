@@ -21,7 +21,7 @@ At audit start, the latest saved provider catalogs had OpenAI **127**, Anthropic
 | Medium | Unauthenticated GitHub REST API was susceptible to frequent rate limits (typically 60 requests/hour) | Use the built-in GitHub Actions token **only for api.github.com**; no personal token required |
 | Medium | Cron on quarter-hour boundaries can be delayed/dropped by the GitHub scheduler | Move to UTC minutes 07, 22, 37, 52; set workflow timeout |
 
-**Unit-test verification:** [GitHub Actions CI run](https://github.com/Armaganakcann/frontierwatch-ai/actions/runs/39123230268) passed **45 tests** after the Python changes. Later workflow and documentation changes should be observed in a subsequent monitor run; they do not themselves verify real API or Telegram delivery.
+**Unit-test verification:** [GitHub Actions CI run](https://github.com/Armaganakcann/frontierwatch-ai/actions/runs/39123230268) passed **45 tests** after the Python changes. **Live end-to-end verification:** [full monitor run #39123528936](https://github.com/Armaganakcann/frontierwatch-ai/actions/runs/39123528936) completed successfully with 45 tests and valid OpenAI (127), Anthropic (14), Google (63) and OpenRouter (471) observations, all three SDK release/commit sources reporting healthy status, and a committed state snapshot. There were **zero pending Telegram alerts**; this successful run did not exercise actual outgoing alert delivery.
 
 ## Remaining gaps and honest limitations
 
