@@ -60,6 +60,46 @@ def collect():
             print(f"{provider}: {len(ids)} catalog IDs collected")
     return result
 
+
+SDK_REPOS = {
+    "openai-python": "openai/openai-python",
+    "anthropic-sdk-python": "anthropics/anthropic-sdk-python",
+    "python-genai": "googleapis/python-genai",
+}
+
+def classify_release(body):
+    import re
+    return bool(re.search(r"\\b(model|models|identifier|gemini|claude|gpt|aurora)\\b", body, re.I))
+
+def collect_sdk_releases():
+    releases = {}
+    for label, repo in SDK_REPOS.items():
+        try:
+            data = fetch(f"https://api.github.com/repos/{repo}/releases/latest",
+                         {"Accept": "application/vnd.github+json",
+                          "User-Agent": "FrontierWatchAI/0.3"})
+            tag, url = data.get("tag_name"), data.get("html_url")
+            if not isinstance(tag, str) or not isinstance(url, str):
+                raise ValueError("Missing release tag or URL")
+            releases[label] = {"tag": tag, "url": url, "body": str(data.get("body") or "")[:10000]}
+            print(f"sdk {label}: {tag}")
+        except Exception as exc:
+            print(f"sdk {label}: collection failed: {type(exc).__name__}", file=sys.stderr)
+    return releases
+
+def release_signals(previous, current):
+    messages = []
+    for label, release in current.items():
+        if label not in previous or previous[label] == release["tag"]:
+            continue
+        body = release["body"]
+        if classify_release(body):
+            matches = [line.strip() for line in body.splitlines()
+                       if classify_release(line) and len(line.strip()) > 8]
+            excerpt = " | ".join(matches[:3])[:450]
+            messages.append(f"OFFICIAL SDK RELEASE SIGNAL (not a model release)\\n{label}: {release['tag']}\\n{excerpt}\\n{release['url']}")
+    return messages
+
 def notify(message):
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
@@ -80,6 +120,7 @@ def main():
     if not current:
         print("No successful sources; state unchanged")
         return
+    sdk = collect_sdk_releases()
     changes = diff_models(previous, current)
     if changes:
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -88,8 +129,11 @@ def main():
             lines.append(f"{provider}: {', '.join(ids)}")
         lines.append("Catalog observation only; not evidence of public release.")
         notify("\n".join(lines))
+    for signal in release_signals(previous.get('_sdk_releases', {}), sdk):
+        notify(signal)
     STATE.parent.mkdir(parents=True, exist_ok=True)
     snapshot = {**previous, **current}
+    snapshot['_sdk_releases'] = {**previous.get('_sdk_releases', {}), **{k: v['tag'] for k, v in sdk.items()}}
     if not previous.get("_telegram_test_sent"):
         if notify("FrontierWatch AI test: Telegram connection is working. Model catalog monitoring is active."):
             snapshot["_telegram_test_sent"] = True
