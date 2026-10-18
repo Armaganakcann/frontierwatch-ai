@@ -123,6 +123,12 @@ class TrackerTests(unittest.TestCase):
         commits = [{"sha": "new", "html_url": "https://github.com/x/commit/new", "commit": {"message": "Add model aurora-blue"}}]
         self.assertEqual(commit_signals("x", "missing", commits), [])
 
+    def test_diff_models_does_not_announce_new_provider_baseline(self):
+        self.assertEqual(diff_models({"openai": ["x"]}, {"openrouter": ["new"]}), {})
+
+    def test_normalize_rejects_empty_model_ids(self):
+        self.assertEqual(normalize_models([{"id": ""}, {"id": "valid"}]), ["valid"])
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
