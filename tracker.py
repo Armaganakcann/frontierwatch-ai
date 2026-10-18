@@ -5,7 +5,7 @@ import sys
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-from intelligence import extract_model_ids, evidence_level
+from intelligence import extract_model_ids, merge_evidence
 
 STATE = Path("data/models.json")
 
@@ -218,15 +218,35 @@ def main():
             lines.append(f"{provider}: {', '.join(ids)}")
         lines.append("Catalog observation only; not evidence of public release.")
         notify("\n".join(lines))
+    evidence_incoming = []
+    for provider, ids in changes.items():
+        for model in ids:
+            evidence_incoming.append({"model": model, "source": "catalog", "provider": provider,
+                                      "reference": {"openai": "https://api.openai.com/v1/models",
+                                                    "anthropic": "https://api.anthropic.com/v1/models",
+                                                    "google": "https://generativelanguage.googleapis.com/v1beta/models",
+                                                    "openrouter": "https://openrouter.ai/api/v1/models"}[provider]})
     for signal in release_signals(previous.get('_sdk_releases', {}), sdk):
         notify(signal)
-    for signal in collect_patch_signals(previous.get("_sdk_commits", {}), commits):
+    patch_alerts = collect_patch_signals(previous.get("_sdk_commits", {}), commits)
+    for signal in patch_alerts:
         notify(signal)
+        for model in extract_model_ids(signal):
+            # Commit URL uniquely identifies the source observation.
+            url = next((part for part in signal.splitlines() if part.startswith("https://github.com/")), "")
+            label = next((name for name in SDK_REPOS if name in signal), "")
+            if url and label:
+                evidence_incoming.append({"model": model, "source": "sdk_patch",
+                                          "provider": label, "reference": url})
     for label, entries in commits.items():
         for signal in commit_signals(label, previous.get("_sdk_commits", {}).get(label), entries):
             notify(signal)
     STATE.parent.mkdir(parents=True, exist_ok=True)
+    evidence, fresh_evidence = merge_evidence(previous.get("_evidence", []), evidence_incoming,
+                                              datetime.now(timezone.utc).isoformat())
+    print(f"evidence: {len(evidence)} records ({len(fresh_evidence)} new)")
     snapshot = {**previous, **current}
+    snapshot["_evidence"] = evidence
     snapshot['_sdk_commits'] = {**previous.get('_sdk_commits', {}), **{k: v[0]['sha'] for k, v in commits.items()}}
     snapshot['_sdk_releases'] = {**previous.get('_sdk_releases', {}), **{k: v['tag'] for k, v in sdk.items()}}
     if not previous.get("_telegram_test_sent"):
