@@ -27,3 +27,22 @@ def new_evidence(entries, seen):
             fresh.append(entry)
             known.add(key)
     return fresh
+
+def merge_evidence(existing, incoming, timestamp):
+    """Append previously unseen evidence without overwriting first_seen."""
+    merged = list(existing)
+    seen = {evidence_key(item) for item in merged}
+    fresh = []
+    for item in incoming:
+        if not isinstance(item, dict) or not all(item.get(k) for k in ("model", "source", "provider", "reference")):
+            continue
+        key = evidence_key(item)
+        if key in seen:
+            continue
+        record = dict(item)
+        record["first_seen"] = timestamp
+        record["level"] = evidence_level(record["source"])
+        merged.append(record)
+        fresh.append(record)
+        seen.add(key)
+    return merged, fresh
