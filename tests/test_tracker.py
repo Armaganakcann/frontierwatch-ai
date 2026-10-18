@@ -16,6 +16,9 @@ class TrackerTests(unittest.TestCase):
         external_stub = patch("tracker.collect_claudemon", return_value=([], {"status": "ok", "failed_labs": 0}))
         external_stub.start()
         self.addCleanup(external_stub.stop)
+        releases_stub = patch("tracker.collect_release_feed", return_value=([], {"status": "ok", "observations": 0}))
+        releases_stub.start()
+        self.addCleanup(releases_stub.stop)
 
     def test_new_models(self):
         self.assertEqual(diff_models({"openai": ["a"]}, {"openai": ["a", "b"]}), {"openai": ["b"]})
