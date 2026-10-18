@@ -102,11 +102,11 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(len(fresh), 1)
 
     def test_patch_signals_ignores_generic_model_variable(self):
-        files = [{"filename": "src/client.py", "patch": "@@ -1 +1 @@\\n+model = request.model"}]
+        files = [{"filename": "src/client.py", "patch": "@@ -1 +1 @@\n+model = request.model"}]
         self.assertEqual(patch_signals("openai-python", "sha", "https://github.com/a/commit/sha", files), [])
 
     def test_patch_signals_does_not_extract_removed_model(self):
-        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\\n-OLD = 'aurora-blue'\\n+TIMEOUT = 5"}]
+        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\n-OLD = 'aurora-blue'\n+TIMEOUT = 5"}]
         self.assertEqual(patch_signals("openai-python", "sha", "https://github.com/a/commit/sha", files), [])
 
     def test_model_summary_aggregates_sources_without_claiming_release(self):
