@@ -50,7 +50,8 @@ class ExternalSignalTests(unittest.TestCase):
     def test_external_listing_keeps_newest_50_from_larger_feed(self):
         from datetime import datetime,timezone
         now=datetime(2026,10,18,12,0,tzinfo=timezone.utc)
-        items=[{**self.item,"id":str(i),"title":f"aurora-{i}-alpha"} for i in range(100)]
+        items=[{**self.item,"id":str(i),"title":f"aurora-{i}-alpha",
+                "url":f"https://platform.openai.com/docs/models/aurora-{i}-alpha"} for i in range(100)]
         found=parse_claudemon_feed({"items":items},now=now,max_age_days=14)
         self.assertEqual(len(found),50)
 
