@@ -5,6 +5,7 @@ import sys
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from intelligence import extract_model_ids, evidence_level
 
 STATE = Path("data/models.json")
 
@@ -153,7 +154,9 @@ def patch_signals(label, sha, url, files):
             break
     if not findings:
         return []
-    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\n{label} {sha[:12]}\n" +
+    ids = sorted({model for finding in findings for model in extract_model_ids(finding)})
+    ids_line = ("\nCandidate IDs: " + ", ".join(ids)) if ids else ""
+    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\n{label} {sha[:12]}{ids_line}\n" +
             "\n".join(findings) + f"\n{url}"]
 
 def collect_patch_signals(previous, commits):
