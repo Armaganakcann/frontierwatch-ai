@@ -1,7 +1,7 @@
 import unittest
 from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals, patch_signals
 from unittest.mock import patch
-from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence
+from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence, model_summary
 
 class TrackerTests(unittest.TestCase):
     def test_new_models(self):
@@ -100,6 +100,24 @@ class TrackerTests(unittest.TestCase):
         first, fresh = merge_evidence([], [entry, entry], "2026-10-18T00:00:00Z")
         self.assertEqual(len(first), 1)
         self.assertEqual(len(fresh), 1)
+
+    def test_patch_signals_ignores_generic_model_variable(self):
+        files = [{"filename": "src/client.py", "patch": "@@ -1 +1 @@\\n+model = request.model"}]
+        self.assertEqual(patch_signals("openai-python", "sha", "https://github.com/a/commit/sha", files), [])
+
+    def test_patch_signals_does_not_extract_removed_model(self):
+        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\\n-OLD = 'aurora-blue'\\n+TIMEOUT = 5"}]
+        self.assertEqual(patch_signals("openai-python", "sha", "https://github.com/a/commit/sha", files), [])
+
+    def test_model_summary_aggregates_sources_without_claiming_release(self):
+        entries = [
+            {"model": "aurora-blue", "source": "sdk_patch", "provider": "openai-python", "reference": "abc", "first_seen": "2026-10-17"},
+            {"model": "aurora-blue", "source": "catalog", "provider": "openrouter", "reference": "xyz", "first_seen": "2026-10-18"}
+        ]
+        report = model_summary(entries)
+        self.assertEqual(report["aurora-blue"]["source_count"], 2)
+        self.assertEqual(report["aurora-blue"]["first_seen"], "2026-10-17")
+        self.assertFalse(report["aurora-blue"]["release_confirmed"])
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
