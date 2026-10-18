@@ -100,6 +100,34 @@ def release_signals(previous, current):
             messages.append(f"OFFICIAL SDK RELEASE SIGNAL (not a model release)\\n{label}: {release['tag']}\\n{excerpt}\\n{release['url']}")
     return messages
 
+
+def commit_signals(label, previous_sha, commits):
+    if not previous_sha:
+        return []
+    messages = []
+    for item in commits:
+        if item.get("sha") == previous_sha:
+            break
+        message = item.get("commit", {}).get("message", "")
+        url = item.get("html_url", "")
+        if classify_release(message) and url.startswith("https://github.com/"):
+            messages.append(f"OFFICIAL COMMIT SIGNAL (not a model release)\\n{label}: {message[:280]}\\n{url}")
+    return messages[:5]
+
+def collect_sdk_commits():
+    results = {}
+    for label, repo in SDK_REPOS.items():
+        try:
+            data = fetch(f"https://api.github.com/repos/{repo}/commits?per_page=30",
+                         {"Accept": "application/vnd.github+json", "User-Agent": "FrontierWatchAI/0.4"})
+            if not isinstance(data, list) or not data or not isinstance(data[0].get("sha"), str):
+                raise ValueError("Invalid commits response")
+            results[label] = data
+            print(f"commits {label}: latest {data[0]['sha'][:12]}")
+        except Exception as exc:
+            print(f"commits {label}: collection failed: {type(exc).__name__}", file=sys.stderr)
+    return results
+
 def notify(message):
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat = os.environ.get("TELEGRAM_CHAT_ID")
@@ -121,6 +149,7 @@ def main():
         print("No successful sources; state unchanged")
         return
     sdk = collect_sdk_releases()
+    commits = collect_sdk_commits()
     changes = diff_models(previous, current)
     if changes:
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
@@ -131,8 +160,12 @@ def main():
         notify("\n".join(lines))
     for signal in release_signals(previous.get('_sdk_releases', {}), sdk):
         notify(signal)
+    for label, entries in commits.items():
+        for signal in commit_signals(label, previous.get("_sdk_commits", {}).get(label), entries):
+            notify(signal)
     STATE.parent.mkdir(parents=True, exist_ok=True)
     snapshot = {**previous, **current}
+    snapshot['_sdk_commits'] = {**previous.get('_sdk_commits', {}), **{k: v[0]['sha'] for k, v in commits.items()}}
     snapshot['_sdk_releases'] = {**previous.get('_sdk_releases', {}), **{k: v['tag'] for k, v in sdk.items()}}
     if not previous.get("_telegram_test_sent"):
         if notify("FrontierWatch AI test: Telegram connection is working. Model catalog monitoring is active."):
