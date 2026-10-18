@@ -46,6 +46,18 @@ def collect():
             result[provider] = normalize_models(items)
         except Exception as exc:
             print(f"{provider}: collection failed: {type(exc).__name__}", file=sys.stderr)
+    try:
+        data = fetch("https://openrouter.ai/api/v1/models", {"User-Agent": "FrontierWatchAI/0.2"})
+        items = data.get("data")
+        if not isinstance(items, list):
+            raise ValueError("Missing OpenRouter data array")
+        result["openrouter"] = normalize_models(items)
+        print(f"openrouter: {len(result['openrouter'])} catalog IDs collected")
+    except Exception as exc:
+        print(f"openrouter: collection failed: {type(exc).__name__}", file=sys.stderr)
+    for provider, ids in result.items():
+        if provider != "openrouter":
+            print(f"{provider}: {len(ids)} catalog IDs collected")
     return result
 
 def notify(message):
