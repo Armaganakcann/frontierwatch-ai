@@ -31,3 +31,25 @@ class ExternalSignalTests(unittest.TestCase):
     def test_duplicate_items_deduplicated(self):
         entries=parse_claudemon_feed({"items":[self.item,self.item]})
         self.assertEqual(len(entries),1)
+
+
+    def test_external_listing_rejects_deceptive_url_hosts(self):
+        spoof={**self.item,"url":"https://platform.openai.com.evil.test/docs/models/aurora-red-alpha"}
+        self.assertEqual(parse_claudemon_feed({"items":[spoof]}),[])
+    def test_external_listing_filters_old_events_but_keeps_recent_aurora(self):
+        from datetime import datetime,timezone
+        now=datetime(2026,10,18,12,0,tzinfo=timezone.utc)
+        old={**self.item,"date_published":"2025-04-10T20:49:33Z","title":"gpt-4.1-mini"}
+        found=parse_claudemon_feed({"items":[old,self.item]},now=now,max_age_days=14)
+        self.assertEqual([x["model"] for x in found],["aurora-red-alpha"])
+    def test_external_listing_requires_valid_date_for_recent_filter(self):
+        from datetime import datetime,timezone
+        now=datetime(2026,10,18,12,0,tzinfo=timezone.utc)
+        unknown={**self.item,"date_published":"invalid"}
+        self.assertEqual(parse_claudemon_feed({"items":[unknown]},now=now,max_age_days=14),[])
+    def test_external_listing_keeps_newest_50_from_larger_feed(self):
+        from datetime import datetime,timezone
+        now=datetime(2026,10,18,12,0,tzinfo=timezone.utc)
+        items=[{**self.item,"id":str(i),"title":f"aurora-{i}-alpha"} for i in range(100)]
+        found=parse_claudemon_feed({"items":items},now=now,max_age_days=14)
+        self.assertEqual(len(found),50)
