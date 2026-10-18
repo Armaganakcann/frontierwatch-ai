@@ -75,3 +75,21 @@ Public evidence and pending alerts may include **public** SDK code snippets or p
 - [GitHub Actions scheduling limitations](https://docs.github.com/en/actions/how-tos/troubleshoot-workflows)
 - [Anthropic List Models API](https://platform.claude.com/docs/en/api/models/list)
 - [Gemini models.list API](https://ai.google.dev/api/models)
+
+---
+
+## Phase 2 updates — expanded public-signal detection (2026-10-18)
+
+This section supersedes the original three-SDK and missing-metadata descriptions above while preserving the initial audit history.
+
+- Expanded from three to **six verified official SDK repositories**: OpenAI Python and Node, Anthropic Python and TypeScript, Google Python and JavaScript.
+- Added **OpenAI's official OpenAPI spec repository** as a separate commit/patch source. YAML and YML added lines can now supply explicitly matched model names. First source observation establishes a silent baseline.
+- Added **public Hacker News search** using four focused date-limited queries. Candidate IDs extracted from recent HN story titles/text are persisted with the stable HN story URL and `source=community`, `level=unverified`; posts do not confirm an API model or a launch. Initial search establishes a quiet baseline. This is not direct X, Telegram, or other social-media ingestion.
+- Added `_catalog_metadata` with strictly allowlisted `created`, `created_at` and `owned_by` fields when provided by the API. Missing optional fields do not erase previously observed metadata. Provider-reported `created` and tracker `first_seen` are explicitly different timestamps.
+- Extended CI path filters for `community.py` and `metadata.py`, with regression tests for URL attribution, source failures, baseline alerts, pagination, metadata boundaries and safe persistence.
+- Verified the public-source expansion in [live monitor #39124214236](https://github.com/Armaganakcann/frontierwatch-ai/actions/runs/39124214236): four catalog sources healthy, six SDK release and commit sources healthy; Hacker News search healthy with no matching model references in that scan; 54 tests passed. The OpenAPI and metadata phase was added afterward and needs its own full monitor verification.
+- Latest Python CI suite: [66 tests passed](https://github.com/Armaganakcann/frontierwatch-ai/actions/runs/39124613904).
+
+**Known and unresolved:** The inspected GitHub Actions run history has not yet shown a run with `event=schedule`, so uninterrupted 15-minute automatic operation is **not verified**. GitHub may delay/drop scheduled runs. OpenAI API key visibility remains provider-account-dependent. Public HN stories cannot substantiate Aurora without an independent authenticated/API or official source. Metadata fields are provider statements, not a guarantee of external accessibility.
+
+**Remaining next priorities:** verify an actual scheduled run and real delivery of a new alert; add more independently sourced, explicitly unverified discovery channels only if technically and legally supportable; improve completeness monitoring for large OpenAPI commits and GitHub recent-commit windows; consider a read-only public evidence dashboard after evidence quality is established.
