@@ -10,7 +10,28 @@ from intelligence import extract_model_ids, merge_evidence, model_summary
 STATE = Path("data/models.json")
 
 def normalize_models(items):
-    return sorted({(m.get("id") or m.get("name")) for m in items if isinstance(m, dict) and isinstance(m.get("id") or m.get("name"), str)})
+    """Normalize non-empty, string model IDs; do not invent missing identifiers."""
+    ids = set()
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        for field in ("id", "name"):
+            value = item.get(field)
+            if isinstance(value, str) and value.strip():
+                ids.add(value.strip())
+                break
+    return sorted(ids)
+
+def validate_catalog(items, provider, previous=None):
+    """Fail closed when a provider returns malformed or unexpectedly tiny data."""
+    if not isinstance(items, list):
+        raise ValueError(f"{provider}: expected list")
+    ids = normalize_models(items)
+    if not ids:
+        raise ValueError(f"{provider}: empty model catalog")
+    if previous and len(ids) < max(1, (len(previous) + 1) // 2):
+        raise ValueError(f"{provider}: suspicious catalog shrink ({len(previous)} -> {len(ids)})")
+    return ids
 
 def diff_models(previous, current, initial=False):
     if initial:
@@ -24,7 +45,8 @@ def fetch(url, headers):
     with urllib.request.urlopen(request, timeout=20) as response:
         return json.load(response)
 
-def collect():
+def collect(previous=None):
+    previous = previous or {}
     sources = {
         "openai": ("OPENAI_API_KEY", "https://api.openai.com/v1/models", "Authorization", "Bearer "),
         "anthropic": ("ANTHROPIC_API_KEY", "https://api.anthropic.com/v1/models?limit=100", "x-api-key", ""),
@@ -44,7 +66,7 @@ def collect():
             if data.get("has_more") or data.get("nextPageToken"):
                 raise ValueError("Paginated response; refusing incomplete snapshot")
             items = data.get("models" if provider == "google" else "data", [])
-            result[provider] = normalize_models(items)
+            result[provider] = validate_catalog(items, provider, previous.get(provider))
         except Exception as exc:
             print(f"{provider}: collection failed: {type(exc).__name__}", file=sys.stderr)
     try:
@@ -52,7 +74,7 @@ def collect():
         items = data.get("data")
         if not isinstance(items, list):
             raise ValueError("Missing OpenRouter data array")
-        result["openrouter"] = normalize_models(items)
+        result["openrouter"] = validate_catalog(items, "openrouter", previous.get("openrouter"))
         print(f"openrouter: {len(result['openrouter'])} catalog IDs collected")
     except Exception as exc:
         print(f"openrouter: collection failed: {type(exc).__name__}", file=sys.stderr)
@@ -164,11 +186,19 @@ def patch_signals(label, sha, url, files):
             + "Candidate IDs: " + ", ".join(sorted(ids)) + "\n"
             + "\n".join(findings) + f"\n{url}"]
 
-def collect_patch_signals(previous, commits):
+def collect_patch_signals(previous, commits, per_provider_limit=2):
+    """Scan SDK patches oldest-first, checkpointing only successfully inspected commits.
+
+    Keeping a separate checkpoint from the commit-message cursor prevents losing
+    uninspected patches when there are more updates than the per-run budget.
+    """
     signals = []
+    checkpoints = {}
     for label, entries in commits.items():
         old = previous.get(label)
         if not old:
+            # First sight of a repo is a baseline, not a retrospective alert.
+            checkpoints[label] = entries[0]["sha"]
             continue
         selected = []
         for entry in entries:
@@ -176,22 +206,53 @@ def collect_patch_signals(previous, commits):
                 break
             selected.append(entry)
         else:
-            # Avoid treating an incomplete 30-commit window as exhaustive.
-            print(f"patches {label}: prior commit outside window; skipping")
+            print(f"patches {label}: checkpoint outside 30-commit window; gap in coverage",
+                  file=sys.stderr)
+            # The gap is unavoidable with this API window. Start a new baseline.
+            checkpoints[label] = entries[0]["sha"]
             continue
-        for entry in reversed(selected[:5]):
+        checkpoint = old
+        for entry in list(reversed(selected))[:per_provider_limit]:
             sha = entry.get("sha")
             if not isinstance(sha, str):
-                continue
+                break
             try:
                 detail = fetch(f"https://api.github.com/repos/{SDK_REPOS[label]}/commits/{sha}",
                                {"Accept": "application/vnd.github+json",
                                 "User-Agent": "FrontierWatchAI/0.5"})
+                if not isinstance(detail.get("files"), list):
+                    raise ValueError("missing GitHub commit files")
                 signals.extend(patch_signals(label, sha, entry.get("html_url", ""),
-                                             detail.get("files", [])))
+                                             detail["files"]))
+                checkpoint = sha
             except Exception as exc:
-                print(f"patches {label}: {type(exc).__name__}", file=sys.stderr)
-    return signals[:10]
+                print(f"patches {label}: detail unavailable ({type(exc).__name__}); will retry",
+                      file=sys.stderr)
+                break
+        checkpoints[label] = checkpoint
+    return signals, checkpoints
+
+def queue_alerts(existing, new):
+    """Preserve order without queueing the same unsent notification twice."""
+    return list(dict.fromkeys([*existing, *new]))
+
+def deliver_alerts(pending, sender, limit=8):
+    """Try bounded Telegram delivery; failed alerts remain queued for retry."""
+    if limit < 0:
+        raise ValueError("limit must be non-negative")
+    remaining = []
+    for index, message in enumerate(pending):
+        if index >= limit:
+            remaining.append(message)
+            continue
+        try:
+            if not sender(message):
+                remaining.append(message)
+        except Exception as exc:
+            print(f"Telegram delivery failed: {type(exc).__name__}; will retry",
+                  file=sys.stderr)
+            remaining.append(message)
+    return remaining
 
 def chunk_message(message, limit=4000):
     """Keep every character while respecting Telegram message size limits."""
