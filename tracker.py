@@ -276,58 +276,95 @@ def notify(message):
     return True
 
 def main():
+    """Run sources independently; persist evidence and retryable alerts atomically."""
     previous = json.loads(STATE.read_text()) if STATE.exists() else {}
-    current = collect()
+    if not isinstance(previous, dict):
+        raise ValueError("Invalid previous snapshot: expected JSON object")
+    current = collect(previous)
     if not current:
-        print("No successful sources; state unchanged")
-        return
+        print("No successful catalogs; preserving previous model lists")
     sdk = collect_sdk_releases()
     commits = collect_sdk_commits()
+
+    alerts = []
+    evidence_incoming = []
     changes = diff_models(previous, current)
     if changes:
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         lines = [f"FrontierWatch AI — new catalog IDs ({stamp})"]
         for provider, ids in changes.items():
             lines.append(f"{provider}: {', '.join(ids)}")
+            reference = {"openai": "https://api.openai.com/v1/models",
+                         "anthropic": "https://api.anthropic.com/v1/models",
+                         "google": "https://generativelanguage.googleapis.com/v1beta/models",
+                         "openrouter": "https://openrouter.ai/api/v1/models"}.get(provider)
+            for model in ids:
+                if reference:
+                    evidence_incoming.append({"model": model, "source": "catalog",
+                                              "provider": provider, "reference": reference})
         lines.append("Catalog observation only; not evidence of public release.")
-        notify("\n".join(lines))
-    evidence_incoming = []
-    for provider, ids in changes.items():
-        for model in ids:
-            evidence_incoming.append({"model": model, "source": "catalog", "provider": provider,
-                                      "reference": {"openai": "https://api.openai.com/v1/models",
-                                                    "anthropic": "https://api.anthropic.com/v1/models",
-                                                    "google": "https://generativelanguage.googleapis.com/v1beta/models",
-                                                    "openrouter": "https://openrouter.ai/api/v1/models"}[provider]})
-    for signal in release_signals(previous.get('_sdk_releases', {}), sdk):
-        notify(signal)
-    patch_alerts = collect_patch_signals(previous.get("_sdk_commits", {}), commits)
+        alerts.append("\n".join(lines))
+
+    for label, release in sdk.items():
+        old = {label: previous.get("_sdk_releases", {}).get(label)}
+        for signal in release_signals(old, {label: release}):
+            alerts.append(signal)
+            for model in extract_model_ids(signal):
+                evidence_incoming.append({"model": model, "source": "sdk_release",
+                                          "provider": label, "reference": release["url"]})
+
+    prior_patch_cursors = previous.get("_sdk_patch_commits",
+                                       previous.get("_sdk_commits", {}))
+    patch_alerts, patch_cursors = collect_patch_signals(prior_patch_cursors, commits)
     for signal in patch_alerts:
-        notify(signal)
-        for model in extract_model_ids(signal):
-            # Commit URL uniquely identifies the source observation.
-            url = next((part for part in signal.splitlines() if part.startswith("https://github.com/")), "")
-            label = next((name for name in SDK_REPOS if name in signal), "")
-            if url and label:
+        alerts.append(signal)
+        lines = signal.splitlines()
+        ref = lines[-1] if lines else ""
+        provider = lines[1].split()[0] if len(lines) > 1 else ""
+        if ref.startswith("https://github.com/") and provider in SDK_REPOS:
+            for model in extract_model_ids(signal):
                 evidence_incoming.append({"model": model, "source": "sdk_patch",
-                                          "provider": label, "reference": url})
+                                          "provider": provider, "reference": ref})
+
     for label, entries in commits.items():
         for signal in commit_signals(label, previous.get("_sdk_commits", {}).get(label), entries):
-            notify(signal)
-    STATE.parent.mkdir(parents=True, exist_ok=True)
+            alerts.append(signal)
+            ref = signal.rsplit("\n", 1)[-1]
+            if ref.startswith("https://github.com/"):
+                for model in extract_model_ids(signal):
+                    evidence_incoming.append({"model": model, "source": "sdk_commit",
+                                              "provider": label, "reference": ref})
+
     evidence, fresh_evidence = merge_evidence(previous.get("_evidence", []), evidence_incoming,
                                               datetime.now(timezone.utc).isoformat())
     print(f"evidence: {len(evidence)} records ({len(fresh_evidence)} new)")
     snapshot = {**previous, **current}
     snapshot["_evidence"] = evidence
     snapshot["_model_summary"] = model_summary(evidence)
-    snapshot['_sdk_commits'] = {**previous.get('_sdk_commits', {}), **{k: v[0]['sha'] for k, v in commits.items()}}
-    snapshot['_sdk_releases'] = {**previous.get('_sdk_releases', {}), **{k: v['tag'] for k, v in sdk.items()}}
+    snapshot["_sdk_patch_commits"] = {**prior_patch_cursors, **patch_cursors}
+    snapshot["_sdk_commits"] = {**previous.get("_sdk_commits", {}),
+                                **{label: items[0]["sha"] for label, items in commits.items()}}
+    snapshot["_sdk_releases"] = {**previous.get("_sdk_releases", {}),
+                                 **{label: item["tag"] for label, item in sdk.items()}}
+
+    queued = queue_alerts(previous.get("_pending_alerts", []), alerts)
+    pending = deliver_alerts(queued, notify)
+    snapshot["_pending_alerts"] = pending
+    if pending:
+        print(f"Telegram: {len(pending)} alert(s) queued for retry")
+
     if not previous.get("_telegram_test_sent"):
-        if notify("FrontierWatch AI test: Telegram connection is working. Model catalog monitoring is active."):
-            snapshot["_telegram_test_sent"] = True
-            print("Telegram test message delivered to Telegram API")
-    STATE.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n")
+        try:
+            if notify("FrontierWatch AI test: Telegram connection is working. Model catalog monitoring is active."):
+                snapshot["_telegram_test_sent"] = True
+                print("Telegram test message delivered to Telegram API")
+        except Exception as exc:
+            print(f"Telegram connectivity test failed: {type(exc).__name__}", file=sys.stderr)
+
+    STATE.parent.mkdir(parents=True, exist_ok=True)
+    temporary = STATE.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n")
+    temporary.replace(STATE)
 
 if __name__ == "__main__":
     main()
