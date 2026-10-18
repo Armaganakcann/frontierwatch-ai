@@ -1,5 +1,5 @@
 import unittest
-from tracker import diff_models, normalize_models, notify
+from tracker import diff_models, normalize_models, notify, collect
 from unittest.mock import patch
 
 class TrackerTests(unittest.TestCase):
@@ -18,6 +18,15 @@ class TrackerTests(unittest.TestCase):
     def test_telegram_missing_credentials(self):
         with patch.dict("os.environ", {}, clear=True):
             self.assertFalse(notify("test"))
+
+    def test_openrouter_public_catalog_without_key(self):
+        def fake_fetch(url, headers):
+            if "openrouter.ai" in url:
+                self.assertEqual(headers, {"User-Agent": "FrontierWatchAI/0.2"})
+                return {"data": [{"id": "openai/example"}, {"id": "anthropic/example"}]}
+            raise OSError("offline")
+        with patch.dict("os.environ", {}, clear=True), patch("tracker.fetch", side_effect=fake_fetch):
+            self.assertEqual(collect(), {"openrouter": ["anthropic/example", "openai/example"]})
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
