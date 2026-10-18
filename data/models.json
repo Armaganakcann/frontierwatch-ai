@@ -2489,6 +2489,39 @@
       "reference": "https://platform.openai.com/docs/models/gpt-5.4",
       "source": "external_listing",
       "title": "gpt-5.4"
+    },
+    {
+      "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "level": "unverified",
+      "model": "gemini-4-argon",
+      "observation_url": "https://www.aidatahub.io/api/model-releases.json",
+      "origin_provider": "google",
+      "provider": "aidatahub",
+      "published_at": "2026-10-13T16:09:00.789Z",
+      "reference": "https://ai.google.dev/gemini-api/docs/changelog#10-13-2026",
+      "source": "external_release"
+    },
+    {
+      "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "level": "unverified",
+      "model": "claude-haiku-5-5",
+      "observation_url": "https://www.aidatahub.io/api/model-releases.json",
+      "origin_provider": "anthropic",
+      "provider": "aidatahub",
+      "published_at": "2026-10-07T17:54:00.756Z",
+      "reference": "https://platform.claude.com/docs/en/release-notes/overview",
+      "source": "external_release"
+    },
+    {
+      "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "level": "unverified",
+      "model": "gemini-nano-banana-2.1",
+      "observation_url": "https://www.aidatahub.io/api/model-releases.json",
+      "origin_provider": "google",
+      "provider": "aidatahub",
+      "published_at": "2026-10-06T15:54:00.857Z",
+      "reference": "https://ai.google.dev/gemini-api/docs/changelog#10-06-2026",
+      "source": "external_release"
     }
   ],
   "_health": {
@@ -2523,6 +2556,10 @@
       "observations": 4,
       "status": "ok"
     },
+    "independent_releases": {
+      "observations": 3,
+      "status": "ok"
+    },
     "sdk_commits": {
       "anthropic-sdk-python": "ok",
       "anthropic-sdk-typescript": "ok",
@@ -2541,6 +2578,11 @@
       "python-genai": "ok"
     },
     "telegram_pending": 0
+  },
+  "_last_run": {
+    "completed_at": "2026-10-18T12:02:57.009116+00:00",
+    "run_id": "39125661366",
+    "trigger": "push"
   },
   "_model_summary": {
     "aurora-blue-alpha": {
@@ -2565,6 +2607,30 @@
       "source_count": 1,
       "sources": [
         "external_listing:claudemon"
+      ]
+    },
+    "claude-haiku-5-5": {
+      "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_release:aidatahub"
+      ]
+    },
+    "gemini-4-argon": {
+      "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_release:aidatahub"
+      ]
+    },
+    "gemini-nano-banana-2.1": {
+      "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_release:aidatahub"
       ]
     },
     "gpt-4.1": {
