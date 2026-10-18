@@ -1,5 +1,5 @@
 import unittest
-from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals
+from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals, patch_signals
 from unittest.mock import patch
 
 class TrackerTests(unittest.TestCase):
@@ -51,6 +51,16 @@ class TrackerTests(unittest.TestCase):
     def test_commit_signals_ignore_nonmodel_changes(self):
         commits = [{"sha": "new", "html_url": "https://github.com/x/commit/new", "commit": {"message": "Fix timeout"}}, {"sha": "old", "commit": {"message": "Old"}}]
         self.assertEqual(commit_signals("x", "old", commits), [])
+
+    def test_patch_signals_detect_added_model_identifier(self):
+        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\\n-old = True\\n+MODEL_AURORA_BLUE = 'aurora-blue'"}]
+        signals = patch_signals("openai-python", "abc123", "https://github.com/openai/openai-python/commit/abc123", files)
+        self.assertEqual(len(signals), 1)
+        self.assertIn("aurora-blue", signals[0])
+
+    def test_patch_signals_ignore_removed_lines_and_docs(self):
+        files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\\n-aurora-blue\\n+timeout = 3"}, {"filename": "tests/test_models.py", "patch": "@@ -0,0 +1 @@\\n+aurora-blue"}]
+        self.assertEqual(patch_signals("x", "abc", "https://github.com/x/commit/abc", files), [])
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
