@@ -420,6 +420,28 @@ class TrackerTests(unittest.TestCase):
             self.assertEqual(saved["_catalog_metadata"]["openai"],
                              old["_catalog_metadata"]["openai"])
 
+
+    def test_missing_optional_metadata_does_not_erase_previous_creation_date(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory) / "models.json"
+            state.write_text(json.dumps({
+                "openai": ["aurora-blue-alpha"],
+                "_catalog_metadata": {"openai": {"aurora-blue-alpha":
+                    {"created": 1792200000, "owned_by": "system"}}},
+                "_telegram_test_sent": True}))
+            def collect_without_optional_fields(previous, diagnostics=None, metadata=None):
+                metadata["openai"] = {}
+                return {"openai": ["aurora-blue-alpha"]}
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", side_effect=collect_without_optional_fields), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", return_value=True):
+                tracker.main()
+            saved = json.loads(state.read_text())
+            self.assertEqual(saved["_catalog_metadata"]["openai"]["aurora-blue-alpha"]["created"],
+                             1792200000)
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
