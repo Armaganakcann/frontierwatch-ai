@@ -6,6 +6,7 @@ on:
       - 'tracker.py'
       - 'intelligence.py'
       - 'community.py'
+      - 'metadata.py'
       - 'tests/**'
       - '.github/workflows/ci.yml'
   pull_request:
