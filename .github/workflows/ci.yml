@@ -8,6 +8,7 @@ on:
       - 'community.py'
       - 'metadata.py'
       - 'external_signals.py'
+      - 'release_feed.py'
       - 'tests/**'
       - '.github/workflows/ci.yml'
   pull_request:
