@@ -1,5 +1,6 @@
 import unittest
-from tracker import diff_models, normalize_models
+from tracker import diff_models, normalize_models, notify
+from unittest.mock import patch
 
 class TrackerTests(unittest.TestCase):
     def test_new_models(self):
@@ -13,6 +14,10 @@ class TrackerTests(unittest.TestCase):
 
     def test_gemini_name(self):
         self.assertEqual(normalize_models([{"name": "models/gemini-2.5-flash"}]), ["models/gemini-2.5-flash"])
+
+    def test_telegram_missing_credentials(self):
+        with patch.dict("os.environ", {}, clear=True):
+            self.assertFalse(notify("test"))
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
