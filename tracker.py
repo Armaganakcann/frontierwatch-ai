@@ -305,9 +305,9 @@ def main():
         lines.append("Catalog observation only; not evidence of public release.")
         alerts.append("\n".join(lines))
 
+    prior_releases = previous.get("_sdk_releases", {})
     for label, release in sdk.items():
-        old = {label: previous.get("_sdk_releases", {}).get(label)}
-        for signal in release_signals(old, {label: release}):
+        for signal in release_signals(prior_releases, {label: release}):
             alerts.append(signal)
             for model in extract_model_ids(signal):
                 evidence_incoming.append({"model": model, "source": "sdk_release",
