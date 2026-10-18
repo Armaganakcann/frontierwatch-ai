@@ -1972,7 +1972,525 @@
     }
   },
   "_community_initialized": true,
-  "_evidence": [],
+  "_evidence": [
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "aurora-red-alpha",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-10-17T01:15:26.000Z",
+      "reference": "https://platform.openai.com/docs/models/aurora-red-alpha",
+      "source": "external_listing",
+      "title": "aurora-red-alpha"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "aurora-green-alpha",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-10-17T01:13:55.000Z",
+      "reference": "https://platform.openai.com/docs/models/aurora-green-alpha",
+      "source": "external_listing",
+      "title": "aurora-green-alpha"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "aurora-blue-alpha",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-10-17T01:13:49.000Z",
+      "reference": "https://platform.openai.com/docs/models/aurora-blue-alpha",
+      "source": "external_listing",
+      "title": "aurora-blue-alpha"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4.1-mini",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-04-10T20:49:33.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4.1-mini",
+      "source": "external_listing",
+      "title": "gpt-4.1-mini"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4.1",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-04-10T20:22:22.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4.1",
+      "source": "external_listing",
+      "title": "gpt-4.1"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o-mini",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2024-07-16T23:32:21.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o-mini",
+      "source": "external_listing",
+      "title": "gpt-4o-mini"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2024-05-10T18:50:49.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o",
+      "source": "external_listing",
+      "title": "gpt-4o"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-6-astra-api-priv-ev3",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-10-15T17:25:12.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-6-astra-api-priv-ev3",
+      "source": "external_listing",
+      "title": "gpt-6-astra-api-priv-ev3"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.4-nano",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-03-14T01:14:30.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.4-nano",
+      "source": "external_listing",
+      "title": "gpt-5.4-nano"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.3-codex",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-02-08T08:05:15.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.3-codex",
+      "source": "external_listing",
+      "title": "gpt-5.3-codex"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o-mini-tts-2025-12-15",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-12-13T07:27:17.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o-mini-tts-2025-12-15",
+      "source": "external_listing",
+      "title": "gpt-4o-mini-tts-2025-12-15"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o-mini-tts-2025-03-20",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-12-13T07:25:31.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o-mini-tts-2025-03-20",
+      "source": "external_listing",
+      "title": "gpt-4o-mini-tts-2025-03-20"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.1",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-11-10T18:51:13.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.1",
+      "source": "external_listing",
+      "title": "gpt-5.1"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4.1-mini-2025-04-14",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-04-10T20:39:07.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4.1-mini-2025-04-14",
+      "source": "external_listing",
+      "title": "gpt-4.1-mini-2025-04-14"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4.1-2025-04-14",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-04-10T20:09:06.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4.1-2025-04-14",
+      "source": "external_listing",
+      "title": "gpt-4.1-2025-04-14"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o-2024-11-20",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2025-02-12T03:39:03.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o-2024-11-20",
+      "source": "external_listing",
+      "title": "gpt-4o-2024-11-20"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o-2024-08-06",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2024-08-04T23:38:39.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o-2024-08-06",
+      "source": "external_listing",
+      "title": "gpt-4o-2024-08-06"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-4o-mini-2024-07-18",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2024-07-16T23:31:57.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-4o-mini-2024-07-18",
+      "source": "external_listing",
+      "title": "gpt-4o-mini-2024-07-18"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-6.1-sol",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-27T23:47:54.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-6.1-sol",
+      "source": "external_listing",
+      "title": "gpt-6.1-sol"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-6-luna",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-14T17:15:02.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-6-luna",
+      "source": "external_listing",
+      "title": "gpt-6-luna"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-6-sol",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-14T17:12:17.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-6-sol",
+      "source": "external_listing",
+      "title": "gpt-6-sol"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-live-1",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-08T17:43:27.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-live-1",
+      "source": "external_listing",
+      "title": "gpt-live-1"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-image-2.5-sunburst-2026-09-08",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-08T07:03:30.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-image-2.5-sunburst-2026-09-08",
+      "source": "external_listing",
+      "title": "gpt-image-2.5-sunburst-2026-09-08"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-image-2.5-flare-2026-09-08",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-08T07:03:26.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-image-2.5-flare-2026-09-08",
+      "source": "external_listing",
+      "title": "gpt-image-2.5-flare-2026-09-08"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-image-2.5-sunburst",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-04T23:06:02.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-image-2.5-sunburst",
+      "source": "external_listing",
+      "title": "gpt-image-2.5-sunburst"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-image-2.5-flare",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-09-04T23:05:47.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-image-2.5-flare",
+      "source": "external_listing",
+      "title": "gpt-image-2.5-flare"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-6-astra",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-08-27T18:00:04.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-6-astra",
+      "source": "external_listing",
+      "title": "gpt-6-astra"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-live-transcribe",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-07-27T16:00:34.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-live-transcribe",
+      "source": "external_listing",
+      "title": "gpt-live-transcribe"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-transcribe",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-07-27T16:00:27.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-transcribe",
+      "source": "external_listing",
+      "title": "gpt-transcribe"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-realtime-2.1-mini",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-06-23T22:45:06.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-realtime-2.1-mini",
+      "source": "external_listing",
+      "title": "gpt-realtime-2.1-mini"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-realtime-2.1",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-06-23T22:44:47.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-realtime-2.1",
+      "source": "external_listing",
+      "title": "gpt-realtime-2.1"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.6-luna",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-06-23T15:30:58.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.6-luna",
+      "source": "external_listing",
+      "title": "gpt-5.6-luna"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.6-terra",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-06-23T15:27:39.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.6-terra",
+      "source": "external_listing",
+      "title": "gpt-5.6-terra"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.6-sol",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-06-23T15:20:18.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.6-sol",
+      "source": "external_listing",
+      "title": "gpt-5.6-sol"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-realtime-whisper",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-05-05T20:14:20.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-realtime-whisper",
+      "source": "external_listing",
+      "title": "gpt-realtime-whisper"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-realtime-2",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-05-05T18:33:52.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-realtime-2",
+      "source": "external_listing",
+      "title": "gpt-realtime-2"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-realtime-translate",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-05-05T03:03:36.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-realtime-translate",
+      "source": "external_listing",
+      "title": "gpt-realtime-translate"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.5-pro-2026-04-23",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-04-22T21:47:50.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.5-pro-2026-04-23",
+      "source": "external_listing",
+      "title": "gpt-5.5-pro-2026-04-23"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.5-pro",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-04-22T21:45:49.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.5-pro",
+      "source": "external_listing",
+      "title": "gpt-5.5-pro"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.5-2026-04-23",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-04-22T06:27:21.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.5-2026-04-23",
+      "source": "external_listing",
+      "title": "gpt-5.5-2026-04-23"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.5",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-04-22T02:27:27.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.5",
+      "source": "external_listing",
+      "title": "gpt-5.5"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-image-2-2026-04-21",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-04-17T04:26:34.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-image-2-2026-04-21",
+      "source": "external_listing",
+      "title": "gpt-image-2-2026-04-21"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-image-2",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-04-17T04:23:15.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-image-2",
+      "source": "external_listing",
+      "title": "gpt-image-2"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.4-mini",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-03-14T01:18:43.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.4-mini",
+      "source": "external_listing",
+      "title": "gpt-5.4-mini"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-03-14T01:17:56.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.4-mini-2026-03-17",
+      "source": "external_listing",
+      "title": "gpt-5.4-mini-2026-03-17"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.4-nano-2026-03-17",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-03-14T01:13:57.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.4-nano-2026-03-17",
+      "source": "external_listing",
+      "title": "gpt-5.4-nano-2026-03-17"
+    },
+    {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "level": "unverified",
+      "model": "gpt-5.4",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-03-05T06:24:12.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-5.4",
+      "source": "external_listing",
+      "title": "gpt-5.4"
+    }
+  ],
   "_health": {
     "catalogs": {
       "anthropic": {
@@ -2000,6 +2518,11 @@
       "status": "ok",
       "truncated_queries": 0
     },
+    "external_listings": {
+      "failed_labs": 0,
+      "observations": 47,
+      "status": "ok"
+    },
     "sdk_commits": {
       "anthropic-sdk-python": "ok",
       "anthropic-sdk-typescript": "ok",
@@ -2019,7 +2542,384 @@
     },
     "telegram_pending": 0
   },
-  "_model_summary": {},
+  "_model_summary": {
+    "aurora-blue-alpha": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "aurora-green-alpha": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "aurora-red-alpha": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4.1": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4.1-2025-04-14": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4.1-mini": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4.1-mini-2025-04-14": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o-2024-08-06": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o-2024-11-20": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o-mini": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o-mini-2024-07-18": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o-mini-tts-2025-03-20": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-4o-mini-tts-2025-12-15": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.1": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.3-codex": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.4": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.4-mini": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.4-mini-2026-03-17": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.4-nano": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.4-nano-2026-03-17": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.5": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.5-2026-04-23": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.5-pro": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.5-pro-2026-04-23": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.6-luna": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.6-sol": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-5.6-terra": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-6-astra": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-6-astra-api-priv-ev3": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-6-luna": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-6-sol": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-6.1-sol": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-image-2": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-image-2-2026-04-21": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-image-2.5-flare": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-image-2.5-flare-2026-09-08": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-image-2.5-sunburst": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-image-2.5-sunburst-2026-09-08": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-live-1": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-live-transcribe": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-realtime-2": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-realtime-2.1": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-realtime-2.1-mini": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-realtime-translate": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-realtime-whisper": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    },
+    "gpt-transcribe": {
+      "first_seen": "2026-10-18T11:53:47.318305+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_listing:claudemon"
+      ]
+    }
+  },
   "_pending_alerts": [],
   "_sdk_commits": {
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
