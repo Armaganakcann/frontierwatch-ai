@@ -10,7 +10,8 @@ Open-source, **zero paid-inference** model-catalog and official SDK signal track
 | Anthropic `GET /v1/models` | Visible model IDs, all available pages | `ANTHROPIC_API_KEY` |
 | Google Gemini `models.list` | Visible model IDs, all available pages | `GEMINI_API_KEY` |
 | OpenRouter `/api/v1/models` | Public model catalog IDs | No key |
-| Official OpenAI / Anthropic / Google Python SDK GitHub repos | Releases, recent commit messages, newly added source code | GitHub Actions built-in token |
+| Official OpenAI / Anthropic / Google Python and JavaScript/TypeScript SDK GitHub repos (6 total) | Releases, recent commit messages, newly added source code | GitHub Actions built-in token |
+| Public Hacker News Algolia search (4 focused queries) | Recent posts containing recognizable model IDs (not model verification) | No key |
 
 **The tracker does not call inference/completion endpoints.** Listing APIs may still have provider requirements or quotas; check your account terms.
 
@@ -34,6 +35,8 @@ See [SETUP.md](SETUP.md) to configure Telegram and secrets.
 - `_health` for sanitized provider connectivity and pending-alert information.
 
 Provider lists must be nonempty and well-formed. Sudden reductions exceeding 50% are refused to avoid overwriting known-good snapshots. Anthropic/Gemini pagination is followed completely with repeat-cursor and maximum-page guards; errors do not create partial baselines. When providers fail, their previous successful lists remain.
+
+Hacker News evidence is labelled **\`community\` / \`unverified\`**. Search is bounded by a recent time window, query count and page budget. It monitors public HN stories only; it is **not direct X/Twitter access**, not a complete media search, and not verification of a provider API. The first successful community scan establishes a silent baseline; subsequent new references may trigger an explicitly unverified Telegram notice.
 
 GitHub source patches are checked incrementally, at most two per SDK per run. Older changes can still be missed when the last checkpoint is outside the most recent 30 commits; that is logged as an explicit coverage gap. Telegram alerts use a retry queue, with at-least-once semantics (rare duplicate sends are possible).
 
