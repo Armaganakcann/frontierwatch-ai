@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import urllib.request
+import urllib.error
 from urllib.parse import quote
 from datetime import datetime, timezone
 from pathlib import Path
@@ -89,8 +90,9 @@ def fetch_catalog_pages(provider, url, headers, max_pages=20):
         cursor = next_cursor
     raise ValueError(f"{provider}: pagination exceeded {max_pages} pages")
 
-def collect(previous=None):
+def collect(previous=None, diagnostics=None):
     previous = previous or {}
+    diagnostics = diagnostics if diagnostics is not None else {}
     sources = {
         "openai": ("OPENAI_API_KEY", "https://api.openai.com/v1/models", "Authorization", "Bearer "),
         "anthropic": ("ANTHROPIC_API_KEY", "https://api.anthropic.com/v1/models?limit=100", "x-api-key", ""),
@@ -101,6 +103,7 @@ def collect(previous=None):
         key = os.environ.get(env)
         if not key:
             print(f"{provider}: skipped (missing {env})")
+            diagnostics[provider] = {"status": "missing_key"}
             continue
         headers = {header: prefix + key}
         if provider == "anthropic":
@@ -108,17 +111,23 @@ def collect(previous=None):
         try:
             items = fetch_catalog_pages(provider, url, headers)
             result[provider] = validate_catalog(items, provider, previous.get(provider))
+            diagnostics[provider] = {"status": "ok", "count": len(result[provider])}
         except Exception as exc:
-            print(f"{provider}: collection failed: {type(exc).__name__}", file=sys.stderr)
+            error = f"HTTP_{exc.code}" if isinstance(exc, urllib.error.HTTPError) else type(exc).__name__
+            diagnostics[provider] = {"status": "failed", "error": error}
+            print(f"{provider}: collection failed: {error}", file=sys.stderr)
     try:
         data = fetch("https://openrouter.ai/api/v1/models", {"User-Agent": "FrontierWatchAI/0.2"})
         items = data.get("data")
         if not isinstance(items, list):
             raise ValueError("Missing OpenRouter data array")
         result["openrouter"] = validate_catalog(items, "openrouter", previous.get("openrouter"))
+        diagnostics["openrouter"] = {"status": "ok", "count": len(result["openrouter"])}
         print(f"openrouter: {len(result['openrouter'])} catalog IDs collected")
     except Exception as exc:
-        print(f"openrouter: collection failed: {type(exc).__name__}", file=sys.stderr)
+        error = f"HTTP_{exc.code}" if isinstance(exc, urllib.error.HTTPError) else type(exc).__name__
+        diagnostics["openrouter"] = {"status": "failed", "error": error}
+        print(f"openrouter: collection failed: {error}", file=sys.stderr)
     for provider, ids in result.items():
         if provider != "openrouter":
             print(f"{provider}: {len(ids)} catalog IDs collected")
@@ -321,7 +330,8 @@ def main():
     previous = json.loads(STATE.read_text()) if STATE.exists() else {}
     if not isinstance(previous, dict):
         raise ValueError("Invalid previous snapshot: expected JSON object")
-    current = collect(previous)
+    catalog_health = {}
+    current = collect(previous, diagnostics=catalog_health)
     if not current:
         print("No successful catalogs; preserving previous model lists")
     sdk = collect_sdk_releases()
@@ -391,6 +401,10 @@ def main():
     queued = queue_alerts(previous.get("_pending_alerts", []), alerts)
     pending = deliver_alerts(queued, notify)
     snapshot["_pending_alerts"] = pending
+    snapshot["_health"] = {"catalogs": catalog_health,
+                           "sdk_releases": {k: ("ok" if k in sdk else "unavailable") for k in SDK_REPOS},
+                           "sdk_commits": {k: ("ok" if k in commits else "unavailable") for k in SDK_REPOS},
+                           "telegram_pending": len(pending)}
     if pending:
         print(f"Telegram: {len(pending)} alert(s) queued for retry")
 
