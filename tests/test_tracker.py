@@ -274,6 +274,41 @@ class TrackerTests(unittest.TestCase):
             with self.assertRaises(OSError):
                 fetch_catalog_pages("google", "https://example.com/models?pageSize=1000", {})
 
+
+    def test_health_reports_failed_and_missing_sources_without_credentials(self):
+        health = {}
+        def fake_fetch(url, headers):
+            if "api.openai.com" in url:
+                raise OSError("test-secret-is-never-repeated")
+            if "openrouter.ai" in url:
+                return {"data": [{"id": "test-model"}]}
+            raise RuntimeError("unexpected source")
+        with patch.dict("os.environ", {"OPENAI_API_KEY": "test-secret-is-never-repeated"}, clear=True), \
+             patch("tracker.fetch", side_effect=fake_fetch):
+            results = collect(diagnostics=health)
+        self.assertEqual(results, {"openrouter": ["test-model"]})
+        self.assertEqual(health["openai"]["status"], "failed")
+        self.assertEqual(health["openrouter"]["count"], 1)
+        self.assertEqual(health["anthropic"]["status"], "missing_key")
+        self.assertNotIn("test-secret-is-never-repeated", json.dumps(health))
+
+    def test_main_saves_public_source_health_without_api_keys(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory) / "models.json"
+            state.write_text(json.dumps({"openai": ["old"], "_telegram_test_sent": True}))
+            def fake_collect(previous, diagnostics=None):
+                diagnostics["openai"] = {"status": "failed", "error": "HTTP_403"}
+                return {}
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", side_effect=fake_collect), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", return_value=False):
+                tracker.main()
+            data = json.loads(state.read_text())
+            self.assertEqual(data["_health"]["catalogs"]["openai"]["error"], "HTTP_403")
+            self.assertEqual(data["_health"]["telegram_pending"], 0)
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
