@@ -1,7 +1,7 @@
 import unittest
 from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals, patch_signals
 from unittest.mock import patch
-from intelligence import extract_model_ids, evidence_level, new_evidence
+from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence
 
 class TrackerTests(unittest.TestCase):
     def test_new_models(self):
@@ -82,6 +82,24 @@ class TrackerTests(unittest.TestCase):
             {"source": "sdk_patch", "provider": "openai-python", "model": "aurora-blue", "reference": "def"},
         ]
         self.assertEqual(len(new_evidence(entries, seen)), 1)
+
+    def test_merge_evidence_preserves_first_seen_and_adds_sources(self):
+        old = [{"model": "aurora-blue", "source": "sdk_patch", "provider": "openai-python", "reference": "abc", "first_seen": "2026-10-17T00:00:00Z", "level": "official_code_signal"}]
+        incoming = [
+            {"model": "aurora-blue", "source": "sdk_patch", "provider": "openai-python", "reference": "abc"},
+            {"model": "aurora-blue", "source": "catalog", "provider": "openai", "reference": "https://api.openai.com/v1/models"}
+        ]
+        merged, fresh = merge_evidence(old, incoming, "2026-10-18T00:00:00Z")
+        self.assertEqual(len(merged), 2)
+        self.assertEqual(len(fresh), 1)
+        self.assertEqual(merged[0]["first_seen"], "2026-10-17T00:00:00Z")
+        self.assertEqual(merged[1]["level"], "catalog_observation")
+
+    def test_merge_evidence_does_not_duplicate_same_reference(self):
+        entry = {"model": "gpt-6-preview", "source": "sdk_commit", "provider": "openai-python", "reference": "sha123"}
+        first, fresh = merge_evidence([], [entry, entry], "2026-10-18T00:00:00Z")
+        self.assertEqual(len(first), 1)
+        self.assertEqual(len(fresh), 1)
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
