@@ -1,5 +1,9 @@
 name: Monitor public model catalogs
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/monitor.yml'
   schedule:
     - cron: '7,22,37,52 * * * *'
   workflow_dispatch:
