@@ -1,4 +1,6 @@
 {
+  "_evidence": [],
+  "_model_summary": {},
   "_sdk_commits": {
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
