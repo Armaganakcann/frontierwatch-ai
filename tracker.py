@@ -11,6 +11,7 @@ from intelligence import extract_model_ids, merge_evidence, model_summary
 from community import collect_community, community_alerts
 from metadata import catalog_metadata
 from external_signals import collect_claudemon, source_alerts
+from release_feed import collect_release_feed, release_feed_alerts
 
 STATE = Path("data/models.json")
 
@@ -355,6 +356,7 @@ def main():
     commits = collect_sdk_commits()
     community_entries, community_health = collect_community(fetch)
     external_entries, external_health = collect_claudemon(fetch)
+    release_entries, release_health = collect_release_feed(fetch)
     print(f"external model listings: {external_health.get('status')}, {len(external_entries)} observations")
     print(f"community: {community_health.get('status', 'unknown')}, "
           f"{len(community_entries)} model-name references")
@@ -410,6 +412,7 @@ def main():
 
     evidence_incoming.extend(community_entries)
     evidence_incoming.extend(external_entries)
+    evidence_incoming.extend(release_entries)
     evidence, fresh_evidence = merge_evidence(previous.get("_evidence", []), evidence_incoming,
                                               datetime.now(timezone.utc).isoformat())
     print(f"evidence: {len(evidence)} records ({len(fresh_evidence)} new)")
@@ -422,6 +425,7 @@ def main():
         for provider in set(old_metadata) | set(observed_metadata)
     }
     alerts.extend(source_alerts(fresh_evidence))
+    alerts.extend(release_feed_alerts(fresh_evidence))
     if previous.get("_community_initialized"):
         alerts.extend(community_alerts(fresh_evidence))
     elif community_health.get("initialized"):
@@ -450,7 +454,8 @@ def main():
                            "sdk_commits": {k: ("ok" if k in commits else "unavailable") for k in SOURCE_REPOS},
                            "telegram_pending": len(pending),
                            "community": community_health,
-                           "external_listings": external_health}
+                           "external_listings": external_health,
+                           "independent_releases": release_health}
     if pending:
         print(f"Telegram: {len(pending)} alert(s) queued for retry")
 
