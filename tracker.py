@@ -412,8 +412,11 @@ def main():
     snapshot = {**previous, **current}
     snapshot["_evidence"] = evidence
     snapshot["_model_summary"] = model_summary(evidence)
-    snapshot["_catalog_metadata"] = {**previous.get("_catalog_metadata", {}),
-                                    **observed_metadata}
+    old_metadata = previous.get("_catalog_metadata", {})
+    snapshot["_catalog_metadata"] = {
+        provider: {**old_metadata.get(provider, {}), **observed_metadata.get(provider, {})}
+        for provider in set(old_metadata) | set(observed_metadata)
+    }
     if previous.get("_community_initialized"):
         alerts.extend(community_alerts(fresh_evidence))
     elif community_health.get("initialized"):
