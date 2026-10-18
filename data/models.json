@@ -1,4 +1,9 @@
 {
+  "_sdk_releases": {
+    "anthropic-sdk-python": "v1.15.0",
+    "openai-python": "v3.35.1",
+    "python-genai": "v2.31.0"
+  },
   "_telegram_test_sent": true,
   "anthropic": [
     "claude-fable-5",
