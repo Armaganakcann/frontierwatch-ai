@@ -1,4 +1,4 @@
-name: FrontierWatch catalogs and early signals
+name: FrontierWatch catalogs and independent signals
 on:
   push:
     branches: [main]
