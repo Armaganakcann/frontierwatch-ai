@@ -1,4 +1,4 @@
-name: FrontierWatch catalogs and independent signals
+name: FrontierWatch verified-source monitor
 on:
   push:
     branches: [main]
