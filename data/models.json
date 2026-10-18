@@ -2520,7 +2520,7 @@
     },
     "external_listings": {
       "failed_labs": 0,
-      "observations": 47,
+      "observations": 4,
       "status": "ok"
     },
     "sdk_commits": {
