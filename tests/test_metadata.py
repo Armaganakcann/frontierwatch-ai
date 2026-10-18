@@ -34,7 +34,7 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(catalog_metadata("openai", models), {})
 
     def test_model_without_identifier_is_ignored(self):
-        self.assertEqual(catalog_metadata("openai", [{"created": 1792200000}]), [] if False else {})
+        self.assertEqual(catalog_metadata("openai", [{"created": 1792200000}]), {})
 
 if __name__ == "__main__":
     unittest.main()
