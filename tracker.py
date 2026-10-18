@@ -131,9 +131,9 @@ def collect_sdk_commits():
 
 
 def patch_signals(label, sha, url, files):
-    """Only newly added model-related source lines; not docs or tests."""
-    import re
+    """Find explicit candidate IDs in newly added SDK source lines."""
     findings = []
+    ids = set()
     for item in files:
         name = item.get("filename", "")
         if (not name.endswith((".py", ".ts", ".js", ".json")) or
@@ -146,18 +146,20 @@ def patch_signals(label, sha, url, files):
             added = line[1:].strip()
             if len(added) > 250:
                 continue
-            if re.search(r"(?i)(model[_-]?(id|name)?|aurora|gemini|claude|gpt)[^\n]{0,100}", added):
-                findings.append(f"{name}: {added[:180]}")
+            candidates = extract_model_ids(added)
+            if not candidates:
+                continue
+            ids.update(candidates)
+            findings.append(f"{name}: {added[:180]}")
             if len(findings) >= 3:
                 break
         if len(findings) >= 3:
             break
     if not findings:
         return []
-    ids = sorted({model for finding in findings for model in extract_model_ids(finding)})
-    ids_line = ("\nCandidate IDs: " + ", ".join(ids)) if ids else ""
-    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\n{label} {sha[:12]}{ids_line}\n" +
-            "\n".join(findings) + f"\n{url}"]
+    return [f"OFFICIAL SOURCE CODE SIGNAL (not a model release)\n{label} {sha[:12]}\n"
+            + "Candidate IDs: " + ", ".join(sorted(ids)) + "\n"
+            + "\n".join(findings) + f"\n{url}"]
 
 def collect_patch_signals(previous, commits):
     signals = []
