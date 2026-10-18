@@ -1,0 +1,29 @@
+"""Conservative, evidence-aware model identifier utilities."""
+import re
+
+KNOWN_PREFIXES = ("gpt-", "gemini-", "claude-", "aurora-", "o1-", "o3-", "o4-")
+MODEL_ID = re.compile(r"(?<![a-zA-Z0-9_])(?:gpt|gemini|claude|aurora|o1|o3|o4)-[a-zA-Z0-9][a-zA-Z0-9._-]{1,70}", re.I)
+LEVELS = {"catalog": "catalog_observation", "sdk_patch": "official_code_signal",
+          "sdk_commit": "official_commit_signal", "sdk_release": "official_release_note",
+          "rumor": "unverified"}
+
+def extract_model_ids(text):
+    if not isinstance(text, str):
+        return []
+    return sorted({m.group(0).lower().rstrip("._-") for m in MODEL_ID.finditer(text)})
+
+def evidence_level(source):
+    return LEVELS.get(source, "unverified")
+
+def evidence_key(item):
+    return "|".join(str(item.get(k, "")) for k in ("source", "provider", "model", "reference"))
+
+def new_evidence(entries, seen):
+    known = set(seen)
+    fresh = []
+    for entry in entries:
+        key = evidence_key(entry)
+        if key not in known:
+            fresh.append(entry)
+            known.add(key)
+    return fresh
