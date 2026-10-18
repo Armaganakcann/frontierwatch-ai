@@ -1,5 +1,5 @@
 import unittest
-from tracker import diff_models, normalize_models, notify, collect
+from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release
 from unittest.mock import patch
 
 class TrackerTests(unittest.TestCase):
@@ -27,6 +27,20 @@ class TrackerTests(unittest.TestCase):
             raise OSError("offline")
         with patch.dict("os.environ", {}, clear=True), patch("tracker.fetch", side_effect=fake_fetch):
             self.assertEqual(collect(), {"openrouter": ["anthropic/example", "openai/example"]})
+
+    def test_sdk_release_baseline_and_change(self):
+        old = {"openai-python": "v1"}
+        new = {"openai-python": {"tag": "v2", "url": "https://github.com/openai/openai-python/releases/tag/v2", "body": "Add model identifier aurora-blue"}}
+        signals = release_signals(old, new)
+        self.assertEqual(len(signals), 1)
+        self.assertIn("aurora-blue", signals[0])
+        self.assertEqual(release_signals({}, new), [])
+
+    def test_sdk_release_without_model_keyword(self):
+        self.assertFalse(classify_release("Fix HTTP timeout handling"))
+
+    def test_sdk_release_model_keyword(self):
+        self.assertTrue(classify_release("Add model identifier to SDK"))
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
