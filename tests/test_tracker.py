@@ -162,7 +162,7 @@ class TrackerTests(unittest.TestCase):
         sha_list = ["new4", "new3", "new2", "new1", "old"]
         commits = {"openai-python": [{"sha": sha, "html_url": "https://github.com/openai/openai-python/commit/" + sha} for sha in sha_list]}
         def fake_fetch(url, headers):
-            return {"files": [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\\n+MODEL = 'aurora-" + url.rsplit("/", 1)[-1] + "'"}]}
+            return {"files": [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\n+MODEL = 'aurora-" + url.rsplit("/", 1)[-1] + "'"}]}
         with patch("tracker.fetch", side_effect=fake_fetch):
             messages, checkpoints = collect_patch_signals({"openai-python": "old"}, commits, per_provider_limit=2)
         self.assertEqual(len(messages), 2)
@@ -232,7 +232,7 @@ class TrackerTests(unittest.TestCase):
 
     def test_patch_source_model_evidence_reference_is_commit_url(self):
         messages = patch_signals("openai-python", "sha", "https://github.com/openai/openai-python/commit/sha",
-                                [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\\n+MODEL = 'aurora-blue-alpha'"}])
+                                [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\n+MODEL = 'aurora-blue-alpha'"}])
         self.assertEqual(messages[0].splitlines()[-1], "https://github.com/openai/openai-python/commit/sha")
 
     def test_normalize(self):
