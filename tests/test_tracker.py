@@ -129,6 +129,12 @@ class TrackerTests(unittest.TestCase):
     def test_normalize_rejects_empty_model_ids(self):
         self.assertEqual(normalize_models([{"id": ""}, {"id": "valid"}]), ["valid"])
 
+    def test_telegram_message_chunks_are_bounded(self):
+        from tracker import chunk_message
+        pieces = chunk_message("a" * 9000, limit=4000)
+        self.assertEqual("".join(pieces), "a" * 9000)
+        self.assertTrue(all(len(part) <= 4000 for part in pieces))
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
