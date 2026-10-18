@@ -5,6 +5,7 @@ on:
     paths:
       - 'tracker.py'
       - 'intelligence.py'
+      - 'community.py'
       - 'tests/**'
       - '.github/workflows/ci.yml'
   pull_request:
