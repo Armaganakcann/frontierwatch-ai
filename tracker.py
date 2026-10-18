@@ -436,6 +436,15 @@ def main():
     queued = queue_alerts(previous.get("_pending_alerts", []), alerts)
     pending = deliver_alerts(queued, notify)
     snapshot["_pending_alerts"] = pending
+    trigger = os.environ.get("GITHUB_EVENT_NAME", "local")
+    if trigger not in {"schedule", "workflow_dispatch", "push", "local"}:
+        trigger = "other"
+    run_id = os.environ.get("GITHUB_RUN_ID", "")
+    snapshot["_last_run"] = {
+        "completed_at": datetime.now(timezone.utc).isoformat(),
+        "trigger": trigger,
+        "run_id": run_id if run_id.isdigit() and len(run_id) <= 20 else ""
+    }
     snapshot["_health"] = {"catalogs": catalog_health,
                            "sdk_releases": {k: ("ok" if k in sdk else "unavailable") for k in SDK_REPOS},
                            "sdk_commits": {k: ("ok" if k in commits else "unavailable") for k in SOURCE_REPOS},
