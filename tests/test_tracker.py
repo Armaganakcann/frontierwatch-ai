@@ -1,4 +1,8 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
+import tracker
 from tracker import diff_models, normalize_models, validate_catalog, notify, collect, release_signals, classify_release, commit_signals, patch_signals, collect_patch_signals, deliver_alerts, queue_alerts
 from unittest.mock import patch
 from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence, model_summary
@@ -186,6 +190,41 @@ class TrackerTests(unittest.TestCase):
         def failing_sender(message):
             raise OSError("telegram down")
         self.assertEqual(deliver_alerts(["alert"], failing_sender), ["alert"])
+
+
+    def test_main_keeps_failed_notifications_and_delivers_them_on_retry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory) / "models.json"
+            state.write_text(json.dumps({"openai": ["old"], "_telegram_test_sent": True}))
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", return_value={"openai": ["old", "new"]}), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", return_value=False):
+                tracker.main()
+            saved = json.loads(state.read_text())
+            self.assertEqual(saved["openai"], ["old", "new"])
+            self.assertTrue(any("new" in message for message in saved["_pending_alerts"]))
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", return_value={"openai": ["old", "new"]}), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", return_value=True):
+                tracker.main()
+            self.assertEqual(json.loads(state.read_text())["_pending_alerts"], [])
+
+    def test_main_retry_queue_survives_complete_catalog_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory) / "models.json"
+            state.write_text(json.dumps({"openai": ["old"], "_pending_alerts": ["previous alert"], "_telegram_test_sent": True}))
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", return_value={}), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", return_value=True):
+                tracker.main()
+            self.assertEqual(json.loads(state.read_text())["_pending_alerts"], [])
+            self.assertEqual(json.loads(state.read_text())["openai"], ["old"])
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
