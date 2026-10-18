@@ -119,6 +119,10 @@ class TrackerTests(unittest.TestCase):
         self.assertEqual(report["aurora-blue"]["first_seen"], "2026-10-17")
         self.assertFalse(report["aurora-blue"]["release_confirmed"])
 
+    def test_commit_signals_skip_incomplete_history(self):
+        commits = [{"sha": "new", "html_url": "https://github.com/x/commit/new", "commit": {"message": "Add model aurora-blue"}}]
+        self.assertEqual(commit_signals("x", "missing", commits), [])
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
