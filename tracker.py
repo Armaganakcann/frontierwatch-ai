@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import urllib.request
+from urllib.parse import quote
 from datetime import datetime, timezone
 from pathlib import Path
 from intelligence import extract_model_ids, merge_evidence, model_summary
@@ -45,6 +46,49 @@ def fetch(url, headers):
     with urllib.request.urlopen(request, timeout=20) as response:
         return json.load(response)
 
+
+def fetch_catalog_pages(provider, url, headers, max_pages=20):
+    """Retrieve every accessible provider page or fail without a partial snapshot."""
+    if max_pages < 1:
+        raise ValueError("max_pages must be positive")
+    all_items = []
+    seen_cursors = set()
+    cursor = None
+    for _ in range(max_pages):
+        page_url = url
+        if cursor is not None:
+            parameter = "after_id" if provider == "anthropic" else "pageToken"
+            page_url += "&" + parameter + "=" + quote(cursor, safe="")
+        response = fetch(page_url, headers)
+        if not isinstance(response, dict):
+            raise ValueError(f"{provider}: invalid catalog response")
+        field = "models" if provider == "google" else "data"
+        items = response.get(field)
+        if not isinstance(items, list):
+            raise ValueError(f"{provider}: missing {field} array")
+        all_items.extend(items)
+        if provider == "anthropic":
+            if not isinstance(response.get("has_more"), bool):
+                raise ValueError("anthropic: missing has_more pagination flag")
+            next_cursor = response.get("last_id") if response["has_more"] else None
+        elif provider == "google":
+            next_cursor = response.get("nextPageToken")
+        elif provider == "openai":
+            if response.get("has_more") or response.get("nextPageToken"):
+                raise ValueError("openai: unexpected pagination; refusing partial catalog")
+            next_cursor = None
+        else:
+            raise ValueError(f"Unsupported catalog provider: {provider}")
+        if not next_cursor:
+            if provider == "anthropic" and response["has_more"]:
+                raise ValueError("anthropic: more pages but no last_id")
+            return all_items
+        if not isinstance(next_cursor, str) or next_cursor in seen_cursors:
+            raise ValueError(f"{provider}: invalid or repeated page cursor")
+        seen_cursors.add(next_cursor)
+        cursor = next_cursor
+    raise ValueError(f"{provider}: pagination exceeded {max_pages} pages")
+
 def collect(previous=None):
     previous = previous or {}
     sources = {
@@ -62,10 +106,7 @@ def collect(previous=None):
         if provider == "anthropic":
             headers["anthropic-version"] = "2023-06-01"
         try:
-            data = fetch(url, headers)
-            if data.get("has_more") or data.get("nextPageToken"):
-                raise ValueError("Paginated response; refusing incomplete snapshot")
-            items = data.get("models" if provider == "google" else "data", [])
+            items = fetch_catalog_pages(provider, url, headers)
             result[provider] = validate_catalog(items, provider, previous.get(provider))
         except Exception as exc:
             print(f"{provider}: collection failed: {type(exc).__name__}", file=sys.stderr)
