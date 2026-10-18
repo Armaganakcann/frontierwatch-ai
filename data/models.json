@@ -2580,9 +2580,9 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-18T12:02:57.009116+00:00",
-    "run_id": "39125661366",
-    "trigger": "push"
+    "completed_at": "2026-10-18T14:46:39.518565+00:00",
+    "run_id": "39137492409",
+    "trigger": "schedule"
   },
   "_model_summary": {
     "aurora-blue-alpha": {
