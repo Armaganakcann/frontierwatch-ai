@@ -1,7 +1,44 @@
 {
   "_evidence": [],
+  "_health": {
+    "catalogs": {
+      "anthropic": {
+        "count": 14,
+        "status": "ok"
+      },
+      "google": {
+        "count": 63,
+        "status": "ok"
+      },
+      "openai": {
+        "count": 127,
+        "status": "ok"
+      },
+      "openrouter": {
+        "count": 471,
+        "status": "ok"
+      }
+    },
+    "sdk_commits": {
+      "anthropic-sdk-python": "ok",
+      "openai-python": "ok",
+      "python-genai": "ok"
+    },
+    "sdk_releases": {
+      "anthropic-sdk-python": "ok",
+      "openai-python": "ok",
+      "python-genai": "ok"
+    },
+    "telegram_pending": 0
+  },
   "_model_summary": {},
+  "_pending_alerts": [],
   "_sdk_commits": {
+    "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
+    "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
+    "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
+  },
+  "_sdk_patch_commits": {
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
     "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
