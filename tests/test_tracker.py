@@ -1,5 +1,5 @@
 import unittest
-from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals, patch_signals
+from tracker import diff_models, normalize_models, validate_catalog, notify, collect, release_signals, classify_release, commit_signals, patch_signals, collect_patch_signals, deliver_alerts, queue_alerts
 from unittest.mock import patch
 from intelligence import extract_model_ids, evidence_level, new_evidence, merge_evidence, model_summary
 
@@ -134,6 +134,58 @@ class TrackerTests(unittest.TestCase):
         pieces = chunk_message("a" * 9000, limit=4000)
         self.assertEqual("".join(pieces), "a" * 9000)
         self.assertTrue(all(len(part) <= 4000 for part in pieces))
+
+
+    def test_catalog_rejects_empty_and_invalid_response(self):
+        with self.assertRaises(ValueError):
+            validate_catalog([], "openai")
+        with self.assertRaises(ValueError):
+            validate_catalog({"data": [{"id": "a"}]}, "openai")
+        with self.assertRaises(ValueError):
+            validate_catalog([{"id": " "}], "openai")
+
+    def test_catalog_rejects_sudden_shrink(self):
+        baseline = [f"model-{i}" for i in range(100)]
+        with self.assertRaises(ValueError):
+            validate_catalog([{"id": "model-1"}], "openai", baseline)
+        self.assertEqual(validate_catalog([{"id": "model-1"}], "openai", ["model-1"]), ["model-1"])
+
+    def test_catalog_normalization_drops_blank_identifiers(self):
+        self.assertEqual(normalize_models([{"id": "   "}, {"id": " valid "}, {"name": " models/test "}]),
+                         ["models/test", "valid"])
+
+    def test_patch_cursor_catches_up_without_skipping_uninspected_commits(self):
+        sha_list = ["new4", "new3", "new2", "new1", "old"]
+        commits = {"openai-python": [{"sha": sha, "html_url": "https://github.com/openai/openai-python/commit/" + sha} for sha in sha_list]}
+        def fake_fetch(url, headers):
+            return {"files": [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\\n+MODEL = 'aurora-" + url.rsplit("/", 1)[-1] + "'"}]}
+        with patch("tracker.fetch", side_effect=fake_fetch):
+            messages, checkpoints = collect_patch_signals({"openai-python": "old"}, commits, per_provider_limit=2)
+        self.assertEqual(len(messages), 2)
+        self.assertEqual(checkpoints["openai-python"], "new2")
+        with patch("tracker.fetch", side_effect=fake_fetch):
+            later, next_checkpoints = collect_patch_signals(checkpoints, commits, per_provider_limit=2)
+        self.assertEqual(len(later), 2)
+        self.assertEqual(next_checkpoints["openai-python"], "new4")
+
+    def test_patch_cursor_waits_for_failed_detail_download(self):
+        commits = {"openai-python": [{"sha": "new", "html_url": "https://github.com/openai/openai-python/commit/new"},
+                                     {"sha": "old"}]}
+        with patch("tracker.fetch", side_effect=OSError("temporarily unavailable")):
+            _, checkpoints = collect_patch_signals({"openai-python": "old"}, commits)
+        self.assertEqual(checkpoints["openai-python"], "old")
+
+    def test_pending_alerts_remain_after_failed_delivery(self):
+        queued = queue_alerts(["one", "two"], ["two", "three"])
+        self.assertEqual(queued, ["one", "two", "three"])
+        remaining = deliver_alerts(queued, lambda message: message != "two", limit=2)
+        self.assertEqual(remaining, ["two", "three"])
+        self.assertEqual(deliver_alerts(remaining, lambda message: True), [])
+
+    def test_notification_delivery_catches_transport_errors(self):
+        def failing_sender(message):
+            raise OSError("telegram down")
+        self.assertEqual(deliver_alerts(["alert"], failing_sender), ["alert"])
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
