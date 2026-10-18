@@ -53,13 +53,14 @@ def notify(message):
     chat = os.environ.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         print("Telegram credentials missing; no alert sent")
-        return
+        return False
     payload = json.dumps({"chat_id": chat, "text": message}).encode()
     req = urllib.request.Request(
         f"https://api.telegram.org/bot{token}/sendMessage",
         data=payload, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=20) as response:
         response.read()
+    return True
 
 def main():
     previous = json.loads(STATE.read_text()) if STATE.exists() else {}
@@ -76,7 +77,12 @@ def main():
         lines.append("Catalog observation only; not evidence of public release.")
         notify("\n".join(lines))
     STATE.parent.mkdir(parents=True, exist_ok=True)
-    STATE.write_text(json.dumps({**previous, **current}, indent=2, sort_keys=True) + "\n")
+    snapshot = {**previous, **current}
+    if not previous.get("_telegram_test_sent"):
+        if notify("FrontierWatch AI test: Telegram connection is working. Model catalog monitoring is active."):
+            snapshot["_telegram_test_sent"] = True
+            print("Telegram test message delivered to Telegram API")
+    STATE.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n")
 
 if __name__ == "__main__":
     main()
