@@ -1,5 +1,5 @@
 import unittest
-from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release
+from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals
 from unittest.mock import patch
 
 class TrackerTests(unittest.TestCase):
@@ -41,6 +41,16 @@ class TrackerTests(unittest.TestCase):
 
     def test_sdk_release_model_keyword(self):
         self.assertTrue(classify_release("Add model identifier to SDK"))
+
+    def test_commit_signals_only_new_matching_messages(self):
+        commits = [{"sha": "new", "html_url": "https://github.com/openai/openai-python/commit/new", "commit": {"message": "Add model identifier aurora-blue"}}, {"sha": "old", "commit": {"message": "Old model"}}]
+        self.assertEqual(len(commit_signals("openai-python", "old", commits)), 1)
+        self.assertIn("aurora-blue", commit_signals("openai-python", "old", commits)[0])
+        self.assertEqual(commit_signals("openai-python", None, commits), [])
+
+    def test_commit_signals_ignore_nonmodel_changes(self):
+        commits = [{"sha": "new", "html_url": "https://github.com/x/commit/new", "commit": {"message": "Fix timeout"}}, {"sha": "old", "commit": {"message": "Old"}}]
+        self.assertEqual(commit_signals("x", "old", commits), [])
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
