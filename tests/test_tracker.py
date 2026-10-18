@@ -13,6 +13,9 @@ class TrackerTests(unittest.TestCase):
         community_stub = patch("tracker.collect_community", return_value=([], {"status": "ok", "initialized": True}))
         community_stub.start()
         self.addCleanup(community_stub.stop)
+        external_stub = patch("tracker.collect_claudemon", return_value=([], {"status": "ok", "failed_labs": 0}))
+        external_stub.start()
+        self.addCleanup(external_stub.stop)
 
     def test_new_models(self):
         self.assertEqual(diff_models({"openai": ["a"]}, {"openai": ["a", "b"]}), {"openai": ["b"]})
@@ -441,6 +444,28 @@ class TrackerTests(unittest.TestCase):
             saved = json.loads(state.read_text())
             self.assertEqual(saved["_catalog_metadata"]["openai"]["aurora-blue-alpha"]["created"],
                              1792200000)
+
+
+    def test_external_aurora_evidence_is_recorded_even_if_own_api_lacks_it(self):
+        observation={"source":"external_listing","provider":"claudemon",
+            "model":"aurora-red-alpha","reference":"https://platform.openai.com/docs/models/aurora-red-alpha",
+            "observation_url":"https://claudemon.com/"}
+        with tempfile.TemporaryDirectory() as directory:
+            state=Path(directory)/"models.json"
+            state.write_text(json.dumps({"openai":["gpt-4"],"_telegram_test_sent":True}))
+            delivered=[]
+            with patch.object(tracker,"STATE",state), \
+                 patch("tracker.collect",return_value={"openai":["gpt-4"]}), \
+                 patch("tracker.collect_sdk_releases",return_value={}), \
+                 patch("tracker.collect_sdk_commits",return_value={}), \
+                 patch("tracker.collect_claudemon",return_value=([observation],{"status":"ok","failed_labs":0})), \
+                 patch("tracker.notify",side_effect=lambda msg: delivered.append(msg) or True):
+                tracker.main()
+            data=json.loads(state.read_text())
+            self.assertEqual(data["_evidence"][0]["model"],"aurora-red-alpha")
+            self.assertEqual(data["_evidence"][0]["level"],"unverified")
+            self.assertEqual(data["_health"]["external_listings"]["status"],"ok")
+            self.assertTrue(any("EXTERNAL" in m for m in delivered))
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
