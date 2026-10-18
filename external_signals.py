@@ -21,7 +21,7 @@ def parse_claudemon_feed(document, *, now=None, max_age_days=14):
         if not isinstance(item, dict):
             continue
         tags = item.get("tags", [])
-        if not isinstance(tags, list) or "model.listing" not in tags:
+        if not isinstance(tags, list) or "model.listing" not in tags or not any(lab in tags for lab in LABS):
             continue
         title, url = item.get("title"), item.get("url")
         if not isinstance(title, str) or not isinstance(url, str):
@@ -38,8 +38,13 @@ def parse_claudemon_feed(document, *, now=None, max_age_days=14):
             continue
         if date.tzinfo is None or not 0 <= (now - date).total_seconds() <= max_age_days * 86400:
             continue
+        if "/models/" not in parsed_url.path and "/model/" not in parsed_url.path:
+            continue
         ids = extract_model_ids(title)
+        path_model = parsed_url.path.rstrip("/").split("/")[-1].lower()
         for model in ids:
+            if model.lower() != path_model:
+                continue
             record = {"model": model, "source": "external_listing",
                       "provider": "claudemon", "reference": url,
                       "observation_url": "https://claudemon.com/",
