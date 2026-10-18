@@ -472,3 +472,23 @@ class TrackerTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def test_monitor_run_provenance_is_recorded_without_secrets(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state=Path(directory)/"models.json"
+            state.write_text(json.dumps({"openai":["gpt-4"],"_telegram_test_sent":True}))
+            with patch.object(tracker,"STATE",state), \
+                 patch("tracker.collect",return_value={"openai":["gpt-4"]}), \
+                 patch("tracker.collect_sdk_releases",return_value={}), \
+                 patch("tracker.collect_sdk_commits",return_value={}), \
+                 patch("tracker.notify",return_value=True), \
+                 patch.dict("os.environ",{"GITHUB_EVENT_NAME":"schedule","GITHUB_RUN_ID":"12345",
+                                        "GITHUB_REPOSITORY":"Armaganakcann/frontierwatch-ai",
+                                        "OPENAI_API_KEY":"private-secret"},clear=True):
+                tracker.main()
+            run=json.loads(state.read_text())["_last_run"]
+            self.assertEqual(run["trigger"],"schedule")
+            self.assertEqual(run["run_id"],"12345")
+            self.assertIn("T",run["completed_at"])
+            self.assertNotIn("private-secret",json.dumps(run))
