@@ -1,6 +1,7 @@
 import unittest
 from tracker import diff_models, normalize_models, notify, collect, release_signals, classify_release, commit_signals, patch_signals
 from unittest.mock import patch
+from intelligence import extract_model_ids, evidence_level, new_evidence
 
 class TrackerTests(unittest.TestCase):
     def test_new_models(self):
@@ -61,6 +62,26 @@ class TrackerTests(unittest.TestCase):
     def test_patch_signals_ignore_removed_lines_and_docs(self):
         files = [{"filename": "src/models.py", "patch": "@@ -1 +1 @@\n-aurora-blue\n+timeout = 3"}, {"filename": "tests/test_models.py", "patch": "@@ -0,0 +1 @@\n+aurora-blue"}]
         self.assertEqual(patch_signals("x", "abc", "https://github.com/x/commit/abc", files), [])
+
+    def test_extract_model_ids(self):
+        text = 'MODEL_AURORA_BLUE = "aurora-blue"; model = "gpt-6-preview"'
+        self.assertEqual(extract_model_ids(text), ["aurora-blue", "gpt-6-preview"])
+
+    def test_extract_model_ids_rejects_generic_words(self):
+        self.assertEqual(extract_model_ids("model = 'test'; use models and identifiers"), [])
+
+    def test_evidence_levels(self):
+        self.assertEqual(evidence_level("catalog"), "catalog_observation")
+        self.assertEqual(evidence_level("sdk_patch"), "official_code_signal")
+        self.assertEqual(evidence_level("rumor"), "unverified")
+
+    def test_evidence_deduplication(self):
+        seen = ["sdk_patch|openai-python|aurora-blue|abc"]
+        entries = [
+            {"source": "sdk_patch", "provider": "openai-python", "model": "aurora-blue", "reference": "abc"},
+            {"source": "sdk_patch", "provider": "openai-python", "model": "aurora-blue", "reference": "def"},
+        ]
+        self.assertEqual(len(new_evidence(entries, seen)), 1)
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
