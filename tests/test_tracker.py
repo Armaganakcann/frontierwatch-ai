@@ -226,6 +226,15 @@ class TrackerTests(unittest.TestCase):
             self.assertEqual(json.loads(state.read_text())["_pending_alerts"], [])
             self.assertEqual(json.loads(state.read_text())["openai"], ["old"])
 
+    def test_new_sdk_release_source_is_baseline_only(self):
+        new = {"openai-python": {"tag": "v1", "url": "https://github.com/openai/openai-python/releases/tag/v1", "body": "Add model aurora-test"}}
+        self.assertEqual(release_signals({}, new), [])
+
+    def test_patch_source_model_evidence_reference_is_commit_url(self):
+        messages = patch_signals("openai-python", "sha", "https://github.com/openai/openai-python/commit/sha",
+                                [{"filename": "src/models.py", "patch": "@@ -0,0 +1 @@\\n+MODEL = 'aurora-blue-alpha'"}])
+        self.assertEqual(messages[0].splitlines()[-1], "https://github.com/openai/openai-python/commit/sha")
+
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
 
