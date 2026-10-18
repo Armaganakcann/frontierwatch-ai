@@ -11,6 +11,7 @@ Open-source, **zero paid-inference** model-catalog and official SDK signal track
 | Google Gemini `models.list` | Visible model IDs, all available pages | `GEMINI_API_KEY` |
 | OpenRouter `/api/v1/models` | Public model catalog IDs | No key |
 | Official OpenAI / Anthropic / Google Python and JavaScript/TypeScript SDK GitHub repos (6 total) | Releases, recent commit messages, newly added source code | GitHub Actions built-in token |
+| Official OpenAI OpenAPI schema repository | Commits and added model literals in YAML/JSON schema | GitHub Actions built-in token |
 | Public Hacker News Algolia search (4 focused queries) | Recent posts containing recognizable model IDs (not model verification) | No key |
 
 **The tracker does not call inference/completion endpoints.** Listing APIs may still have provider requirements or quotas; check your account terms.
@@ -28,6 +29,7 @@ See [SETUP.md](SETUP.md) to configure Telegram and secrets.
 
 `data/models.json` stores:
 - Provider catalog ID lists;
+- \`_catalog_metadata\`: allowlisted provider-reported creation dates and owner fields (when supplied), **distinct from our first-seen timestamp**;
 - `_sdk_releases` and `_sdk_commits` for release/commit-message baselines;
 - `_sdk_patch_commits` for **independent, incremental source patch checkpoints**;
 - `_evidence` and `_model_summary` for first-observed signals and their source classification;
@@ -38,7 +40,7 @@ Provider lists must be nonempty and well-formed. Sudden reductions exceeding 50%
 
 Hacker News evidence is labelled **\`community\` / \`unverified\`**. Search is bounded by a recent time window, query count and page budget. It monitors public HN stories only; it is **not direct X/Twitter access**, not a complete media search, and not verification of a provider API. The first successful community scan establishes a silent baseline; subsequent new references may trigger an explicitly unverified Telegram notice.
 
-GitHub source patches are checked incrementally, at most two per SDK per run. Older changes can still be missed when the last checkpoint is outside the most recent 30 commits; that is logged as an explicit coverage gap. Telegram alerts use a retry queue, with at-least-once semantics (rare duplicate sends are possible).
+GitHub source patches are checked incrementally, at most two per official repository per run. Older changes can still be missed when the last checkpoint is outside the most recent 30 commits; that is logged as an explicit coverage gap. Telegram alerts use a retry queue, with at-least-once semantics (rare duplicate sends are possible).
 
 ## Interpretation
 
