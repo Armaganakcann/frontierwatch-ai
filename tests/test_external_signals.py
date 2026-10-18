@@ -53,3 +53,15 @@ class ExternalSignalTests(unittest.TestCase):
         items=[{**self.item,"id":str(i),"title":f"aurora-{i}-alpha"} for i in range(100)]
         found=parse_claudemon_feed({"items":items},now=now,max_age_days=14)
         self.assertEqual(len(found),50)
+
+
+    def test_unsupported_model_listing_url_path_is_rejected(self):
+        item={**self.item,"url":"https://platform.openai.com/account/billing"}
+        self.assertEqual(parse_claudemon_feed({"items":[item]}),[])
+    def test_model_name_must_match_reference_url(self):
+        item={**self.item,"title":"aurora-blue-alpha",
+              "url":"https://platform.openai.com/docs/models/aurora-red-alpha"}
+        self.assertEqual(parse_claudemon_feed({"items":[item]}),[])
+    def test_unsupported_lab_tag_is_rejected(self):
+        item={**self.item,"tags":["other","model.listing"]}
+        self.assertEqual(parse_claudemon_feed({"items":[item]}),[])
