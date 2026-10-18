@@ -9,14 +9,14 @@ from pathlib import Path
 STATE = Path("data/models.json")
 
 def normalize_models(items):
-    return sorted({m["id"] for m in items if isinstance(m, dict) and isinstance(m.get("id"), str)})
+    return sorted({(m.get("id") or m.get("name")) for m in items if isinstance(m, dict) and isinstance(m.get("id") or m.get("name"), str)})
 
 def diff_models(previous, current, initial=False):
     if initial:
         return {}
     return {provider: sorted(set(ids) - set(previous.get(provider, [])))
             for provider, ids in current.items()
-            if set(ids) - set(previous.get(provider, []))}
+            if provider in previous and set(ids) - set(previous.get(provider, []))}
 
 def fetch(url, headers):
     request = urllib.request.Request(url, headers=headers)
@@ -41,7 +41,7 @@ def collect():
         try:
             data = fetch(url, headers)
             if data.get("has_more") or data.get("nextPageToken"):
-                raise ValueError("Pagination not yet supported; refusing partial snapshot")
+                raise ValueError("Paginated response; refusing incomplete snapshot")
             items = data.get("models" if provider == "google" else "data", [])
             result[provider] = normalize_models(items)
         except Exception as exc:
@@ -67,7 +67,7 @@ def main():
     if not current:
         print("No successful sources; state unchanged")
         return
-    changes = diff_models(previous, current, initial=not STATE.exists())
+    changes = diff_models(previous, current)
     if changes:
         stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
         lines = [f"FrontierWatch AI — new catalog IDs ({stamp})"]
