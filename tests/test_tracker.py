@@ -302,7 +302,7 @@ class TrackerTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             state = Path(directory) / "models.json"
             state.write_text(json.dumps({"openai": ["old"], "_telegram_test_sent": True}))
-            def fake_collect(previous, diagnostics=None):
+            def fake_collect(previous, diagnostics=None, metadata=None):
                 diagnostics["openai"] = {"status": "failed", "error": "HTTP_403"}
                 return {}
             with patch.object(tracker, "STATE", state), \
@@ -383,6 +383,42 @@ class TrackerTests(unittest.TestCase):
         files = [{"filename": "openapi.yaml", "patch": "@@ -3 +3 @@\n- enum: [aurora-blue-alpha]\n+ type: string"}]
         self.assertEqual(patch_signals("openai-openapi", "abc",
             "https://github.com/openai/openai-openapi/commit/abc", files), [])
+
+
+    def test_collect_keeps_provider_creation_metadata_separately(self):
+        public_metadata = {}
+        def fake_fetch(url, headers):
+            if "api.openai.com" in url:
+                return {"data": [{"id": "aurora-blue-alpha", "created": 1792200000,
+                                  "owned_by": "system", "secret": "do-not-store"}]}
+            if "openrouter.ai" in url:
+                return {"data": [{"id": "openai/public"}]}
+            raise AssertionError(url)
+        with patch.dict("os.environ", {"OPENAI_API_KEY": "private-key"}, clear=True), \
+             patch("tracker.fetch", side_effect=fake_fetch):
+            observed = collect(metadata=public_metadata)
+        self.assertIn("aurora-blue-alpha", observed["openai"])
+        self.assertEqual(public_metadata["openai"]["aurora-blue-alpha"],
+                         {"created": 1792200000, "owned_by": "system"})
+        self.assertNotIn("do-not-store", json.dumps(public_metadata))
+
+    def test_main_preserves_creation_metadata_for_failed_providers(self):
+        with tempfile.TemporaryDirectory() as directory:
+            state = Path(directory) / "models.json"
+            old = {"openai": ["aurora-blue-alpha"],
+                   "_catalog_metadata": {"openai": {"aurora-blue-alpha":
+                       {"created": 1792200000, "owned_by": "system"}}},
+                   "_telegram_test_sent": True}
+            state.write_text(json.dumps(old))
+            with patch.object(tracker, "STATE", state), \
+                 patch("tracker.collect", return_value={}), \
+                 patch("tracker.collect_sdk_releases", return_value={}), \
+                 patch("tracker.collect_sdk_commits", return_value={}), \
+                 patch("tracker.notify", return_value=True):
+                tracker.main()
+            saved = json.loads(state.read_text())
+            self.assertEqual(saved["_catalog_metadata"]["openai"],
+                             old["_catalog_metadata"]["openai"])
 
     def test_normalize(self):
         self.assertEqual(normalize_models([{"id": "b"}, {"id": "a"}, {"id": "a"}]), ["a", "b"])
