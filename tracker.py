@@ -148,6 +148,9 @@ SDK_REPOS = {
     "js-genai": "googleapis/js-genai",
 }
 
+# Official API schemas may reveal new model names without any SDK release.
+SOURCE_REPOS = {**SDK_REPOS, "openai-openapi": "openai/openai-openapi"}
+
 def classify_release(body):
     import re
     return bool(re.search(r"\b(model|models|identifier|gemini|claude|gpt|aurora)\b", body, re.I))
@@ -200,7 +203,7 @@ def commit_signals(label, previous_sha, commits):
 
 def collect_sdk_commits():
     results = {}
-    for label, repo in SDK_REPOS.items():
+    for label, repo in SOURCE_REPOS.items():
         try:
             data = fetch(f"https://api.github.com/repos/{repo}/commits?per_page=30",
                          {"Accept": "application/vnd.github+json", "User-Agent": "FrontierWatchAI/0.4"})
@@ -219,7 +222,7 @@ def patch_signals(label, sha, url, files):
     ids = set()
     for item in files:
         name = item.get("filename", "")
-        if (not name.endswith((".py", ".ts", ".js", ".json")) or
+        if (not name.endswith((".py", ".ts", ".js", ".json", ".yaml", ".yml")) or
                 any(part in name.lower().split("/") for part in
                     ("tests", "test", "docs", "examples", "fixtures", "samples"))):
             continue
@@ -275,7 +278,7 @@ def collect_patch_signals(previous, commits, per_provider_limit=2):
             if not isinstance(sha, str):
                 break
             try:
-                detail = fetch(f"https://api.github.com/repos/{SDK_REPOS[label]}/commits/{sha}",
+                detail = fetch(f"https://api.github.com/repos/{SOURCE_REPOS[label]}/commits/{sha}",
                                {"Accept": "application/vnd.github+json",
                                 "User-Agent": "FrontierWatchAI/0.5"})
                 if not isinstance(detail.get("files"), list):
@@ -383,7 +386,7 @@ def main():
         lines = signal.splitlines()
         ref = lines[-1] if lines else ""
         provider = lines[1].split()[0] if len(lines) > 1 else ""
-        if ref.startswith("https://github.com/") and provider in SDK_REPOS:
+        if ref.startswith("https://github.com/") and provider in SOURCE_REPOS:
             for model in extract_model_ids(signal):
                 evidence_incoming.append({"model": model, "source": "sdk_patch",
                                           "provider": provider, "reference": ref})
@@ -420,7 +423,7 @@ def main():
     snapshot["_pending_alerts"] = pending
     snapshot["_health"] = {"catalogs": catalog_health,
                            "sdk_releases": {k: ("ok" if k in sdk else "unavailable") for k in SDK_REPOS},
-                           "sdk_commits": {k: ("ok" if k in commits else "unavailable") for k in SDK_REPOS},
+                           "sdk_commits": {k: ("ok" if k in commits else "unavailable") for k in SOURCE_REPOS},
                            "telegram_pending": len(pending),
                            "community": community_health}
     if pending:
