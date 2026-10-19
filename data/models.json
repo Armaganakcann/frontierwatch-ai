@@ -2539,7 +2539,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 471,
+        "count": 468,
         "status": "ok"
       }
     },
@@ -2580,8 +2580,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-19T04:54:38.642200+00:00",
-    "run_id": "39201811319",
+    "completed_at": "2026-10-19T10:41:29.849408+00:00",
+    "run_id": "39239222100",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2992,18 +2992,18 @@
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
     "openai-node": "c3e69cdabaa5a03be6f3c5ae89449aa2c950dd75",
-    "openai-openapi": "f88d2f78b75f46b53b0baef3f5f47dc991add4a2",
+    "openai-openapi": "33248a638234a53846ed3ab4b2a7c77069bc1030",
     "openai-python": "6eaa90ee20b40bbe84a5b1a5031d7cf672c7d368",
-    "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
+    "python-genai": "1d12358a1398b9a510ae8ba25dd31e746d8e9be9"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
     "openai-node": "c3e69cdabaa5a03be6f3c5ae89449aa2c950dd75",
-    "openai-openapi": "f88d2f78b75f46b53b0baef3f5f47dc991add4a2",
+    "openai-openapi": "33248a638234a53846ed3ab4b2a7c77069bc1030",
     "openai-python": "6eaa90ee20b40bbe84a5b1a5031d7cf672c7d368",
-    "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
+    "python-genai": "1d12358a1398b9a510ae8ba25dd31e746d8e9be9"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v1.15.0",
@@ -3285,7 +3285,6 @@
     "deepseek/deepseek-chat",
     "deepseek/deepseek-chat-v3-0324",
     "deepseek/deepseek-chat-v3.1",
-    "deepseek/deepseek-r1",
     "deepseek/deepseek-r1-0528",
     "deepseek/deepseek-v3.1-terminus",
     "deepseek/deepseek-v3.2",
@@ -3376,7 +3375,6 @@
     "meta/muse-spark-open",
     "meta/muse-wonder",
     "microsoft/phi-4",
-    "microsoft/wizardlm-2-8x22b",
     "minimax/minimax-01",
     "minimax/minimax-m1",
     "minimax/minimax-m2",
@@ -3617,7 +3615,6 @@
     "sakana/sakana-namazu",
     "sao10k/l3-lunaris-8b",
     "sao10k/l3.1-euryale-70b",
-    "sao10k/l3.3-euryale-70b",
     "scaledown/extract",
     "scaledown/summarize",
     "stepfun/step-3.5-flash",
