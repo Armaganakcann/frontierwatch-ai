@@ -931,6 +931,9 @@
       "inception/mercury-2.5": {
         "created": 1788892137
       },
+      "inception/mercury-3": {
+        "created": 1792158337
+      },
       "inclusionai/ling-3.0-flash": {
         "created": 1784818580
       },
@@ -1035,6 +1038,9 @@
       },
       "minimax/minimax-m3": {
         "created": 1780245374
+      },
+      "minimax/minimax-m3.1-flash:free": {
+        "created": 1792379569
       },
       "mistralai/codestral-2508": {
         "created": 1754079630
@@ -2522,6 +2528,22 @@
       "published_at": "2026-10-06T15:54:00.857Z",
       "reference": "https://ai.google.dev/gemini-api/docs/changelog#10-06-2026",
       "source": "external_release"
+    },
+    {
+      "first_seen": "2026-10-19T17:12:48.249617+00:00",
+      "level": "catalog_observation",
+      "model": "inception/mercury-3",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-19T17:12:48.249617+00:00",
+      "level": "catalog_observation",
+      "model": "minimax/minimax-m3.1-flash:free",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
     }
   ],
   "_health": {
@@ -2539,7 +2561,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 468,
+        "count": 470,
         "status": "ok"
       }
     },
@@ -2580,8 +2602,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-19T10:41:29.849408+00:00",
-    "run_id": "39239222100",
+    "completed_at": "2026-10-19T17:12:48.752659+00:00",
+    "run_id": "39292129910",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2984,6 +3006,22 @@
       "sources": [
         "external_listing:claudemon"
       ]
+    },
+    "inception/mercury-3": {
+      "first_seen": "2026-10-19T17:12:48.249617+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
+    "minimax/minimax-m3.1-flash:free": {
+      "first_seen": "2026-10-19T17:12:48.249617+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
     }
   },
   "_pending_alerts": [],
@@ -3349,6 +3387,7 @@
     "ibm-granite/granite-4.2-8b",
     "inception/mercury-2",
     "inception/mercury-2.5",
+    "inception/mercury-3",
     "inclusionai/ling-3.0-flash",
     "inclusionai/ling-3.0-flash-vl",
     "inclusionai/ling-3.1-flash",
@@ -3383,6 +3422,7 @@
     "minimax/minimax-m2.5",
     "minimax/minimax-m2.7",
     "minimax/minimax-m3",
+    "minimax/minimax-m3.1-flash:free",
     "mistralai/codestral-2508",
     "mistralai/codestral-2508:batch",
     "mistralai/devstral-2512",
