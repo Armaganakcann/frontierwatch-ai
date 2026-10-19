@@ -2580,8 +2580,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-19T00:09:12.188441+00:00",
-    "run_id": "39179460161",
+    "completed_at": "2026-10-19T04:54:38.642200+00:00",
+    "run_id": "39201811319",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2993,7 +2993,7 @@
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
     "openai-node": "c3e69cdabaa5a03be6f3c5ae89449aa2c950dd75",
     "openai-openapi": "f88d2f78b75f46b53b0baef3f5f47dc991add4a2",
-    "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
+    "openai-python": "6eaa90ee20b40bbe84a5b1a5031d7cf672c7d368",
     "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
   },
   "_sdk_patch_commits": {
@@ -3002,7 +3002,7 @@
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
     "openai-node": "c3e69cdabaa5a03be6f3c5ae89449aa2c950dd75",
     "openai-openapi": "f88d2f78b75f46b53b0baef3f5f47dc991add4a2",
-    "openai-python": "553703e2d3db379a83e3ead9e40436b7a66f639e",
+    "openai-python": "6eaa90ee20b40bbe84a5b1a5031d7cf672c7d368",
     "python-genai": "364889aafe40bfa8f3b9db847ba272d299f7d632"
   },
   "_sdk_releases": {
