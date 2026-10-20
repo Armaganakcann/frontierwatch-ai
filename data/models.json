@@ -2602,8 +2602,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-20T00:38:33.539438+00:00",
-    "run_id": "39348814512",
+    "completed_at": "2026-10-20T05:25:50.741186+00:00",
+    "run_id": "39374824377",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3029,18 +3029,18 @@
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
-    "openai-node": "e7059d91f23193a231c226700ed538f83b1be136",
-    "openai-openapi": "c396f25f2f8112d7761097b7b0217808dc65ddd4",
-    "openai-python": "8968560fb926240aea5fed8ee24e189eade57118",
+    "openai-node": "e8c295c97159d56738d69aa18522f1acd4a1d093",
+    "openai-openapi": "5cc3a83b491bb6abe8a3c6c4a838b75ddd39c860",
+    "openai-python": "0e5794dc48b8f8d51f6047f8a0b1814eb1e65850",
     "python-genai": "ddd7d821497afe97a392e599ccffd5dd5011e44c"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
-    "openai-node": "3da70cb8ccaada690c294bbe09dea82f1c3e87d3",
-    "openai-openapi": "c396f25f2f8112d7761097b7b0217808dc65ddd4",
-    "openai-python": "969ae2c734a508ebc5e3370c9dc41bd15602a4a4",
+    "openai-node": "d5b147c01c530b49cfcecf55371823cf6d7791f6",
+    "openai-openapi": "5cc3a83b491bb6abe8a3c6c4a838b75ddd39c860",
+    "openai-python": "4590ff15006dfef3b55f4dc8b1b95c4a790d021b",
     "python-genai": "ddd7d821497afe97a392e599ccffd5dd5011e44c"
   },
   "_sdk_releases": {
