@@ -2561,7 +2561,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 470,
+        "count": 468,
         "status": "ok"
       }
     },
@@ -2602,8 +2602,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-20T10:23:24.268993+00:00",
-    "run_id": "39407553198",
+    "completed_at": "2026-10-20T15:21:10.647876+00:00",
+    "run_id": "39447547096",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3038,9 +3038,9 @@
     "anthropic-sdk-python": "bcd55fe1d3f0f1240765f8cef04295b67337f55a",
     "anthropic-sdk-typescript": "04a4c28c70de498d6d0e930e43edb5edb9ac545e",
     "js-genai": "177ee684ada5d2fd39450e88a9416b301eaa6ff4",
-    "openai-node": "142fe6023faab0f3537e3544bf3f8ceec10b3d14",
+    "openai-node": "366c97fb49ec3b68532d3886fe323b8914bec52f",
     "openai-openapi": "5cc3a83b491bb6abe8a3c6c4a838b75ddd39c860",
-    "openai-python": "90c0bacc07ddd5662598db52b3c3011973011973",
+    "openai-python": "8968560fb926240aea5fed8ee24e189eade57118",
     "python-genai": "ddd7d821497afe97a392e599ccffd5dd5011e44c"
   },
   "_sdk_releases": {
@@ -3342,10 +3342,8 @@
     "google/gemini-2.5-flash-image",
     "google/gemini-2.5-flash-lite",
     "google/gemini-2.5-flash-lite:batch",
-    "google/gemini-2.5-flash:batch",
     "google/gemini-2.5-pro",
     "google/gemini-2.5-pro-preview",
-    "google/gemini-2.5-pro:batch",
     "google/gemini-3-flash-preview",
     "google/gemini-3-flash-preview:batch",
     "google/gemini-3-pro-image",
