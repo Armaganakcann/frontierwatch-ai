@@ -1705,6 +1705,9 @@
       "qwen/qwen3.8-omni-flash": {
         "created": 1789959954
       },
+      "recursive/flint-v1.0:free": {
+        "created": 1792622765
+      },
       "reflection/beam-1.0-501b-a23b": {
         "created": 1792160499
       },
@@ -2552,6 +2555,14 @@
       "provider": "anthropic-sdk-typescript",
       "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/931eb74e659180f9d144488e06567f7ffde7491a",
       "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-21T23:27:43.387350+00:00",
+      "level": "catalog_observation",
+      "model": "recursive/flint-v1.0:free",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
     }
   ],
   "_health": {
@@ -2610,8 +2621,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-21T20:14:54.073465+00:00",
-    "run_id": "39668598015",
+    "completed_at": "2026-10-21T23:27:43.772685+00:00",
+    "run_id": "39693530830",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3038,30 +3049,38 @@
       "sources": [
         "catalog:openrouter"
       ]
+    },
+    "recursive/flint-v1.0:free": {
+      "first_seen": "2026-10-21T23:27:43.387350+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
     }
   },
   "_pending_alerts": [],
   "_sdk_commits": {
-    "anthropic-sdk-python": "ecfee6cd504cfbf634919bdbd058fb74afdbd533",
-    "anthropic-sdk-typescript": "5d489aae1470959806e7c555d2396e36075cbf35",
+    "anthropic-sdk-python": "9313f13a5a643ceed10fafba6785eab8e04b6e6e",
+    "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
     "js-genai": "bc1d9d03e35c21544dc71e776a70a99aa222d7ed",
-    "openai-node": "94c0c1ba4ac01c919bafcd325b8a2f4470e2f2d8",
-    "openai-openapi": "3db76f5c62f01cf8e0c1cc602fdf9546b341961b",
-    "openai-python": "26e5d926966fc5c7e688790b21d66dc08d35eceb",
-    "python-genai": "d6af6cdd0dc0d7a0235a11c4c93e48be877970e6"
+    "openai-node": "d88d117ff43fc547baa1adce9ffd180564ecd1d3",
+    "openai-openapi": "a13fbb7da3a6705134e5e90ba2b61134b3e7f7ca",
+    "openai-python": "2d58e828cfda3f6ffe7b9f9b2f9f7305dbdb028a",
+    "python-genai": "4e44c848c3c26251c0316155032202d149eb331a"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "f693b7d7653281cedbdf3ac466a3f880334b31c0",
-    "anthropic-sdk-typescript": "766fe44e94bad62068360a942a1261a78e4fba27",
+    "anthropic-sdk-python": "98b3cee7fa9a3e892fe8840dcefa2026d40e05f5",
+    "anthropic-sdk-typescript": "b61311a7972bfe17135b802e29e562a6469241f4",
     "js-genai": "bc1d9d03e35c21544dc71e776a70a99aa222d7ed",
-    "openai-node": "d0be2f11ef90a6e7606212f5ca4603531ac3d28a",
-    "openai-openapi": "3db76f5c62f01cf8e0c1cc602fdf9546b341961b",
-    "openai-python": "c2b14f538de7af908d8f1fd50e6af60c0d79fcfd",
-    "python-genai": "99bab53c5f083b7845b85c9167248dfc152b9be6"
+    "openai-node": "121f8f310c82328bef3a8825a34cc2f811aeaeb2",
+    "openai-openapi": "a13fbb7da3a6705134e5e90ba2b61134b3e7f7ca",
+    "openai-python": "c99df7b87d214094eb819267575e06ecc8c7c71c",
+    "python-genai": "d6af6cdd0dc0d7a0235a11c4c93e48be877970e6"
   },
   "_sdk_releases": {
-    "anthropic-sdk-python": "v2.0.0",
-    "anthropic-sdk-typescript": "sdk-v1.0.0",
+    "anthropic-sdk-python": "v2.1.0",
+    "anthropic-sdk-typescript": "sdk-v1.1.0",
     "js-genai": "v2.30.0",
     "openai-node": "v7.41.0",
     "openai-python": "v3.36.0",
@@ -3357,7 +3376,6 @@
     "google/gemini-2.5-flash",
     "google/gemini-2.5-flash-image",
     "google/gemini-2.5-flash-lite",
-    "google/gemini-2.5-flash-lite:batch",
     "google/gemini-2.5-pro",
     "google/gemini-2.5-pro-preview",
     "google/gemini-3-flash-preview",
@@ -3658,6 +3676,7 @@
     "qwen/qwen3.8-max-0902",
     "qwen/qwen3.8-max-prime",
     "qwen/qwen3.8-omni-flash",
+    "recursive/flint-v1.0:free",
     "reflection/beam-1.0-501b-a23b",
     "rekaai/reka-edge",
     "rekaai/reka-flash-3",
