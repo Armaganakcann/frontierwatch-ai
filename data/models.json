@@ -2587,7 +2587,7 @@
       "status": "ok"
     },
     "independent_releases": {
-      "observations": 2,
+      "observations": 1,
       "status": "ok"
     },
     "sdk_commits": {
@@ -2610,8 +2610,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-21T16:08:51.163117+00:00",
-    "run_id": "39632086458",
+    "completed_at": "2026-10-21T20:14:54.073465+00:00",
+    "run_id": "39668598015",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3044,20 +3044,20 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "ecfee6cd504cfbf634919bdbd058fb74afdbd533",
     "anthropic-sdk-typescript": "5d489aae1470959806e7c555d2396e36075cbf35",
-    "js-genai": "e82a75a8bfe56529ff2651645b19509199360cbc",
-    "openai-node": "725a2777e6a69ddaa97cbfe2867e9e2ad8c446d9",
+    "js-genai": "bc1d9d03e35c21544dc71e776a70a99aa222d7ed",
+    "openai-node": "94c0c1ba4ac01c919bafcd325b8a2f4470e2f2d8",
     "openai-openapi": "3db76f5c62f01cf8e0c1cc602fdf9546b341961b",
-    "openai-python": "b668ee88e7cb670704a0fd300152da29666b26cc",
-    "python-genai": "3097500140e5fcfd96618a073d2e59bb82741bee"
+    "openai-python": "26e5d926966fc5c7e688790b21d66dc08d35eceb",
+    "python-genai": "d6af6cdd0dc0d7a0235a11c4c93e48be877970e6"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "7d2ba7932e55f6690990d6abf2f17a4eb3822f54",
-    "anthropic-sdk-typescript": "0d048f72f5dd738de81ad519d1ada75590948baf",
-    "js-genai": "e82a75a8bfe56529ff2651645b19509199360cbc",
-    "openai-node": "95cf9481b75db3d2c37be2fad17df2e8767ca77e",
+    "anthropic-sdk-python": "f693b7d7653281cedbdf3ac466a3f880334b31c0",
+    "anthropic-sdk-typescript": "766fe44e94bad62068360a942a1261a78e4fba27",
+    "js-genai": "bc1d9d03e35c21544dc71e776a70a99aa222d7ed",
+    "openai-node": "d0be2f11ef90a6e7606212f5ca4603531ac3d28a",
     "openai-openapi": "3db76f5c62f01cf8e0c1cc602fdf9546b341961b",
-    "openai-python": "ca541462ba20dadb66eea6c67775f186dfb17e33",
-    "python-genai": "3097500140e5fcfd96618a073d2e59bb82741bee"
+    "openai-python": "c2b14f538de7af908d8f1fd50e6af60c0d79fcfd",
+    "python-genai": "99bab53c5f083b7845b85c9167248dfc152b9be6"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.0.0",
