@@ -2544,6 +2544,14 @@
       "provider": "openrouter",
       "reference": "https://openrouter.ai/api/v1/models",
       "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-21T16:08:50.725759+00:00",
+      "level": "official_commit_signal",
+      "model": "claude-session",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/931eb74e659180f9d144488e06567f7ffde7491a",
+      "source": "sdk_commit"
     }
   ],
   "_health": {
@@ -2602,8 +2610,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-21T11:39:53.920083+00:00",
-    "run_id": "39593583809",
+    "completed_at": "2026-10-21T16:08:51.163117+00:00",
+    "run_id": "39632086458",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2637,6 +2645,14 @@
       "source_count": 1,
       "sources": [
         "external_release:aidatahub"
+      ]
+    },
+    "claude-session": {
+      "first_seen": "2026-10-21T16:08:50.725759+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_commit:anthropic-sdk-typescript"
       ]
     },
     "gemini-4-argon": {
@@ -3026,29 +3042,29 @@
   },
   "_pending_alerts": [],
   "_sdk_commits": {
-    "anthropic-sdk-python": "5738a256035e35285857fde0e89ae9b11b805f2f",
-    "anthropic-sdk-typescript": "9c6562472002aa451b6f672acafd6d454e31840f",
+    "anthropic-sdk-python": "ecfee6cd504cfbf634919bdbd058fb74afdbd533",
+    "anthropic-sdk-typescript": "5d489aae1470959806e7c555d2396e36075cbf35",
     "js-genai": "e82a75a8bfe56529ff2651645b19509199360cbc",
-    "openai-node": "cfadff039f54925209852579d5cdb1a6bcd24323",
+    "openai-node": "725a2777e6a69ddaa97cbfe2867e9e2ad8c446d9",
     "openai-openapi": "3db76f5c62f01cf8e0c1cc602fdf9546b341961b",
-    "openai-python": "ca541462ba20dadb66eea6c67775f186dfb17e33",
-    "python-genai": "e1c4fc78ee29d45db7bb3e10f173bafa15aeb634"
+    "openai-python": "b668ee88e7cb670704a0fd300152da29666b26cc",
+    "python-genai": "3097500140e5fcfd96618a073d2e59bb82741bee"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "2ced07b4726c3926881b33f28abc9cd19e06f1ce",
-    "anthropic-sdk-typescript": "9c6562472002aa451b6f672acafd6d454e31840f",
+    "anthropic-sdk-python": "7d2ba7932e55f6690990d6abf2f17a4eb3822f54",
+    "anthropic-sdk-typescript": "0d048f72f5dd738de81ad519d1ada75590948baf",
     "js-genai": "e82a75a8bfe56529ff2651645b19509199360cbc",
-    "openai-node": "b4e8176a7a9c598fee0615548c77d637a6990f40",
+    "openai-node": "95cf9481b75db3d2c37be2fad17df2e8767ca77e",
     "openai-openapi": "3db76f5c62f01cf8e0c1cc602fdf9546b341961b",
-    "openai-python": "337769b3daf5772cf54cf11a14c17ff5b7a3ac27",
-    "python-genai": "1a644508462c4f9cc6ba2e2655b25909ca4b5546"
+    "openai-python": "ca541462ba20dadb66eea6c67775f186dfb17e33",
+    "python-genai": "3097500140e5fcfd96618a073d2e59bb82741bee"
   },
   "_sdk_releases": {
-    "anthropic-sdk-python": "v1.17.0",
-    "anthropic-sdk-typescript": "sdk-v0.137.0",
+    "anthropic-sdk-python": "v2.0.0",
+    "anthropic-sdk-typescript": "sdk-v1.0.0",
     "js-genai": "v2.30.0",
-    "openai-node": "v7.39.0",
-    "openai-python": "v3.35.1",
+    "openai-node": "v7.41.0",
+    "openai-python": "v3.36.0",
     "python-genai": "v2.32.0"
   },
   "_telegram_test_sent": true,
