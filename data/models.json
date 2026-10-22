@@ -1039,6 +1039,9 @@
       "minimax/minimax-m3": {
         "created": 1780245374
       },
+      "minimax/minimax-m3.1-flash": {
+        "created": 1792379569
+      },
       "minimax/minimax-m3.1-flash:free": {
         "created": 1792379569
       },
@@ -2563,6 +2566,14 @@
       "provider": "openrouter",
       "reference": "https://openrouter.ai/api/v1/models",
       "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-22T17:35:20.231012+00:00",
+      "level": "catalog_observation",
+      "model": "minimax/minimax-m3.1-flash",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
     }
   ],
   "_health": {
@@ -2572,7 +2583,7 @@
         "status": "ok"
       },
       "google": {
-        "count": 63,
+        "count": 60,
         "status": "ok"
       },
       "openai": {
@@ -2621,8 +2632,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-22T12:32:14.337440+00:00",
-    "run_id": "39779108927",
+    "completed_at": "2026-10-22T17:35:20.580366+00:00",
+    "run_id": "39823977705",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3042,6 +3053,14 @@
         "catalog:openrouter"
       ]
     },
+    "minimax/minimax-m3.1-flash": {
+      "first_seen": "2026-10-22T17:35:20.231012+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "minimax/minimax-m3.1-flash:free": {
       "first_seen": "2026-10-19T17:12:48.249617+00:00",
       "release_confirmed": false,
@@ -3065,17 +3084,17 @@
     "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
     "js-genai": "38f6ebcda2c39edc588f4274f4abdd2d41e31e9c",
     "openai-node": "802a3239e91b46c408c350e11ecff84b76fb17d4",
-    "openai-openapi": "762a1df070a80bf73ac85804a4b1a492d9a108a1",
+    "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
     "openai-python": "7db9d884c33b0d5ef252e9a4b6e7ae0bbd217e5b",
     "python-genai": "c97ae02ff87b5138bee29100b56c04c649233fed"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "3747d0eb556ad5929c4e87414770bb4246ab9f28",
-    "anthropic-sdk-typescript": "dad1bafe0b18ad0d06b7df4d9ca5904ed2f185b0",
+    "anthropic-sdk-python": "5738a256035e35285857fde0e89ae9b11b805f2f",
+    "anthropic-sdk-typescript": "eabfacf3a6f42e42f50555fb1fb4114414f51097",
     "js-genai": "38f6ebcda2c39edc588f4274f4abdd2d41e31e9c",
-    "openai-node": "d88d117ff43fc547baa1adce9ffd180564ecd1d3",
-    "openai-openapi": "762a1df070a80bf73ac85804a4b1a492d9a108a1",
-    "openai-python": "6ed945e6b3e0d826048e0330b64228267b791ad3",
+    "openai-node": "ab6d6262d03852c839cd5d03e272cbfc1d4eea59",
+    "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
+    "openai-python": "a29dc3947aeccecc2e85d8fbad4d7c03b8af13e9",
     "python-genai": "c97ae02ff87b5138bee29100b56c04c649233fed"
   },
   "_sdk_releases": {
@@ -3163,10 +3182,7 @@
     "models/lyria-3-pro-preview",
     "models/lyria-3.5",
     "models/lyria-realtime-exp",
-    "models/nano-banana-pro-preview",
-    "models/veo-3.1-fast-generate-preview",
-    "models/veo-3.1-generate-preview",
-    "models/veo-3.1-lite-generate-preview"
+    "models/nano-banana-pro-preview"
   ],
   "openai": [
     "babbage-002",
@@ -3454,7 +3470,7 @@
     "minimax/minimax-m2.5",
     "minimax/minimax-m2.7",
     "minimax/minimax-m3",
-    "minimax/minimax-m3.1-flash:free",
+    "minimax/minimax-m3.1-flash",
     "mistralai/codestral-2508",
     "mistralai/codestral-2508:batch",
     "mistralai/devstral-2512",
