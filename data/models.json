@@ -2632,8 +2632,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-22T20:46:59.884444+00:00",
-    "run_id": "39851761973",
+    "completed_at": "2026-10-22T23:40:56.659044+00:00",
+    "run_id": "39873344900",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3082,26 +3082,26 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "9313f13a5a643ceed10fafba6785eab8e04b6e6e",
     "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
-    "js-genai": "41aaecbcc3eee3c634df7d0078ce736610d98930",
-    "openai-node": "21a056dc61ceca96aceda58a845353b3c1b13efc",
+    "js-genai": "0b52aa5ffad1016e1106c5d0918eb8d0d9c26702",
+    "openai-node": "9d818009ac24cf03ec97574b3d165080de64d67e",
     "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
-    "openai-python": "e8a0fd28bbdc1699c97ff0f602b1af3dd378382d",
-    "python-genai": "87ddba1efdaf40c7027ca8ff9734a4026c730069"
+    "openai-python": "56f33a12591516e9ce88ee72e3a59b15ac518641",
+    "python-genai": "16a29c9ea351041f92656e398becbfaa23d0c4f6"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "87651add2f0a5bc9461e813c65dd62882e8f8dfb",
+    "anthropic-sdk-python": "db219aecb432223f1ef081fdfc95ac0094906429",
     "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
-    "js-genai": "41aaecbcc3eee3c634df7d0078ce736610d98930",
-    "openai-node": "7a970a75e18b2dce834b25743863cfcf52396a1c",
+    "js-genai": "0b52aa5ffad1016e1106c5d0918eb8d0d9c26702",
+    "openai-node": "0e1bedc564439017f96fa20b691042f359462723",
     "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
-    "openai-python": "1f76a590222f3a28e13ce61a95db988ea6ba2988",
-    "python-genai": "87ddba1efdaf40c7027ca8ff9734a4026c730069"
+    "openai-python": "fa9a1616fd175e68dec9960d33dee2caefc0e8d3",
+    "python-genai": "16a29c9ea351041f92656e398becbfaa23d0c4f6"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.1.0",
     "anthropic-sdk-typescript": "sdk-v1.1.0",
     "js-genai": "v2.30.0",
-    "openai-node": "v7.42.0",
+    "openai-node": "v7.43.0",
     "openai-python": "v3.37.0",
     "python-genai": "v2.32.0"
   },
