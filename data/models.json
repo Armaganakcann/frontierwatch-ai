@@ -2683,6 +2683,14 @@
       "provider": "openai-openapi",
       "reference": "https://github.com/openai/openai-openapi/commit/0938b0f003300cd4c6ec39191532df81b04dfae1",
       "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-23T23:34:51.443114+00:00",
+      "level": "official_code_signal",
+      "model": "claude-opus-5",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/832402e8036a2815c9bc13cdce2373b79b0e96cb",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2738,11 +2746,11 @@
       "openai-python": "ok",
       "python-genai": "ok"
     },
-    "telegram_pending": 0
+    "telegram_pending": 5
   },
   "_last_run": {
-    "completed_at": "2026-10-23T20:37:39.037551+00:00",
-    "run_id": "40020643203",
+    "completed_at": "2026-10-23T23:34:55.421142+00:00",
+    "run_id": "40040443611",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2776,6 +2784,14 @@
       "source_count": 1,
       "sources": [
         "external_release:aidatahub"
+      ]
+    },
+    "claude-opus-5": {
+      "first_seen": "2026-10-23T23:34:51.443114+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:anthropic-sdk-typescript"
       ]
     },
     "claude-session": {
@@ -3235,28 +3251,34 @@
       ]
     }
   },
-  "_pending_alerts": [],
+  "_pending_alerts": [
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nanthropic-sdk-typescript: feat(api): add Claude Tag endpoints for Claude Enterprise organizations\n\nStainless-Generated-From: bd3414cb123f4998fc80598f7d45ce0b9bb7b3b4\nhttps://github.com/anthropics/anthropic-sdk-typescript/commit/62ac1cbd6a98a70e77348836a003f0ddf6677c92",
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nanthropic-sdk-typescript: chore(internal): remove preview build upload from CI (#1001)\n\nCo-authored-by: Claude <noreply@anthropic.com>\nhttps://github.com/anthropics/anthropic-sdk-typescript/commit/2a3124c4a3ad1ffd0100a21bbfbfe44850c9aaa4",
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nanthropic-sdk-typescript: fix(client): link the long-request error messages to the SDK documentation (#999)\n\nCo-authored-by: Claude <noreply@anthropic.com>\nhttps://github.com/anthropics/anthropic-sdk-typescript/commit/5c5fb00c0e226af3d5aaddec6389b046bbe7447b",
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nanthropic-sdk-typescript: chore: tidy internal comments (#1000)\n\nCo-authored-by: Claude <noreply@anthropic.com>\nhttps://github.com/anthropics/anthropic-sdk-typescript/commit/ea1e87c4e4f5e8b803f450d1e1d0634f06f6cb22",
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nanthropic-sdk-typescript: docs(changelog): move the user profiles routing fix to the next release (#997)\n\nCo-authored-by: Claude <noreply@anthropic.com>\nhttps://github.com/anthropics/anthropic-sdk-typescript/commit/086a8737f171f402327b5e19e95df254f565a573"
+  ],
   "_sdk_commits": {
-    "anthropic-sdk-python": "f26777eaf2a756afeb904d9feed03b12190e551c",
-    "anthropic-sdk-typescript": "bc9cbb0a5bce1d50f2589e556f7e81f7fcbc4aab",
+    "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
+    "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "4c11b87c3e5e4fcddeeffc85b55502b2296f49fd",
+    "openai-node": "8e32d2df55d99fdcd5be8862d4815007f7ad076f",
     "openai-openapi": "0938b0f003300cd4c6ec39191532df81b04dfae1",
-    "openai-python": "d622f28ad5cb3f947541936c0c139891211a42c5",
+    "openai-python": "718aee979a9c334d37302aeff21cee6cbff4d43c",
     "python-genai": "c0e9c54915970948258226e565bde6ef6d5c0b94"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "8b730ac35f027550020da92e050665e545d00d46",
-    "anthropic-sdk-typescript": "e856fd1d053b99b5defe090b82f1ef816fbed07a",
+    "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
+    "anthropic-sdk-typescript": "832402e8036a2815c9bc13cdce2373b79b0e96cb",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "4c11b87c3e5e4fcddeeffc85b55502b2296f49fd",
+    "openai-node": "8e32d2df55d99fdcd5be8862d4815007f7ad076f",
     "openai-openapi": "0938b0f003300cd4c6ec39191532df81b04dfae1",
-    "openai-python": "d622f28ad5cb3f947541936c0c139891211a42c5",
+    "openai-python": "718aee979a9c334d37302aeff21cee6cbff4d43c",
     "python-genai": "c0e9c54915970948258226e565bde6ef6d5c0b94"
   },
   "_sdk_releases": {
-    "anthropic-sdk-python": "v2.2.0",
-    "anthropic-sdk-typescript": "sdk-v1.2.0",
+    "anthropic-sdk-python": "v2.3.0",
+    "anthropic-sdk-typescript": "sdk-v1.3.0",
     "js-genai": "v2.31.0",
     "openai-node": "v7.43.0",
     "openai-python": "v3.37.0",
