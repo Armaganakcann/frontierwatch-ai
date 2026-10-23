@@ -1150,6 +1150,9 @@
       "moonshotai/kimi-k3": {
         "created": 1784215858
       },
+      "moonshotai/kimi-k3.1-pro": {
+        "created": 1792778188
+      },
       "moonshotai/kimi-k3:batch": {
         "created": 1784215858
       },
@@ -2632,6 +2635,54 @@
       "reference": "https://news.ycombinator.com/item?id=50209300",
       "source": "community",
       "title": "Show HN: Loudwalk \u2013 Review your Anki deck out loud on a walk"
+    },
+    {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "level": "catalog_observation",
+      "model": "moonshotai/kimi-k3.1-pro",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0938b0f003300cd4c6ec39191532df81b04dfae1",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2.5-flare",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0938b0f003300cd4c6ec39191532df81b04dfae1",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2.5-sunburst",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0938b0f003300cd4c6ec39191532df81b04dfae1",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-image-1",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0938b0f003300cd4c6ec39191532df81b04dfae1",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-image-2",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0938b0f003300cd4c6ec39191532df81b04dfae1",
+      "source": "sdk_commit"
     }
   ],
   "_health": {
@@ -2649,7 +2700,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 468,
+        "count": 469,
         "status": "ok"
       }
     },
@@ -2690,8 +2741,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-23T17:33:29.735125+00:00",
-    "run_id": "39995994770",
+    "completed_at": "2026-10-23T20:37:39.037551+00:00",
+    "run_id": "40020643203",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3018,12 +3069,22 @@
         "external_listing:claudemon"
       ]
     },
+    "gpt-image-1": {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "release_confirmed": false,
+      "source_count": 2,
+      "sources": [
+        "sdk_commit:openai-openapi",
+        "sdk_patch:openai-openapi"
+      ]
+    },
     "gpt-image-2": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_commit:openai-openapi"
       ]
     },
     "gpt-image-2-2026-04-21": {
@@ -3037,9 +3098,10 @@
     "gpt-image-2.5-flare": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-openapi"
       ]
     },
     "gpt-image-2.5-flare-2026-09-08": {
@@ -3053,9 +3115,10 @@
     "gpt-image-2.5-sunburst": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-openapi"
       ]
     },
     "gpt-image-2.5-sunburst-2026-09-08": {
@@ -3155,6 +3218,14 @@
         "catalog:openrouter"
       ]
     },
+    "moonshotai/kimi-k3.1-pro": {
+      "first_seen": "2026-10-23T20:37:37.651362+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "recursive/flint-v1.0:free": {
       "first_seen": "2026-10-21T23:27:43.387350+00:00",
       "release_confirmed": false,
@@ -3170,18 +3241,18 @@
     "anthropic-sdk-typescript": "bc9cbb0a5bce1d50f2589e556f7e81f7fcbc4aab",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
     "openai-node": "4c11b87c3e5e4fcddeeffc85b55502b2296f49fd",
-    "openai-openapi": "a181bc7177365e1535629b9d0b8e52f95fc6b62d",
-    "openai-python": "56a55f243960e05e6268bb48ba6bf45299b8f90b",
-    "python-genai": "26f970791124911222b973246f0ce4393860709f"
+    "openai-openapi": "0938b0f003300cd4c6ec39191532df81b04dfae1",
+    "openai-python": "d622f28ad5cb3f947541936c0c139891211a42c5",
+    "python-genai": "c0e9c54915970948258226e565bde6ef6d5c0b94"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "9313f13a5a643ceed10fafba6785eab8e04b6e6e",
-    "anthropic-sdk-typescript": "2bfe4a20edfa25667b7e1e9df231f8ad9bc400a0",
+    "anthropic-sdk-python": "8b730ac35f027550020da92e050665e545d00d46",
+    "anthropic-sdk-typescript": "e856fd1d053b99b5defe090b82f1ef816fbed07a",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "9d818009ac24cf03ec97574b3d165080de64d67e",
-    "openai-openapi": "a181bc7177365e1535629b9d0b8e52f95fc6b62d",
-    "openai-python": "56a55f243960e05e6268bb48ba6bf45299b8f90b",
-    "python-genai": "26f970791124911222b973246f0ce4393860709f"
+    "openai-node": "4c11b87c3e5e4fcddeeffc85b55502b2296f49fd",
+    "openai-openapi": "0938b0f003300cd4c6ec39191532df81b04dfae1",
+    "openai-python": "d622f28ad5cb3f947541936c0c139891211a42c5",
+    "python-genai": "c0e9c54915970948258226e565bde6ef6d5c0b94"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.2.0",
@@ -3592,6 +3663,7 @@
     "moonshotai/kimi-k2.6",
     "moonshotai/kimi-k2.7-code",
     "moonshotai/kimi-k3",
+    "moonshotai/kimi-k3.1-pro",
     "moonshotai/kimi-k3:batch",
     "morph/morph-v3-fast",
     "morph/morph-v3-large",
