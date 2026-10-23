@@ -2622,6 +2622,16 @@
       "provider": "openai-python",
       "reference": "https://github.com/openai/openai-python/commit/56f33a12591516e9ce88ee72e3a59b15ac518641",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-23T17:33:27.565434+00:00",
+      "level": "unverified",
+      "model": "gpt-live-1",
+      "provider": "hackernews",
+      "published_at": "2026-10-23T14:08:33+00:00",
+      "reference": "https://news.ycombinator.com/item?id=50209300",
+      "source": "community",
+      "title": "Show HN: Loudwalk \u2013 Review your Anki deck out loud on a walk"
     }
   ],
   "_health": {
@@ -2644,7 +2654,7 @@
       }
     },
     "community": {
-      "candidate_observations": 0,
+      "candidate_observations": 1,
       "failed_queries": 0,
       "initialized": true,
       "query_count": 4,
@@ -2680,8 +2690,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-23T12:50:48.397480+00:00",
-    "run_id": "39956380753",
+    "completed_at": "2026-10-23T17:33:29.735125+00:00",
+    "run_id": "39995994770",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3059,8 +3069,9 @@
     "gpt-live-1": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
+        "community:hackernews",
         "external_listing:claudemon"
       ]
     },
@@ -3155,26 +3166,26 @@
   },
   "_pending_alerts": [],
   "_sdk_commits": {
-    "anthropic-sdk-python": "9313f13a5a643ceed10fafba6785eab8e04b6e6e",
-    "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
-    "js-genai": "1748ce7031d2ab4f71c42e24f02a5a0fa6e43251",
+    "anthropic-sdk-python": "f26777eaf2a756afeb904d9feed03b12190e551c",
+    "anthropic-sdk-typescript": "bc9cbb0a5bce1d50f2589e556f7e81f7fcbc4aab",
+    "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
     "openai-node": "4c11b87c3e5e4fcddeeffc85b55502b2296f49fd",
-    "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
-    "openai-python": "81792ff040a2ca2b70348163049d3d69d5ba95cf",
-    "python-genai": "92f72b3a236a5bc56e8e3327ab9563f77dd119c3"
+    "openai-openapi": "a181bc7177365e1535629b9d0b8e52f95fc6b62d",
+    "openai-python": "56a55f243960e05e6268bb48ba6bf45299b8f90b",
+    "python-genai": "26f970791124911222b973246f0ce4393860709f"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "ef1354295e957d12e6d45c2df685ff82538e3f23",
-    "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
-    "js-genai": "1748ce7031d2ab4f71c42e24f02a5a0fa6e43251",
-    "openai-node": "d02d4de77ea7a6f82325c02e6f44deb34ee3992c",
-    "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
-    "openai-python": "81792ff040a2ca2b70348163049d3d69d5ba95cf",
-    "python-genai": "92f72b3a236a5bc56e8e3327ab9563f77dd119c3"
+    "anthropic-sdk-python": "9313f13a5a643ceed10fafba6785eab8e04b6e6e",
+    "anthropic-sdk-typescript": "2bfe4a20edfa25667b7e1e9df231f8ad9bc400a0",
+    "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
+    "openai-node": "9d818009ac24cf03ec97574b3d165080de64d67e",
+    "openai-openapi": "a181bc7177365e1535629b9d0b8e52f95fc6b62d",
+    "openai-python": "56a55f243960e05e6268bb48ba6bf45299b8f90b",
+    "python-genai": "26f970791124911222b973246f0ce4393860709f"
   },
   "_sdk_releases": {
-    "anthropic-sdk-python": "v2.1.0",
-    "anthropic-sdk-typescript": "sdk-v1.1.0",
+    "anthropic-sdk-python": "v2.2.0",
+    "anthropic-sdk-typescript": "sdk-v1.2.0",
     "js-genai": "v2.31.0",
     "openai-node": "v7.43.0",
     "openai-python": "v3.37.0",
