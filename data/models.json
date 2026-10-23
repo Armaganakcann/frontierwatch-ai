@@ -2606,6 +2606,14 @@
       "provider": "openai-node",
       "reference": "https://github.com/openai/openai-node/commit/17e0f08e83e2381efa075b1bbe9ed5eb7b63a6e1",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-23T07:23:13.809007+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-6-luna",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/21a056dc61ceca96aceda58a845353b3c1b13efc",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2664,8 +2672,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-23T02:02:08.066950+00:00",
-    "run_id": "39887314410",
+    "completed_at": "2026-10-23T07:23:14.334786+00:00",
+    "run_id": "39917329646",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2969,9 +2977,10 @@
     "gpt-6-luna": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-node"
       ]
     },
     "gpt-6-sol": {
@@ -3140,18 +3149,18 @@
     "anthropic-sdk-python": "9313f13a5a643ceed10fafba6785eab8e04b6e6e",
     "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
     "js-genai": "1748ce7031d2ab4f71c42e24f02a5a0fa6e43251",
-    "openai-node": "d3426032943f3acdd315f6627d2e459f82fc4e05",
+    "openai-node": "4c11b87c3e5e4fcddeeffc85b55502b2296f49fd",
     "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
     "openai-python": "81792ff040a2ca2b70348163049d3d69d5ba95cf",
     "python-genai": "92f72b3a236a5bc56e8e3327ab9563f77dd119c3"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "ecfee6cd504cfbf634919bdbd058fb74afdbd533",
+    "anthropic-sdk-python": "4df65731b91710954c58e70e5f8a0424bff203ce",
     "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
     "js-genai": "1748ce7031d2ab4f71c42e24f02a5a0fa6e43251",
-    "openai-node": "17e0f08e83e2381efa075b1bbe9ed5eb7b63a6e1",
+    "openai-node": "21a056dc61ceca96aceda58a845353b3c1b13efc",
     "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
-    "openai-python": "05dfea0a1cb41a3e6ae1cc3bd13145b57cf3ffb8",
+    "openai-python": "cfa0a79b6395bb0561b28879122a9f90a87cdada",
     "python-genai": "92f72b3a236a5bc56e8e3327ab9563f77dd119c3"
   },
   "_sdk_releases": {
