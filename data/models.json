@@ -2614,6 +2614,14 @@
       "provider": "openai-node",
       "reference": "https://github.com/openai/openai-node/commit/21a056dc61ceca96aceda58a845353b3c1b13efc",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-23T12:50:47.819325+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-4o-2024-08-06",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/56f33a12591516e9ce88ee72e3a59b15ac518641",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2672,8 +2680,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-23T07:23:14.334786+00:00",
-    "run_id": "39917329646",
+    "completed_at": "2026-10-23T12:50:48.397480+00:00",
+    "run_id": "39956380753",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2801,9 +2809,10 @@
     "gpt-4o-2024-08-06": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-4o-2024-11-20": {
@@ -3155,12 +3164,12 @@
     "python-genai": "92f72b3a236a5bc56e8e3327ab9563f77dd119c3"
   },
   "_sdk_patch_commits": {
-    "anthropic-sdk-python": "4df65731b91710954c58e70e5f8a0424bff203ce",
+    "anthropic-sdk-python": "ef1354295e957d12e6d45c2df685ff82538e3f23",
     "anthropic-sdk-typescript": "5badc765f17d373405f300ee8e69e7f490b1f172",
     "js-genai": "1748ce7031d2ab4f71c42e24f02a5a0fa6e43251",
-    "openai-node": "21a056dc61ceca96aceda58a845353b3c1b13efc",
+    "openai-node": "d02d4de77ea7a6f82325c02e6f44deb34ee3992c",
     "openai-openapi": "290bd01b67ff8fc8f87545794197c1413fb740d1",
-    "openai-python": "cfa0a79b6395bb0561b28879122a9f90a87cdada",
+    "openai-python": "81792ff040a2ca2b70348163049d3d69d5ba95cf",
     "python-genai": "92f72b3a236a5bc56e8e3327ab9563f77dd119c3"
   },
   "_sdk_releases": {
