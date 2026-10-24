@@ -949,6 +949,9 @@
       "inference-net/schematron-v2-turbo": {
         "created": 1789176949
       },
+      "liquid/lfm-2.5-2.6b": {
+        "created": 1786470519
+      },
       "liquid/lfm-2.5-2.6b:free": {
         "created": 1786470519
       },
@@ -2723,6 +2726,14 @@
       "provider": "anthropic-sdk-typescript",
       "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/913b71b9db5968003a79dd7ba49457072b3c0aee",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-24T23:23:33.171428+00:00",
+      "level": "catalog_observation",
+      "model": "liquid/lfm-2.5-2.6b",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
     }
   ],
   "_health": {
@@ -2740,7 +2751,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 466,
+        "count": 467,
         "status": "ok"
       }
     },
@@ -2781,8 +2792,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-24T21:08:47.173106+00:00",
-    "run_id": "40132905187",
+    "completed_at": "2026-10-24T23:23:33.598109+00:00",
+    "run_id": "40142526880",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3259,6 +3270,14 @@
         "catalog:openrouter"
       ]
     },
+    "liquid/lfm-2.5-2.6b": {
+      "first_seen": "2026-10-24T23:23:33.171428+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "minimax/minimax-m3.1-flash": {
       "first_seen": "2026-10-22T17:35:20.231012+00:00",
       "release_confirmed": false,
@@ -3304,7 +3323,7 @@
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
-    "anthropic-sdk-typescript": "638528e0a261decd95817eca1102bfd64e0a9a82",
+    "anthropic-sdk-typescript": "fbf0af8f263f6171c3a5902aad8d9209088d8719",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
     "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
     "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
@@ -3655,6 +3674,7 @@
     "inclusionai/ling-3.1-flash",
     "inference-net/schematron-v2-small",
     "inference-net/schematron-v2-turbo",
+    "liquid/lfm-2.5-2.6b",
     "liquid/lfm-2.5-2.6b:free",
     "liquid/lfm-2.5-24b-a2b",
     "mancer/weaver",
