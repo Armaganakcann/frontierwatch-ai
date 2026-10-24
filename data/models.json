@@ -2781,8 +2781,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-24T12:04:54.251163+00:00",
-    "run_id": "40092440477",
+    "completed_at": "2026-10-24T15:51:39.441766+00:00",
+    "run_id": "40108866641",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3304,7 +3304,7 @@
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
-    "anthropic-sdk-typescript": "913b71b9db5968003a79dd7ba49457072b3c0aee",
+    "anthropic-sdk-typescript": "7cc24cb26d04b82a59d9eec08257a3c15fad5f95",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
     "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
     "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
