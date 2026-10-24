@@ -2707,6 +2707,22 @@
       "provider": "openai-openapi",
       "reference": "https://github.com/openai/openai-openapi/commit/8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-24T12:04:53.713934+00:00",
+      "level": "official_code_signal",
+      "model": "claude-opus-5",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/913b71b9db5968003a79dd7ba49457072b3c0aee",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-24T12:04:53.713934+00:00",
+      "level": "official_code_signal",
+      "model": "claude-opus-5-5",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/913b71b9db5968003a79dd7ba49457072b3c0aee",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2765,8 +2781,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-24T07:12:55.766044+00:00",
-    "run_id": "40073234734",
+    "completed_at": "2026-10-24T12:04:54.251163+00:00",
+    "run_id": "40092440477",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3288,7 +3304,7 @@
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
-    "anthropic-sdk-typescript": "ea246a4278b03320e895fa7986e68d7ab486e910",
+    "anthropic-sdk-typescript": "913b71b9db5968003a79dd7ba49457072b3c0aee",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
     "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
     "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
