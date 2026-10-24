@@ -2691,6 +2691,22 @@
       "provider": "anthropic-sdk-typescript",
       "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/832402e8036a2815c9bc13cdce2373b79b0e96cb",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-24T07:12:54.733230+00:00",
+      "level": "official_code_signal",
+      "model": "claude-opus-5-5",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/cb17b4197029b1c94193888e4cca8ba48b483c7a",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-24T07:12:54.733230+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-5.3-codex",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2713,7 +2729,7 @@
       }
     },
     "community": {
-      "candidate_observations": 1,
+      "candidate_observations": 0,
       "failed_queries": 0,
       "initialized": true,
       "query_count": 4,
@@ -2749,8 +2765,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-24T01:56:46.459194+00:00",
-    "run_id": "40052037488",
+    "completed_at": "2026-10-24T07:12:55.766044+00:00",
+    "run_id": "40073234734",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2788,6 +2804,14 @@
     },
     "claude-opus-5": {
       "first_seen": "2026-10-23T23:34:51.443114+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:anthropic-sdk-typescript"
+      ]
+    },
+    "claude-opus-5-5": {
+      "first_seen": "2026-10-24T07:12:54.733230+00:00",
       "release_confirmed": false,
       "source_count": 1,
       "sources": [
@@ -2943,9 +2967,10 @@
     "gpt-5.3-codex": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-openapi"
       ]
     },
     "gpt-5.4": {
@@ -3256,17 +3281,17 @@
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "8e32d2df55d99fdcd5be8862d4815007f7ad076f",
-    "openai-openapi": "0938b0f003300cd4c6ec39191532df81b04dfae1",
+    "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
+    "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
     "openai-python": "718aee979a9c334d37302aeff21cee6cbff4d43c",
     "python-genai": "c0e9c54915970948258226e565bde6ef6d5c0b94"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
-    "anthropic-sdk-typescript": "8ee6642b7c7a50764407c79c40447caddb7fd5c4",
+    "anthropic-sdk-typescript": "ea246a4278b03320e895fa7986e68d7ab486e910",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "8e32d2df55d99fdcd5be8862d4815007f7ad076f",
-    "openai-openapi": "0938b0f003300cd4c6ec39191532df81b04dfae1",
+    "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
+    "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
     "openai-python": "718aee979a9c334d37302aeff21cee6cbff4d43c",
     "python-genai": "c0e9c54915970948258226e565bde6ef6d5c0b94"
   },
