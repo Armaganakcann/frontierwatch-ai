@@ -2758,6 +2758,126 @@
       "provider": "anthropic-sdk-typescript",
       "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/62ac1cbd6a98a70e77348836a003f0ddf6677c92",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5d72315876ffd8b72b958623ef4db26da3fb1e61",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1-mini",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5d72315876ffd8b72b958623ef4db26da3fb1e61",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1.5",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5d72315876ffd8b72b958623ef4db26da3fb1e61",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5d72315876ffd8b72b958623ef4db26da3fb1e61",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2.5-flare",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5d72315876ffd8b72b958623ef4db26da3fb1e61",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2.5-sunburst",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5d72315876ffd8b72b958623ef4db26da3fb1e61",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/7562cd29af87561ccce4e1ec4b873c2c04c97f87",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1-mini",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/7562cd29af87561ccce4e1ec4b873c2c04c97f87",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1.5",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/7562cd29af87561ccce4e1ec4b873c2c04c97f87",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/7562cd29af87561ccce4e1ec4b873c2c04c97f87",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2.5-flare",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/7562cd29af87561ccce4e1ec4b873c2c04c97f87",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2.5-sunburst",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/7562cd29af87561ccce4e1ec4b873c2c04c97f87",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "claude-tag",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/7a9f234d13582c747536936f52d8c211fcffb9dc",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "claude-tag-2026-10-21",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/7a9f234d13582c747536936f52d8c211fcffb9dc",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "level": "official_code_signal",
+      "model": "claude-tag.ts",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/7a9f234d13582c747536936f52d8c211fcffb9dc",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2816,8 +2936,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-25T19:07:31.693037+00:00",
-    "run_id": "40224498084",
+    "completed_at": "2026-10-25T21:54:11.904460+00:00",
+    "run_id": "40237631617",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3188,19 +3308,41 @@
     "gpt-image-1": {
       "first_seen": "2026-10-23T20:37:37.651362+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 4,
       "sources": [
         "sdk_commit:openai-openapi",
-        "sdk_patch:openai-openapi"
+        "sdk_patch:openai-node",
+        "sdk_patch:openai-openapi",
+        "sdk_patch:openai-python"
+      ]
+    },
+    "gpt-image-1-mini": {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "release_confirmed": false,
+      "source_count": 2,
+      "sources": [
+        "sdk_patch:openai-node",
+        "sdk_patch:openai-python"
+      ]
+    },
+    "gpt-image-1.5": {
+      "first_seen": "2026-10-25T21:54:10.529091+00:00",
+      "release_confirmed": false,
+      "source_count": 2,
+      "sources": [
+        "sdk_patch:openai-node",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-image-2": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 4,
       "sources": [
         "external_listing:claudemon",
-        "sdk_commit:openai-openapi"
+        "sdk_commit:openai-openapi",
+        "sdk_patch:openai-node",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-image-2-2026-04-21": {
@@ -3214,10 +3356,12 @@
     "gpt-image-2.5-flare": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 4,
       "sources": [
         "external_listing:claudemon",
-        "sdk_patch:openai-openapi"
+        "sdk_patch:openai-node",
+        "sdk_patch:openai-openapi",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-image-2.5-flare-2026-09-08": {
@@ -3231,10 +3375,12 @@
     "gpt-image-2.5-sunburst": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 4,
       "sources": [
         "external_listing:claudemon",
-        "sdk_patch:openai-openapi"
+        "sdk_patch:openai-node",
+        "sdk_patch:openai-openapi",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-image-2.5-sunburst-2026-09-08": {
@@ -3364,18 +3510,18 @@
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
+    "openai-node": "7562cd29af87561ccce4e1ec4b873c2c04c97f87",
     "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
-    "openai-python": "718aee979a9c334d37302aeff21cee6cbff4d43c",
+    "openai-python": "5d72315876ffd8b72b958623ef4db26da3fb1e61",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
-    "anthropic-sdk-typescript": "62ac1cbd6a98a70e77348836a003f0ddf6677c92",
+    "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
+    "openai-node": "7562cd29af87561ccce4e1ec4b873c2c04c97f87",
     "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
-    "openai-python": "718aee979a9c334d37302aeff21cee6cbff4d43c",
+    "openai-python": "5d72315876ffd8b72b958623ef4db26da3fb1e61",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_releases": {
