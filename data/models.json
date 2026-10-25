@@ -2734,6 +2734,30 @@
       "provider": "openrouter",
       "reference": "https://openrouter.ai/api/v1/models",
       "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-25T19:07:26.461615+00:00",
+      "level": "official_code_signal",
+      "model": "claude-tag",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/62ac1cbd6a98a70e77348836a003f0ddf6677c92",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T19:07:26.461615+00:00",
+      "level": "official_code_signal",
+      "model": "claude-tag-2026-10-21",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/62ac1cbd6a98a70e77348836a003f0ddf6677c92",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-25T19:07:26.461615+00:00",
+      "level": "official_code_signal",
+      "model": "claude-tag.ts",
+      "provider": "anthropic-sdk-typescript",
+      "reference": "https://github.com/anthropics/anthropic-sdk-typescript/commit/62ac1cbd6a98a70e77348836a003f0ddf6677c92",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -2792,8 +2816,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-25T16:10:02.894641+00:00",
-    "run_id": "40210357005",
+    "completed_at": "2026-10-25T19:07:31.693037+00:00",
+    "run_id": "40224498084",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -2851,6 +2875,30 @@
       "source_count": 1,
       "sources": [
         "sdk_commit:anthropic-sdk-typescript"
+      ]
+    },
+    "claude-tag": {
+      "first_seen": "2026-10-25T19:07:26.461615+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:anthropic-sdk-typescript"
+      ]
+    },
+    "claude-tag-2026-10-21": {
+      "first_seen": "2026-10-25T19:07:26.461615+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:anthropic-sdk-typescript"
+      ]
+    },
+    "claude-tag.ts": {
+      "first_seen": "2026-10-25T19:07:26.461615+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:anthropic-sdk-typescript"
       ]
     },
     "gemini-4-argon": {
@@ -3323,7 +3371,7 @@
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
-    "anthropic-sdk-typescript": "7e6e74eeed37adc63e6706a731169da09e5bb364",
+    "anthropic-sdk-typescript": "62ac1cbd6a98a70e77348836a003f0ddf6677c92",
     "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
     "openai-node": "d8931e7facfd0b453cc1683c31c60be8cc1ae37e",
     "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
