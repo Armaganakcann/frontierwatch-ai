@@ -2900,7 +2900,7 @@
       }
     },
     "community": {
-      "candidate_observations": 0,
+      "candidate_observations": 1,
       "failed_queries": 0,
       "initialized": true,
       "query_count": 4,
@@ -2936,8 +2936,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-25T21:54:11.904460+00:00",
-    "run_id": "40237631617",
+    "completed_at": "2026-10-26T00:11:35.575038+00:00",
+    "run_id": "40248128613",
     "trigger": "schedule"
   },
   "_model_summary": {
