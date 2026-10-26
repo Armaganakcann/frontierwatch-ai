@@ -2936,8 +2936,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-26T00:11:35.575038+00:00",
-    "run_id": "40248128613",
+    "completed_at": "2026-10-26T04:59:43.513702+00:00",
+    "run_id": "40271866882",
     "trigger": "schedule"
   },
   "_model_summary": {
