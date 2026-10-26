@@ -362,6 +362,10 @@
         "created": 1790552874,
         "owned_by": "system"
       },
+      "gpt-6.1-terra": {
+        "created": 1791908780,
+        "owned_by": "system"
+      },
       "gpt-audio": {
         "created": 1756339249,
         "owned_by": "system"
@@ -1473,6 +1477,12 @@
       },
       "openai/gpt-6.1-sol:batch": {
         "created": 1790702882
+      },
+      "openai/gpt-6.1-terra": {
+        "created": 1793038409
+      },
+      "openai/gpt-6.1-terra:batch": {
+        "created": 1793038409
       },
       "openai/gpt-audio": {
         "created": 1768862569
@@ -2888,6 +2898,132 @@
       "reference": "https://news.ycombinator.com/item?id=50243565",
       "source": "community",
       "title": "Ask HN: Is it true the Claude Code is better than Codex for coding?"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "catalog_observation",
+      "model": "gpt-6.1-terra",
+      "provider": "openai",
+      "reference": "https://api.openai.com/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "catalog_observation",
+      "model": "openai/gpt-6.1-terra",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "catalog_observation",
+      "model": "openai/gpt-6.1-terra:batch",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_release_note",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/releases/tag/v3.39.0",
+      "source": "sdk_release"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_release_note",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/releases/tag/v7.45.0",
+      "source": "sdk_release"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/f83f6b534fec435c29705f621b52533066d007e3",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/f97798bc86e41f4a5d18644113ef94cf58722778",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/e8beb1abdf6de71ea10195c942f6566ca2696c28",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/af8336b8c13bd5402868cf2ca0d9c64530c3848f",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/f8120e55e783b367d9195891045e48284bc4659f",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-4.1",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-4o",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/f83f6b534fec435c29705f621b52533066d007e3",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "unverified",
+      "model": "gpt-6.1-terra",
+      "observation_url": "https://claudemon.com/",
+      "provider": "claudemon",
+      "published_at": "2026-10-13T16:26:20.000Z",
+      "reference": "https://platform.openai.com/docs/models/gpt-6.1-terra",
+      "source": "external_listing",
+      "title": "gpt-6.1-terra"
+    },
+    {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "level": "unverified",
+      "model": "gpt-6.1-terra",
+      "observation_url": "https://www.aidatahub.io/api/model-releases.json",
+      "origin_provider": "openai",
+      "provider": "aidatahub",
+      "published_at": "2026-10-26T18:09:00.825Z",
+      "reference": "https://developers.openai.com/api/docs/changelog",
+      "source": "external_release"
     }
   ],
   "_health": {
@@ -2901,11 +3037,11 @@
         "status": "ok"
       },
       "openai": {
-        "count": 127,
+        "count": 128,
         "status": "ok"
       },
       "openrouter": {
-        "count": 466,
+        "count": 468,
         "status": "ok"
       }
     },
@@ -2919,11 +3055,11 @@
     },
     "external_listings": {
       "failed_labs": 0,
-      "observations": 4,
+      "observations": 5,
       "status": "ok"
     },
     "independent_releases": {
-      "observations": 1,
+      "observations": 2,
       "status": "ok"
     },
     "sdk_commits": {
@@ -2943,11 +3079,11 @@
       "openai-python": "ok",
       "python-genai": "ok"
     },
-    "telegram_pending": 0
+    "telegram_pending": 4
   },
   "_last_run": {
-    "completed_at": "2026-10-26T17:17:54.124554+00:00",
-    "run_id": "40367204415",
+    "completed_at": "2026-10-26T21:40:53.791353+00:00",
+    "run_id": "40406328810",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3074,9 +3210,10 @@
     "gpt-4.1": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_commit:openai-openapi"
       ]
     },
     "gpt-4.1-2025-04-14": {
@@ -3106,9 +3243,10 @@
     "gpt-4o": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 3,
       "sources": [
         "external_listing:claudemon",
+        "sdk_commit:openai-openapi",
         "sdk_patch:openai-node"
       ]
     },
@@ -3323,6 +3461,22 @@
         "external_listing:claudemon"
       ]
     },
+    "gpt-6.1-terra": {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "release_confirmed": false,
+      "source_count": 9,
+      "sources": [
+        "catalog:openai",
+        "external_listing:claudemon",
+        "external_release:aidatahub",
+        "sdk_commit:openai-node",
+        "sdk_commit:openai-openapi",
+        "sdk_commit:openai-python",
+        "sdk_patch:openai-openapi",
+        "sdk_release:openai-node",
+        "sdk_release:openai-python"
+      ]
+    },
     "gpt-image-1": {
       "first_seen": "2026-10-23T20:37:37.651362+00:00",
       "release_confirmed": false,
@@ -3514,6 +3668,22 @@
         "catalog:openrouter"
       ]
     },
+    "openai/gpt-6.1-terra": {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
+    "openai/gpt-6.1-terra:batch": {
+      "first_seen": "2026-10-26T21:40:50.575001+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "recursive/flint-v1.0:free": {
       "first_seen": "2026-10-21T23:27:43.387350+00:00",
       "release_confirmed": false,
@@ -3523,31 +3693,36 @@
       ]
     }
   },
-  "_pending_alerts": [],
+  "_pending_alerts": [
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nopenai-openapi: Add deprecation notices for several GPT models with shutdown dates\n\nThis update adds deprecation messages for the GPT-5 series, GPT-5 Mini and Nano, GPT-4.1 variants, GPT-4o mini transcribe and TTS models, and several realtime audio models. Each deprecation includes an announced \nhttps://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+    "OFFICIAL COMMIT SIGNAL (not a model release)\nopenai-openapi: Add gpt-6.1-terra model option to enum lists\n\nThe API now includes a new model option named gpt-6.1-terra in all relevant model selection enums. Clients can specify this model where model selection is supported.\n\nOpenAI-API-Ref-Source-Revision: 1309143\nhttps://github.com/openai/openai-openapi/commit/f83f6b534fec435c29705f621b52533066d007e3",
+    "FrontierWatch AI \u2014 EXTERNAL listing observation (not independently API verified)\nA third-party feed linked to a model documentation URL. Check original evidence.\ngpt-6.1-terra\nhttps://platform.openai.com/docs/models/gpt-6.1-terra",
+    "FrontierWatch AI \u2014 EXTERNAL release-feed observation\nReported as official release by a third-party aggregator; verify primary source and account access.\ngpt-6.1-terra\nhttps://developers.openai.com/api/docs/changelog"
+  ],
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "364f0cb4809fc933d10e227bbcc17a21de2128eb",
-    "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
-    "openai-python": "a93b62c2638d41031a661d3ed9c2155860ccb9b3",
+    "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
+    "openai-node": "af8336b8c13bd5402868cf2ca0d9c64530c3848f",
+    "openai-openapi": "0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+    "openai-python": "904ed3f6ba0f2351af67c9456e9f020401a8a7f8",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "0dd787c23d76139982d7acb01e3c99978f563007",
-    "openai-node": "5c024840f5a05f14db15fa9c89a129af53ecc6fa",
-    "openai-openapi": "8243cc8fa6f04430fb1f1a6a2cb926fbeb4f7f26",
-    "openai-python": "a93b62c2638d41031a661d3ed9c2155860ccb9b3",
+    "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
+    "openai-node": "5185d2c4a2b2f3e0f5bbb43df0d5d49dccf5e81d",
+    "openai-openapi": "9ae46b2da9e8bc8cb2a092ba98a63dba88acf05a",
+    "openai-python": "9f8d65b285ec3630b98ced976de390d8f10647e6",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.3.0",
     "anthropic-sdk-typescript": "sdk-v1.3.0",
     "js-genai": "v2.31.0",
-    "openai-node": "v7.44.0",
-    "openai-python": "v3.38.0",
+    "openai-node": "v7.45.0",
+    "openai-python": "v3.39.0",
     "python-genai": "v2.33.0"
   },
   "_telegram_test_sent": true,
@@ -3709,6 +3884,7 @@
     "gpt-6-luna",
     "gpt-6-sol",
     "gpt-6.1-sol",
+    "gpt-6.1-terra",
     "gpt-audio",
     "gpt-audio-1.5",
     "gpt-audio-2025-08-28",
@@ -4055,6 +4231,8 @@
     "openai/gpt-6.1-sol-pro",
     "openai/gpt-6.1-sol-pro:batch",
     "openai/gpt-6.1-sol:batch",
+    "openai/gpt-6.1-terra",
+    "openai/gpt-6.1-terra:batch",
     "openai/gpt-audio",
     "openai/gpt-audio-mini",
     "openai/gpt-chat-latest",
