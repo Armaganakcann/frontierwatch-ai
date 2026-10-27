@@ -3024,6 +3024,58 @@
       "published_at": "2026-10-26T18:09:00.825Z",
       "reference": "https://developers.openai.com/api/docs/changelog",
       "source": "external_release"
+    },
+    {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/e8beb1abdf6de71ea10195c942f6566ca2696c28",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-4o-mini-transcribe-2025-12-15",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-5-mini",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-5-nano",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "level": "unverified",
+      "model": "gpt-6.1-terra",
+      "provider": "hackernews",
+      "published_at": "2026-10-26T18:01:17+00:00",
+      "reference": "https://news.ycombinator.com/item?id=50248124",
+      "source": "community",
+      "title": "GPT-6.1 Terra"
+    },
+    {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "level": "unverified",
+      "model": "gpt-6.1",
+      "provider": "hackernews",
+      "published_at": "2026-10-26T18:01:17+00:00",
+      "reference": "https://news.ycombinator.com/item?id=50248124",
+      "source": "community",
+      "title": "GPT-6.1 Terra"
     }
   ],
   "_health": {
@@ -3041,12 +3093,12 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 468,
+        "count": 462,
         "status": "ok"
       }
     },
     "community": {
-      "candidate_observations": 1,
+      "candidate_observations": 3,
       "failed_queries": 0,
       "initialized": true,
       "query_count": 4,
@@ -3079,11 +3131,11 @@
       "openai-python": "ok",
       "python-genai": "ok"
     },
-    "telegram_pending": 4
+    "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-26T21:40:53.791353+00:00",
-    "run_id": "40406328810",
+    "completed_at": "2026-10-27T00:54:43.399195+00:00",
+    "run_id": "40429331714",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3283,6 +3335,14 @@
         "external_listing:claudemon"
       ]
     },
+    "gpt-4o-mini-transcribe-2025-12-15": {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:openai-openapi"
+      ]
+    },
     "gpt-4o-mini-tts-2025-03-20": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
@@ -3297,6 +3357,22 @@
       "source_count": 1,
       "sources": [
         "external_listing:claudemon"
+      ]
+    },
+    "gpt-5-mini": {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:openai-openapi"
+      ]
+    },
+    "gpt-5-nano": {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:openai-openapi"
       ]
     },
     "gpt-5.1": {
@@ -3453,6 +3529,14 @@
         "external_listing:claudemon"
       ]
     },
+    "gpt-6.1": {
+      "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "community:hackernews"
+      ]
+    },
     "gpt-6.1-sol": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
@@ -3464,15 +3548,17 @@
     "gpt-6.1-terra": {
       "first_seen": "2026-10-26T21:40:50.575001+00:00",
       "release_confirmed": false,
-      "source_count": 9,
+      "source_count": 11,
       "sources": [
         "catalog:openai",
+        "community:hackernews",
         "external_listing:claudemon",
         "external_release:aidatahub",
         "sdk_commit:openai-node",
         "sdk_commit:openai-openapi",
         "sdk_commit:openai-python",
         "sdk_patch:openai-openapi",
+        "sdk_patch:openai-python",
         "sdk_release:openai-node",
         "sdk_release:openai-python"
       ]
@@ -3693,28 +3779,23 @@
       ]
     }
   },
-  "_pending_alerts": [
-    "OFFICIAL COMMIT SIGNAL (not a model release)\nopenai-openapi: Add deprecation notices for several GPT models with shutdown dates\n\nThis update adds deprecation messages for the GPT-5 series, GPT-5 Mini and Nano, GPT-4.1 variants, GPT-4o mini transcribe and TTS models, and several realtime audio models. Each deprecation includes an announced \nhttps://github.com/openai/openai-openapi/commit/0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
-    "OFFICIAL COMMIT SIGNAL (not a model release)\nopenai-openapi: Add gpt-6.1-terra model option to enum lists\n\nThe API now includes a new model option named gpt-6.1-terra in all relevant model selection enums. Clients can specify this model where model selection is supported.\n\nOpenAI-API-Ref-Source-Revision: 1309143\nhttps://github.com/openai/openai-openapi/commit/f83f6b534fec435c29705f621b52533066d007e3",
-    "FrontierWatch AI \u2014 EXTERNAL listing observation (not independently API verified)\nA third-party feed linked to a model documentation URL. Check original evidence.\ngpt-6.1-terra\nhttps://platform.openai.com/docs/models/gpt-6.1-terra",
-    "FrontierWatch AI \u2014 EXTERNAL release-feed observation\nReported as official release by a third-party aggregator; verify primary source and account access.\ngpt-6.1-terra\nhttps://developers.openai.com/api/docs/changelog"
-  ],
+  "_pending_alerts": [],
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
-    "openai-node": "af8336b8c13bd5402868cf2ca0d9c64530c3848f",
+    "openai-node": "381709f60ae0a460d53d795f23c7eba7f576798e",
     "openai-openapi": "0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
-    "openai-python": "904ed3f6ba0f2351af67c9456e9f020401a8a7f8",
+    "openai-python": "a3f430241c4a2e3e25bf79cc7d0148e51795a292",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
-    "openai-node": "5185d2c4a2b2f3e0f5bbb43df0d5d49dccf5e81d",
-    "openai-openapi": "9ae46b2da9e8bc8cb2a092ba98a63dba88acf05a",
-    "openai-python": "9f8d65b285ec3630b98ced976de390d8f10647e6",
+    "openai-node": "24e750e5dcffd6332f5dae04a7a5610b0f3024c3",
+    "openai-openapi": "0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
+    "openai-python": "e8beb1abdf6de71ea10195c942f6566ca2696c28",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_releases": {
@@ -4051,7 +4132,6 @@
     "google/lyria-3-clip-preview",
     "google/lyria-3-pro-preview",
     "gryphe/mythomax-l2-13b",
-    "ibm-granite/granite-4.0-h-micro",
     "ibm-granite/granite-4.2-8b",
     "inception/mercury-2",
     "inception/mercury-2.5",
@@ -4093,27 +4173,22 @@
     "minimax/minimax-m3",
     "minimax/minimax-m3.1-flash",
     "mistralai/codestral-2508",
-    "mistralai/codestral-2508:batch",
     "mistralai/devstral-2512",
     "mistralai/ministral-14b-2512",
     "mistralai/ministral-3b-2512",
     "mistralai/ministral-8b-2512",
-    "mistralai/ministral-8b-2512:batch",
     "mistralai/mistral-large",
     "mistralai/mistral-large-2407",
     "mistralai/mistral-large-2512",
-    "mistralai/mistral-large-2512:batch",
     "mistralai/mistral-large-4-0",
     "mistralai/mistral-medium-3",
     "mistralai/mistral-medium-3-5",
     "mistralai/mistral-medium-3-5:batch",
     "mistralai/mistral-medium-3.1",
-    "mistralai/mistral-medium-3.1:batch",
     "mistralai/mistral-nemo",
     "mistralai/mistral-saba",
     "mistralai/mistral-small-24b-instruct-2501",
     "mistralai/mistral-small-2603",
-    "mistralai/mistral-small-2603:batch",
     "mistralai/mistral-small-3.1-24b-instruct",
     "mistralai/mistral-small-3.2-24b-instruct",
     "mistralai/mixtral-8x22b-instruct",
