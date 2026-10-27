@@ -1601,6 +1601,9 @@
       "prism-ml/ternary-bonsai-2-27b": {
         "created": 1789754046
       },
+      "prism-ml/ternary-bonsai-2-9b": {
+        "created": 1792130995
+      },
       "qwen/qwen-2.5-72b-instruct": {
         "created": 1726704000
       },
@@ -3098,6 +3101,62 @@
       "provider": "openrouter",
       "reference": "https://openrouter.ai/api/v1/models",
       "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "catalog_observation",
+      "model": "prism-ml/ternary-bonsai-2-9b",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1-mini",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-1.5",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-image-2",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-image-1",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-image-1-mini",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-image-1.5",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+      "source": "sdk_commit"
     }
   ],
   "_health": {
@@ -3115,7 +3174,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 463,
+        "count": 464,
         "status": "ok"
       }
     },
@@ -3156,8 +3215,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-27T18:13:43.769980+00:00",
-    "run_id": "40557928355",
+    "completed_at": "2026-10-27T22:25:33.611105+00:00",
+    "run_id": "40594682336",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3599,29 +3658,34 @@
     "gpt-image-1-mini": {
       "first_seen": "2026-10-25T21:54:10.529091+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 4,
       "sources": [
+        "sdk_commit:openai-openapi",
         "sdk_patch:openai-node",
+        "sdk_patch:openai-openapi",
         "sdk_patch:openai-python"
       ]
     },
     "gpt-image-1.5": {
       "first_seen": "2026-10-25T21:54:10.529091+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 4,
       "sources": [
+        "sdk_commit:openai-openapi",
         "sdk_patch:openai-node",
+        "sdk_patch:openai-openapi",
         "sdk_patch:openai-python"
       ]
     },
     "gpt-image-2": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "external_listing:claudemon",
         "sdk_commit:openai-openapi",
         "sdk_patch:openai-node",
+        "sdk_patch:openai-openapi",
         "sdk_patch:openai-python"
       ]
     },
@@ -3808,6 +3872,14 @@
         "catalog:openrouter"
       ]
     },
+    "prism-ml/ternary-bonsai-2-9b": {
+      "first_seen": "2026-10-27T22:25:31.299891+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "recursive/flint-v1.0:free": {
       "first_seen": "2026-10-21T23:27:43.387350+00:00",
       "release_confirmed": false,
@@ -3821,20 +3893,20 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
-    "openai-node": "4e95fe2bd074edf5337406b28b111141fb3c245a",
-    "openai-openapi": "8b539e3aa2a2974574d045134903e1567e9ef81c",
-    "openai-python": "23a6be4b8ab346609babc1337b445e4ee658137d",
-    "python-genai": "9e83f8fb7a63b89083fb9017c21247d60e8c6c40"
+    "js-genai": "c7b2fd217981551a4c242b708c713bef132f598c",
+    "openai-node": "fc3ebfafbeba0539810b2514d93c062e9c9f8cb3",
+    "openai-openapi": "2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+    "openai-python": "fa67521e1c59f11fb5cba7ef8b9b35b5fcac2ae4",
+    "python-genai": "daac53e8ad1731e8c0067a3e83fd3dfab6973c3f"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
-    "openai-node": "64abe795b0c2767dc5874e4c564156ac2214aca7",
-    "openai-openapi": "8b539e3aa2a2974574d045134903e1567e9ef81c",
-    "openai-python": "1e423213f13024df53e75eb500c8b8ab6277d5cc",
-    "python-genai": "9e83f8fb7a63b89083fb9017c21247d60e8c6c40"
+    "js-genai": "c7b2fd217981551a4c242b708c713bef132f598c",
+    "openai-node": "f73fa02b61da23e56af80ba388cdcb5d5fe2efba",
+    "openai-openapi": "2dfb841cf41ffe074c091ea879cf45a4208dcd76",
+    "openai-python": "9412200f9d2d25201e8ad007a6da198e395853c8",
+    "python-genai": "daac53e8ad1731e8c0067a3e83fd3dfab6973c3f"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.3.0",
@@ -4384,6 +4456,7 @@
     "poolside/laguna-xs-2.1",
     "poolside/laguna-xs-2.1:free",
     "prism-ml/ternary-bonsai-2-27b",
+    "prism-ml/ternary-bonsai-2-9b",
     "qwen/qwen-2.5-72b-instruct",
     "qwen/qwen-2.5-7b-instruct",
     "qwen/qwen-2.5-coder-32b-instruct",
