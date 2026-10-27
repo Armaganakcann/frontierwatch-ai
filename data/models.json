@@ -1481,6 +1481,12 @@
       "openai/gpt-6.1-terra": {
         "created": 1793038409
       },
+      "openai/gpt-6.1-terra-pro": {
+        "created": 1793038556
+      },
+      "openai/gpt-6.1-terra-pro:batch": {
+        "created": 1793038556
+      },
       "openai/gpt-6.1-terra:batch": {
         "created": 1793038409
       },
@@ -3076,6 +3082,22 @@
       "reference": "https://news.ycombinator.com/item?id=50248124",
       "source": "community",
       "title": "GPT-6.1 Terra"
+    },
+    {
+      "first_seen": "2026-10-27T06:12:26.235331+00:00",
+      "level": "catalog_observation",
+      "model": "openai/gpt-6.1-terra-pro",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-27T06:12:26.235331+00:00",
+      "level": "catalog_observation",
+      "model": "openai/gpt-6.1-terra-pro:batch",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
     }
   ],
   "_health": {
@@ -3093,7 +3115,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 462,
+        "count": 464,
         "status": "ok"
       }
     },
@@ -3134,8 +3156,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-27T00:54:43.399195+00:00",
-    "run_id": "40429331714",
+    "completed_at": "2026-10-27T06:12:26.594469+00:00",
+    "run_id": "40459694839",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3762,6 +3784,22 @@
         "catalog:openrouter"
       ]
     },
+    "openai/gpt-6.1-terra-pro": {
+      "first_seen": "2026-10-27T06:12:26.235331+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
+    "openai/gpt-6.1-terra-pro:batch": {
+      "first_seen": "2026-10-27T06:12:26.235331+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "openai/gpt-6.1-terra:batch": {
       "first_seen": "2026-10-26T21:40:50.575001+00:00",
       "release_confirmed": false,
@@ -3784,18 +3822,18 @@
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
-    "openai-node": "381709f60ae0a460d53d795f23c7eba7f576798e",
-    "openai-openapi": "0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
-    "openai-python": "a3f430241c4a2e3e25bf79cc7d0148e51795a292",
+    "openai-node": "60224b376e25912bb1143007c81d2ecdc7a7434c",
+    "openai-openapi": "ee46bb7fb0f43451d395e30d87935c776792cffc",
+    "openai-python": "3596d18f05b63081fd64c6da82b515293afb98c6",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "fc5ad300b774f345aad84b9f615324f47953dcb5",
-    "openai-node": "24e750e5dcffd6332f5dae04a7a5610b0f3024c3",
-    "openai-openapi": "0597e6fb7a345d7c8619a8b0bd72530e4657bad9",
-    "openai-python": "e8beb1abdf6de71ea10195c942f6566ca2696c28",
+    "openai-node": "c1297503e72e2104dcd41ea9dc15274ae53ce7ce",
+    "openai-openapi": "ee46bb7fb0f43451d395e30d87935c776792cffc",
+    "openai-python": "0adf71130c1ad0fec62af9ed4589e5961c48fcea",
     "python-genai": "cb1408b06c573060f1593023ca320fde9a4fb5f6"
   },
   "_sdk_releases": {
@@ -4307,6 +4345,8 @@
     "openai/gpt-6.1-sol-pro:batch",
     "openai/gpt-6.1-sol:batch",
     "openai/gpt-6.1-terra",
+    "openai/gpt-6.1-terra-pro",
+    "openai/gpt-6.1-terra-pro:batch",
     "openai/gpt-6.1-terra:batch",
     "openai/gpt-audio",
     "openai/gpt-audio-mini",
