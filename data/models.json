@@ -1565,6 +1565,9 @@
       "openrouter/pareto-code": {
         "created": 1776747900
       },
+      "particle-ai/particle-1": {
+        "created": 1793207893
+      },
       "perceptron/perceptron-mk1": {
         "created": 1778597029
       },
@@ -3340,6 +3343,22 @@
       "provider": "openai-openapi",
       "reference": "https://github.com/openai/openai-openapi/commit/ff80a233ed16a05164390fd7fc92f085414a0f67",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-28T23:39:42.132261+00:00",
+      "level": "catalog_observation",
+      "model": "particle-ai/particle-1",
+      "provider": "openrouter",
+      "reference": "https://openrouter.ai/api/v1/models",
+      "source": "catalog"
+    },
+    {
+      "first_seen": "2026-10-28T23:39:42.132261+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-6.1-terra",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/f8120e55e783b367d9195891045e48284bc4659f",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -3357,7 +3376,7 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 456,
+        "count": 457,
         "status": "ok"
       }
     },
@@ -3395,11 +3414,11 @@
       "openai-python": "ok",
       "python-genai": "ok"
     },
-    "telegram_pending": 2
+    "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-28T19:50:11.046039+00:00",
-    "run_id": "40757796889",
+    "completed_at": "2026-10-28T23:39:45.734525+00:00",
+    "run_id": "40788853990",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3871,7 +3890,7 @@
     "gpt-6.1-terra": {
       "first_seen": "2026-10-26T21:40:50.575001+00:00",
       "release_confirmed": false,
-      "source_count": 11,
+      "source_count": 12,
       "sources": [
         "catalog:openai",
         "community:hackernews",
@@ -3880,6 +3899,7 @@
         "sdk_commit:openai-node",
         "sdk_commit:openai-openapi",
         "sdk_commit:openai-python",
+        "sdk_patch:openai-node",
         "sdk_patch:openai-openapi",
         "sdk_patch:openai-python",
         "sdk_release:openai-node",
@@ -4157,6 +4177,14 @@
         "catalog:openrouter"
       ]
     },
+    "particle-ai/particle-1": {
+      "first_seen": "2026-10-28T23:39:42.132261+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "catalog:openrouter"
+      ]
+    },
     "prism-ml/ternary-bonsai-2-9b": {
       "first_seen": "2026-10-27T22:25:31.299891+00:00",
       "release_confirmed": false,
@@ -4174,34 +4202,31 @@
       ]
     }
   },
-  "_pending_alerts": [
-    "OFFICIAL COMMIT SIGNAL (not a model release)\njs-genai: feat: support video understanding in Gemini Developer API\n\nPiperOrigin-RevId: 1009083457\nhttps://github.com/googleapis/js-genai/commit/7c82322c2b78249d03da308bee2fdaea1bd93202",
-    "OFFICIAL COMMIT SIGNAL (not a model release)\njs-genai: feat(interactions): declare continuation_ids on Interaction\n\nDeclare continuation_ids (continuationIds / ContinuationIds) on the Interaction model across the Interactions SDKs so callers receive None / null / nil / undefined when automatic continuation is not active instead of mi\nhttps://github.com/googleapis/js-genai/commit/9cf3280ece6eba1a421541dbe79bc930f5ae85d9"
-  ],
+  "_pending_alerts": [],
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "7c82322c2b78249d03da308bee2fdaea1bd93202",
-    "openai-node": "93d88a2adb0502d19e63f24922e197fb12134061",
-    "openai-openapi": "26a299159673d20d5cf0faf10e691beed3fed52d",
-    "openai-python": "35fc9f33a769858475f2f512112c4256480fff41",
-    "python-genai": "34b58fd1b2aa387dff5976bbefa1c1268958369f"
+    "js-genai": "dda511e175984ea4bb72b2e850ac7b7f520ea66a",
+    "openai-node": "db2dcb267f692e99309249f292a1c4ed9d4be877",
+    "openai-openapi": "aa880040fa7b23c8a7e3618b5ca757ecec71de95",
+    "openai-python": "3ee373e038dd0756eba7d748605e5209bc5b726c",
+    "python-genai": "2677298eaa011df6662d6379280441d75a4693aa"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "7c82322c2b78249d03da308bee2fdaea1bd93202",
-    "openai-node": "cd0d140449804acdcbcf8ec73734a6b5d448bb48",
-    "openai-openapi": "0757443aeccc65f8801f7431506a36e97fea076d",
-    "openai-python": "fa67521e1c59f11fb5cba7ef8b9b35b5fcac2ae4",
-    "python-genai": "34b58fd1b2aa387dff5976bbefa1c1268958369f"
+    "js-genai": "dda511e175984ea4bb72b2e850ac7b7f520ea66a",
+    "openai-node": "af8336b8c13bd5402868cf2ca0d9c64530c3848f",
+    "openai-openapi": "aa880040fa7b23c8a7e3618b5ca757ecec71de95",
+    "openai-python": "f0798682d36be3bb79293d40c260cd93dbabf939",
+    "python-genai": "2677298eaa011df6662d6379280441d75a4693aa"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.3.0",
     "anthropic-sdk-typescript": "sdk-v1.3.0",
     "js-genai": "v2.31.0",
     "openai-node": "v7.45.1",
-    "openai-python": "v3.40.0",
+    "openai-python": "v3.41.0",
     "python-genai": "v2.33.0"
   },
   "_telegram_test_sent": true,
@@ -4725,6 +4750,7 @@
     "openrouter/free",
     "openrouter/fusion",
     "openrouter/pareto-code",
+    "particle-ai/particle-1",
     "perceptron/perceptron-mk1",
     "perceptron/perceptron-mk1.5",
     "perplexity/sonar",
