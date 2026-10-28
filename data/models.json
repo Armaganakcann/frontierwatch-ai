@@ -3165,6 +3165,57 @@
       "provider": "python-genai",
       "reference": "https://github.com/googleapis/python-genai/commit/6e80d42acf101a6b51d91021025e509170b388bf",
       "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-5-2025-08-07",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/810186d5c70bcd5816a70aba552105134be8491b",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-5-mini-2025-08-07",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/810186d5c70bcd5816a70aba552105134be8491b",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-5-nano-2025-08-07",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/810186d5c70bcd5816a70aba552105134be8491b",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-4o-mini-tts",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/810186d5c70bcd5816a70aba552105134be8491b",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "level": "official_commit_signal",
+      "model": "gpt-4o-mini-tts-2025-12-15",
+      "provider": "openai-openapi",
+      "reference": "https://github.com/openai/openai-openapi/commit/810186d5c70bcd5816a70aba552105134be8491b",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "level": "unverified",
+      "model": "gemini-api",
+      "observation_url": "https://www.aidatahub.io/api/model-releases.json",
+      "origin_provider": "google",
+      "provider": "aidatahub",
+      "published_at": "2026-10-28T02:39:00.814Z",
+      "reference": "https://ai.google.dev/gemini-api/docs/changelog#10-27-2026",
+      "source": "external_release"
     }
   ],
   "_health": {
@@ -3195,12 +3246,12 @@
       "truncated_queries": 0
     },
     "external_listings": {
-      "failed_labs": 0,
-      "observations": 4,
-      "status": "ok"
+      "failed_labs": 1,
+      "observations": 0,
+      "status": "partial"
     },
     "independent_releases": {
-      "observations": 1,
+      "observations": 2,
       "status": "ok"
     },
     "sdk_commits": {
@@ -3223,8 +3274,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-28T01:38:56.881014+00:00",
-    "run_id": "40616267349",
+    "completed_at": "2026-10-28T07:33:41.487842+00:00",
+    "run_id": "40650801887",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3310,6 +3361,14 @@
     },
     "gemini-4-argon": {
       "first_seen": "2026-10-18T12:02:56.458651+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "external_release:aidatahub"
+      ]
+    },
+    "gemini-api": {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
       "release_confirmed": false,
       "source_count": 1,
       "sources": [
@@ -3440,6 +3499,14 @@
         "sdk_patch:openai-openapi"
       ]
     },
+    "gpt-4o-mini-tts": {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_commit:openai-openapi"
+      ]
+    },
     "gpt-4o-mini-tts-2025-03-20": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
@@ -3451,9 +3518,18 @@
     "gpt-4o-mini-tts-2025-12-15": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
+      "source_count": 2,
+      "sources": [
+        "external_listing:claudemon",
+        "sdk_commit:openai-openapi"
+      ]
+    },
+    "gpt-5-2025-08-07": {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "release_confirmed": false,
       "source_count": 1,
       "sources": [
-        "external_listing:claudemon"
+        "sdk_patch:openai-openapi"
       ]
     },
     "gpt-5-mini": {
@@ -3464,8 +3540,24 @@
         "sdk_patch:openai-openapi"
       ]
     },
+    "gpt-5-mini-2025-08-07": {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:openai-openapi"
+      ]
+    },
     "gpt-5-nano": {
       "first_seen": "2026-10-27T00:54:40.717227+00:00",
+      "release_confirmed": false,
+      "source_count": 1,
+      "sources": [
+        "sdk_patch:openai-openapi"
+      ]
+    },
+    "gpt-5-nano-2025-08-07": {
+      "first_seen": "2026-10-28T07:33:38.925441+00:00",
       "release_confirmed": false,
       "source_count": 1,
       "sources": [
@@ -3910,18 +4002,18 @@
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "00cfd86270cacf9b1c223b193bded2fade6faa7f",
-    "openai-node": "fc3ebfafbeba0539810b2514d93c062e9c9f8cb3",
-    "openai-openapi": "54640e1ce5465c6f2e597ac4b030f9b92ba6d044",
-    "openai-python": "fa67521e1c59f11fb5cba7ef8b9b35b5fcac2ae4",
+    "openai-node": "d6c84252c9c55f1e047104d1dc3e0ac896bae38c",
+    "openai-openapi": "ff80a233ed16a05164390fd7fc92f085414a0f67",
+    "openai-python": "f0798682d36be3bb79293d40c260cd93dbabf939",
     "python-genai": "6e80d42acf101a6b51d91021025e509170b388bf"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
     "js-genai": "00cfd86270cacf9b1c223b193bded2fade6faa7f",
-    "openai-node": "a768d48aad7e0271ce8e393f8203ea0b2e523da8",
-    "openai-openapi": "54640e1ce5465c6f2e597ac4b030f9b92ba6d044",
-    "openai-python": "3596d18f05b63081fd64c6da82b515293afb98c6",
+    "openai-node": "369d4febf7ccf84b270505420f564f882b01bcb9",
+    "openai-openapi": "1e201c9304c0a9e66d90f8f2fd379c096aa2e0e8",
+    "openai-python": "0f434e49de356e4a29867084c708157f75eca8e0",
     "python-genai": "6e80d42acf101a6b51d91021025e509170b388bf"
   },
   "_sdk_releases": {
