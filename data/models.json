@@ -3359,6 +3359,38 @@
       "provider": "openai-node",
       "reference": "https://github.com/openai/openai-node/commit/f8120e55e783b367d9195891045e48284bc4659f",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-29T02:56:34.442012+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-4o-mini-tts",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5b43cceea4a25bc1b9ed1b08f087408b47981083",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-29T02:56:34.442012+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-4o-mini-tts-2025-03-20",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5b43cceea4a25bc1b9ed1b08f087408b47981083",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-29T02:56:34.442012+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-4o-mini-tts-2025-12-15",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5b43cceea4a25bc1b9ed1b08f087408b47981083",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-29T02:56:34.442012+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-realtime-2.1-mini",
+      "provider": "openai-python",
+      "reference": "https://github.com/openai/openai-python/commit/5b43cceea4a25bc1b9ed1b08f087408b47981083",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -3381,7 +3413,7 @@
       }
     },
     "community": {
-      "candidate_observations": 9,
+      "candidate_observations": 8,
       "failed_queries": 0,
       "initialized": true,
       "query_count": 4,
@@ -3417,8 +3449,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-28T23:39:45.734525+00:00",
-    "run_id": "40788853990",
+    "completed_at": "2026-10-29T02:56:35.378246+00:00",
+    "run_id": "40809276917",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3653,28 +3685,31 @@
     "gpt-4o-mini-tts": {
       "first_seen": "2026-10-28T07:33:38.925441+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 3,
       "sources": [
         "sdk_commit:openai-openapi",
-        "sdk_patch:openai-openapi"
+        "sdk_patch:openai-openapi",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-4o-mini-tts-2025-03-20": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 3,
       "sources": [
         "external_listing:claudemon",
-        "sdk_patch:openai-openapi"
+        "sdk_patch:openai-openapi",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-4o-mini-tts-2025-12-15": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 3,
       "sources": [
         "external_listing:claudemon",
-        "sdk_commit:openai-openapi"
+        "sdk_commit:openai-openapi",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-5-2025-08-07": {
@@ -4036,9 +4071,10 @@
     "gpt-realtime-2.1-mini": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 1,
+      "source_count": 2,
       "sources": [
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-python"
       ]
     },
     "gpt-realtime-translate": {
@@ -4206,20 +4242,20 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "dda511e175984ea4bb72b2e850ac7b7f520ea66a",
-    "openai-node": "db2dcb267f692e99309249f292a1c4ed9d4be877",
+    "js-genai": "99f1892164d3988a0c2f056a25f122d1652dc3fe",
+    "openai-node": "ae256927c87b0c7c76cb3a3141734b5dd78f8b39",
     "openai-openapi": "aa880040fa7b23c8a7e3618b5ca757ecec71de95",
-    "openai-python": "3ee373e038dd0756eba7d748605e5209bc5b726c",
-    "python-genai": "2677298eaa011df6662d6379280441d75a4693aa"
+    "openai-python": "f9f3f76cf3af2c12675574a16804f3592a4f718a",
+    "python-genai": "c85d5ae4d70d9b24c4155be0a92730499b23e79d"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "dda511e175984ea4bb72b2e850ac7b7f520ea66a",
-    "openai-node": "af8336b8c13bd5402868cf2ca0d9c64530c3848f",
+    "js-genai": "99f1892164d3988a0c2f056a25f122d1652dc3fe",
+    "openai-node": "60224b376e25912bb1143007c81d2ecdc7a7434c",
     "openai-openapi": "aa880040fa7b23c8a7e3618b5ca757ecec71de95",
-    "openai-python": "f0798682d36be3bb79293d40c260cd93dbabf939",
-    "python-genai": "2677298eaa011df6662d6379280441d75a4693aa"
+    "openai-python": "77fd116d2326bc828bb23d4fd7960142972293a4",
+    "python-genai": "c85d5ae4d70d9b24c4155be0a92730499b23e79d"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.3.0",
