@@ -3480,12 +3480,12 @@
         "status": "ok"
       },
       "openrouter": {
-        "count": 457,
+        "count": 456,
         "status": "ok"
       }
     },
     "community": {
-      "candidate_observations": 8,
+      "candidate_observations": 6,
       "failed_queries": 0,
       "initialized": true,
       "query_count": 4,
@@ -3494,7 +3494,7 @@
     },
     "external_listings": {
       "failed_labs": 0,
-      "observations": 4,
+      "observations": 3,
       "status": "ok"
     },
     "independent_releases": {
@@ -3521,8 +3521,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-29T16:27:49.866148+00:00",
-    "run_id": "40911751766",
+    "completed_at": "2026-10-29T21:23:47.974358+00:00",
+    "run_id": "40957400386",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -4320,19 +4320,19 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "70501db66b27bbd3f150c8d370aa311417089987",
-    "openai-node": "4bfed1f69fc0e86e7da0657df8d54b6e99118c02",
-    "openai-openapi": "089b14f36daffb267f94770535e2de56b17de785",
-    "openai-python": "f552fcffcf774520e946121704b5fbbf7ba986e8",
+    "js-genai": "269943ae089508ca579dda988d0eba73990f2cf1",
+    "openai-node": "2ac178e958fce3d4bc3ae7c5ebcb4cad7244bdf7",
+    "openai-openapi": "9107f19a6c66eedeb043be38daf9148b34d7d5dc",
+    "openai-python": "10f9dd012363229a6c6f3fddb73403427fcd5eef",
     "python-genai": "0dc788c7c7318f2a7c33b1e57cac64902e2f56f0"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "70501db66b27bbd3f150c8d370aa311417089987",
-    "openai-node": "6b536952dc4e1a06f6fae964ffc2f2c346fcdc09",
-    "openai-openapi": "089b14f36daffb267f94770535e2de56b17de785",
-    "openai-python": "501256573272e172fb5a39ecf36ca0c27f1ea40d",
+    "js-genai": "269943ae089508ca579dda988d0eba73990f2cf1",
+    "openai-node": "e397a1d99d1908ca5eaa228b6637cb6688b2aa8b",
+    "openai-openapi": "9107f19a6c66eedeb043be38daf9148b34d7d5dc",
+    "openai-python": "3ee373e038dd0756eba7d748605e5209bc5b726c",
     "python-genai": "0dc788c7c7318f2a7c33b1e57cac64902e2f56f0"
   },
   "_sdk_releases": {
@@ -4956,7 +4956,6 @@
     "unbiased/pareto-26.9",
     "undi95/remm-slerp-l2-13b",
     "upstage/solar-mini4",
-    "upstage/solar-pro-3",
     "upstage/solar-pro4",
     "writer/palmyra-x5",
     "x-ai/grok-4.20",
