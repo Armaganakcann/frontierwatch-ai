@@ -3505,6 +3505,22 @@
       "reference": "https://news.ycombinator.com/item?id=50304970",
       "source": "community",
       "title": "Show HN: Cc-pair \u2013 Claude Code and Codex review each other's work"
+    },
+    {
+      "first_seen": "2026-10-30T23:10:54.958583+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-live-1",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/a35bc8ee72b23ecb33789c2a43e7de96946c9e8f",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-30T23:10:54.958583+00:00",
+      "level": "official_code_signal",
+      "model": "gpt-realtime-2",
+      "provider": "openai-node",
+      "reference": "https://github.com/openai/openai-node/commit/a35bc8ee72b23ecb33789c2a43e7de96946c9e8f",
+      "source": "sdk_patch"
     }
   ],
   "_health": {
@@ -3563,8 +3579,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-30T19:33:11.582182+00:00",
-    "run_id": "41116124617",
+    "completed_at": "2026-10-30T23:10:55.907031+00:00",
+    "run_id": "41142846348",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -4175,10 +4191,11 @@
     "gpt-live-1": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 3,
       "sources": [
         "community:hackernews",
-        "external_listing:claudemon"
+        "external_listing:claudemon",
+        "sdk_patch:openai-node"
       ]
     },
     "gpt-live-transcribe": {
@@ -4192,9 +4209,10 @@
     "gpt-realtime-2": {
       "first_seen": "2026-10-18T11:53:47.318305+00:00",
       "release_confirmed": false,
-      "source_count": 2,
+      "source_count": 3,
       "sources": [
         "external_listing:claudemon",
+        "sdk_patch:openai-node",
         "sdk_patch:openai-python"
       ]
     },
@@ -4381,20 +4399,20 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "df2994493dd07c0d9900e7c46e768e525abc6277",
-    "openai-node": "a35bc8ee72b23ecb33789c2a43e7de96946c9e8f",
-    "openai-openapi": "8c668caa924f24baa77679fc6635ed56659fae06",
-    "openai-python": "bd61e84ca80c3579f1336a2d55c79bc5dca57a57",
-    "python-genai": "b18fd3cbe8696588ba8c78c79802707c09708fd6"
+    "js-genai": "3f65d021308199fe0af9dd95e8aff4a3b7c89a6c",
+    "openai-node": "5982f920dd6c12b74e9f5ccfdb8902b5915c4e3d",
+    "openai-openapi": "2e9ebb365c2e8332c73f3ee8b562dca8dc0047ce",
+    "openai-python": "9abd656973e0c485419db159815de17d29c2b7a3",
+    "python-genai": "8ddc655c5ed5395e1dc976a670d7a054e6245689"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "df2994493dd07c0d9900e7c46e768e525abc6277",
-    "openai-node": "1c716c325a9482e95483ea09665711981da49a6b",
-    "openai-openapi": "7405814c8f868f921766e7948c37b0c024e02fa9",
-    "openai-python": "bd61e84ca80c3579f1336a2d55c79bc5dca57a57",
-    "python-genai": "b18fd3cbe8696588ba8c78c79802707c09708fd6"
+    "js-genai": "3f65d021308199fe0af9dd95e8aff4a3b7c89a6c",
+    "openai-node": "5982f920dd6c12b74e9f5ccfdb8902b5915c4e3d",
+    "openai-openapi": "2e9ebb365c2e8332c73f3ee8b562dca8dc0047ce",
+    "openai-python": "9abd656973e0c485419db159815de17d29c2b7a3",
+    "python-genai": "8ddc655c5ed5395e1dc976a670d7a054e6245689"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.3.0",
