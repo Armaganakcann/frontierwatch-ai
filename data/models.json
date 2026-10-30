@@ -3463,6 +3463,38 @@
       "provider": "openai-node",
       "reference": "https://github.com/openai/openai-node/commit/6b536952dc4e1a06f6fae964ffc2f2c346fcdc09",
       "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-30T01:19:45.517649+00:00",
+      "level": "official_code_signal",
+      "model": "gemini-3.5-transcribe",
+      "provider": "python-genai",
+      "reference": "https://github.com/googleapis/python-genai/commit/b18fd3cbe8696588ba8c78c79802707c09708fd6",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-30T01:19:45.517649+00:00",
+      "level": "official_code_signal",
+      "model": "gemini-3.5-transcribe",
+      "provider": "js-genai",
+      "reference": "https://github.com/googleapis/js-genai/commit/df2994493dd07c0d9900e7c46e768e525abc6277",
+      "source": "sdk_patch"
+    },
+    {
+      "first_seen": "2026-10-30T01:19:45.517649+00:00",
+      "level": "official_commit_signal",
+      "model": "gemini-3.5-transcribe",
+      "provider": "python-genai",
+      "reference": "https://github.com/googleapis/python-genai/commit/b18fd3cbe8696588ba8c78c79802707c09708fd6",
+      "source": "sdk_commit"
+    },
+    {
+      "first_seen": "2026-10-30T01:19:45.517649+00:00",
+      "level": "official_commit_signal",
+      "model": "gemini-3.5-transcribe",
+      "provider": "js-genai",
+      "reference": "https://github.com/googleapis/js-genai/commit/df2994493dd07c0d9900e7c46e768e525abc6277",
+      "source": "sdk_commit"
     }
   ],
   "_health": {
@@ -3521,8 +3553,8 @@
     "telegram_pending": 0
   },
   "_last_run": {
-    "completed_at": "2026-10-29T21:23:47.974358+00:00",
-    "run_id": "40957400386",
+    "completed_at": "2026-10-30T01:19:47.372497+00:00",
+    "run_id": "40985147529",
     "trigger": "schedule"
   },
   "_model_summary": {
@@ -3612,6 +3644,17 @@
       "source_count": 1,
       "sources": [
         "sdk_patch:anthropic-sdk-typescript"
+      ]
+    },
+    "gemini-3.5-transcribe": {
+      "first_seen": "2026-10-30T01:19:45.517649+00:00",
+      "release_confirmed": false,
+      "source_count": 4,
+      "sources": [
+        "sdk_commit:js-genai",
+        "sdk_commit:python-genai",
+        "sdk_patch:js-genai",
+        "sdk_patch:python-genai"
       ]
     },
     "gemini-4-argon": {
@@ -4320,20 +4363,20 @@
   "_sdk_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "269943ae089508ca579dda988d0eba73990f2cf1",
+    "js-genai": "df2994493dd07c0d9900e7c46e768e525abc6277",
     "openai-node": "2ac178e958fce3d4bc3ae7c5ebcb4cad7244bdf7",
     "openai-openapi": "9107f19a6c66eedeb043be38daf9148b34d7d5dc",
     "openai-python": "10f9dd012363229a6c6f3fddb73403427fcd5eef",
-    "python-genai": "0dc788c7c7318f2a7c33b1e57cac64902e2f56f0"
+    "python-genai": "b18fd3cbe8696588ba8c78c79802707c09708fd6"
   },
   "_sdk_patch_commits": {
     "anthropic-sdk-python": "202db72c87d7c6eaa72129c67ce67fd343a3a20c",
     "anthropic-sdk-typescript": "cb5fba419808e3844fa6407e59577ab7ba346b79",
-    "js-genai": "269943ae089508ca579dda988d0eba73990f2cf1",
-    "openai-node": "e397a1d99d1908ca5eaa228b6637cb6688b2aa8b",
+    "js-genai": "df2994493dd07c0d9900e7c46e768e525abc6277",
+    "openai-node": "93d88a2adb0502d19e63f24922e197fb12134061",
     "openai-openapi": "9107f19a6c66eedeb043be38daf9148b34d7d5dc",
-    "openai-python": "3ee373e038dd0756eba7d748605e5209bc5b726c",
-    "python-genai": "0dc788c7c7318f2a7c33b1e57cac64902e2f56f0"
+    "openai-python": "ca1217ca59a5d0b4497e624771103853d39bd495",
+    "python-genai": "b18fd3cbe8696588ba8c78c79802707c09708fd6"
   },
   "_sdk_releases": {
     "anthropic-sdk-python": "v2.3.0",
